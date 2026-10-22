@@ -9,6 +9,19 @@ var b=$('theme');
 if(b)b.addEventListener('click',function(){
 var cur=R.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
 var n=cur==='light'?'dark':'light';R.setAttribute('data-theme',n);set(n)});
+
+// Screenshot lightbox
+var ov=null,last=null;
+function closeLb(){if(!ov)return;ov.hidden=true;document.body.classList.remove('lb-open');if(last&&last.focus)last.focus()}
+function openLb(btn){
+if(!ov){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Screenshot preview');
+ov.innerHTML='<button type="button" class="lb-x" aria-label="Close preview">\u00d7</button><img alt=""><p></p>';document.body.appendChild(ov);
+ov.addEventListener('click',function(e){if(e.target!==ov.querySelector('img'))closeLb()});
+ov.addEventListener('keydown',function(e){if(e.key==='Escape'){e.preventDefault();closeLb()}else if(e.key==='Tab'){e.preventDefault();ov.querySelector('.lb-x').focus()}})}
+last=btn;var im=ov.querySelector('img');im.src=btn.getAttribute('data-full');im.alt=btn.getAttribute('data-alt')||'';
+var cap=btn.parentNode.querySelector('figcaption');ov.querySelector('p').textContent=cap?cap.textContent:'';
+ov.hidden=false;document.body.classList.add('lb-open');ov.querySelector('.lb-x').focus()}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.shot-open');if(b){e.preventDefault();openLb(b)}});
 var y=$('yr');if(y)y.textContent=new Date().getFullYear();
 // Release info
 function setBtn(a,href,text){if(!a)return;a.href=href;a.setAttribute('aria-disabled',href==='#install'||href==='#'?'true':'false');if(text)a.textContent=text}

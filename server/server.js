@@ -82,7 +82,7 @@ function serveStatic(req, res, rel) {
     Vary: 'Accept-Encoding',
   };
   // Assets are referenced with ?v= cache-busters; robots/sitemap/favicon get a shorter TTL.
-  if (!isHtml && /^(robots\.txt|sitemap\.xml|favicon\.svg|og\.svg|og\.png)$/.test(decoded)) {
+  if (!isHtml && /^(robots\.txt|sitemap\.xml|favicon\.svg|og\.svg|og\.png|img\/.+)$/.test(decoded)) {
     headers['Cache-Control'] = 'public, max-age=86400';
   }
   if (req.headers['if-none-match'] === entry.etag) {
