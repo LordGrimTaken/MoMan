@@ -1,10 +1,10 @@
 {
-  "version": "1.0.2",
-  "versionCode": 3,
+  "version": "1.0.3",
+  "versionCode": 4,
   "minSupportedVersionCode": 1,
-  "changelog": "New import and extension-store screens, simpler repository adding, reader auto-scroll, library update summaries and a force-update action, settings and About cleanup. (Theme reset to Ink & Seal arrives in 1.0.3.)",
+  "changelog": "New MoMan look: Today home, floating ink dock, book-spine Shelf, seal-stamp progress, edge scrubber in the reader, ink-circle empty states. Resets to the Ink & Seal theme.",
   "releasedAt": "2026-10-22",
   "apks": {
-    "arm64-v8a": "MoMan-1.0.2-arm64-v8a.apk"
+    "arm64-v8a": "MoMan-1.0.3-arm64-v8a.apk"
   }
 }
