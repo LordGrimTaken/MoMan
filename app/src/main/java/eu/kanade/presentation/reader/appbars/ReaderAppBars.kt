@@ -20,7 +20,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -114,18 +116,20 @@ fun ReaderAppBars(
 
         // Edge scrubber between the bars; trailing edge for LTR/vertical modes, leading edge for RTL
         Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
-            val scrubberAlpha by animateFloatAsState(
+            val scrubberAlphaState = animateFloatAsState(
                 targetValue = if (visible) 1f else 0f,
                 animationSpec = readerBarsFadeAnimationSpec,
                 label = "scrubberAlpha",
             )
-            if (scrubberAlpha > 0f) {
+            // Only recompose when the scrubber appears/disappears, not on every animation frame
+            val scrubberShown by remember { derivedStateOf { scrubberAlphaState.value > 0f } }
+            if (scrubberShown) {
                 Box(
                     modifier = Modifier
                         .align(if (chapterNavigatorType.scrubberOnLeft()) Alignment.CenterStart else Alignment.CenterEnd)
                         .fillMaxHeight(if (chapterNavigatorType.isHorizontal()) 1f else verticalNavigatorHeight)
                         .padding(vertical = MaterialTheme.padding.small)
-                        .graphicsLayer { alpha = scrubberAlpha },
+                        .graphicsLayer { alpha = scrubberAlphaState.value },
                 ) {
                     EdgeScrubber(
                         currentPage = currentPage,

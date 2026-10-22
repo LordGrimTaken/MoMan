@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.drag
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -32,9 +32,11 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
@@ -44,6 +46,7 @@ private val TrackWidth = 3.dp
 private val ThumbSize = 10.dp
 private val BubbleHeight = 28.dp
 private val BubbleGap = 26.dp
+private val BubbleShape = RoundedCornerShape(6.dp)
 
 /**
  * Thin vertical "ink" scrubber for seeking through the pages of the current chapter.
@@ -82,15 +85,16 @@ fun EdgeScrubber(
     val latestTotal by rememberUpdatedState(totalPages)
 
     val currentFraction = ((currentPage - 1).toFloat() / (totalPages - 1)).coerceIn(0f, 1f)
-    val fraction = if (dragging) dragFraction else currentFraction
+    var heightPx by remember { mutableIntStateOf(0) }
     val shownPage = if (dragging && dragIndex >= 0) dragIndex + 1 else currentPage
 
     // Keep the scrubber's geometry independent of the app's layout direction
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        BoxWithConstraints(
+        Box(
             modifier = modifier
                 .width(ScrubberWidth)
                 .fillMaxHeight()
+                .onSizeChanged { heightPx = it.height }
                 .pointerInput(Unit) {
                     awaitEachGesture {
                         val down = awaitFirstDown(requireUnconsumed = false)
@@ -122,9 +126,9 @@ fun EdgeScrubber(
                     }
                 },
         ) {
-            val thumbTop = (maxHeight - ThumbSize) * fraction
-
             Canvas(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
+                // Read drag state here (draw phase) so dragging doesn't recompose the scrubber
+                val fraction = if (dragging) dragFraction else currentFraction
                 val thumbPx = ThumbSize.toPx()
                 val trackPx = TrackWidth.toPx()
                 val centerX = size.width / 2f
@@ -167,7 +171,12 @@ fun EdgeScrubber(
             if (dragging) {
                 Box(
                     modifier = Modifier
-                        .offset(y = thumbTop + ThumbSize / 2 - BubbleHeight / 2)
+                        .offset {
+                            val thumbPx = ThumbSize.roundToPx()
+                            val top = ((heightPx - thumbPx) * dragFraction).roundToInt() +
+                                thumbPx / 2 - BubbleHeight.roundToPx() / 2
+                            IntOffset(0, top)
+                        }
                         .fillMaxWidth()
                         .wrapContentWidth(
                             align = if (onLeft) Alignment.Start else Alignment.End,
@@ -175,7 +184,7 @@ fun EdgeScrubber(
                         )
                         .padding(start = if (onLeft) BubbleGap else 0.dp, end = if (onLeft) 0.dp else BubbleGap)
                         .height(BubbleHeight)
-                        .background(bubbleColor, RoundedCornerShape(6.dp))
+                        .background(bubbleColor, BubbleShape)
                         .padding(horizontal = 12.dp),
                     contentAlignment = Alignment.Center,
                 ) {

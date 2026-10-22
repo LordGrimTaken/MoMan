@@ -219,6 +219,7 @@ private fun ColumnScope.SortPage(
 
 private val displayModes = listOf(
     MR.strings.shelf_display_mode to LibraryDisplayMode.Shelf,
+    MR.strings.spines_display_mode to LibraryDisplayMode.Spines,
     MR.strings.action_display_grid to LibraryDisplayMode.CompactGrid,
     MR.strings.action_display_comfortable_grid to LibraryDisplayMode.ComfortableGrid,
     MR.strings.action_display_cover_only_grid to LibraryDisplayMode.CoverOnlyGrid,
@@ -240,7 +241,7 @@ private fun ColumnScope.DisplayPage(
         }
     }
 
-    if (displayMode != LibraryDisplayMode.List && displayMode != LibraryDisplayMode.Shelf) {
+    if (displayMode != LibraryDisplayMode.List && displayMode != LibraryDisplayMode.Spines) {
         val configuration = LocalConfiguration.current
         val columnPreference = remember {
             if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {

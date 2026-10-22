@@ -6,7 +6,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -29,8 +28,26 @@ fun SealStamp(
     color: Color = MaterialTheme.colorScheme.secondary,
     contentColor: Color = MaterialTheme.colorScheme.onSecondary,
 ) {
-    val p = progress.coerceIn(0f, 1f)
+    SealStampCanvas(
+        progress = { progress },
+        size = size,
+        modifier = modifier,
+        color = color,
+        contentColor = contentColor,
+    )
+}
+
+@Composable
+private fun SealStampCanvas(
+    progress: () -> Float,
+    size: Dp,
+    modifier: Modifier,
+    color: Color,
+    contentColor: Color,
+) {
     Canvas(modifier = modifier.size(size)) {
+        // Read in the draw phase so animating progress doesn't recompose
+        val p = progress().coerceIn(0f, 1f)
         val outline = 1.5.dp.toPx().coerceAtLeast(1f)
         val radius = CornerRadius(2.dp.toPx())
         val half = outline / 2f
@@ -96,13 +113,13 @@ fun AnimatedSealStamp(
     contentColor: Color = MaterialTheme.colorScheme.onSecondary,
     durationMillis: Int = 450,
 ) {
-    val animated by animateFloatAsState(
+    val animated = animateFloatAsState(
         targetValue = progress.coerceIn(0f, 1f),
         animationSpec = tween(durationMillis),
         label = "sealStampProgress",
     )
-    SealStamp(
-        progress = animated,
+    SealStampCanvas(
+        progress = { animated.value },
         size = size,
         modifier = modifier,
         color = color,

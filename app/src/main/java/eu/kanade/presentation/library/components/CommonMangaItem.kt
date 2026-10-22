@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -175,6 +176,7 @@ fun MangaComfortableGridItem(
     coverBadgeEnd: (@Composable RowScope.() -> Unit)? = null,
     onClickContinueReading: (() -> Unit)? = null,
     readProgress: Float? = null,
+    titleFontFamily: FontFamily? = null,
 ) {
     GridItemSelectable(
         isSelected = isSelected,
@@ -212,6 +214,7 @@ fun MangaComfortableGridItem(
                 title = title,
                 style = MaterialTheme.typography.bodySmall.copy(
                     color = MaterialTheme.colorScheme.onBackground,
+                    fontFamily = titleFontFamily,
                 ),
                 minLines = 2,
                 maxLines = titleMaxLines,

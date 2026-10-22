@@ -46,9 +46,9 @@ class TodayViewModel(
     private val getUpdates: GetUpdates,
 ) : ViewModel() {
 
-    private val resume: Flow<ResumeItem?> = getHistory.subscribe("")
-        .map { list ->
-            list.firstOrNull()?.let {
+    private val resume: Flow<ResumeItem?> = getHistory.subscribeLast()
+        .map { latest ->
+            latest?.let {
                 ResumeItem(
                     mangaId = it.mangaId,
                     chapterId = it.chapterId,
@@ -86,7 +86,7 @@ class TodayViewModel(
                             unreadCount = items.size,
                         )
                     }
-            })
+            }.distinctUntilChanged())
         }
         .catch {
             logcat(LogPriority.ERROR, it)
@@ -109,6 +109,7 @@ class TodayViewModel(
                     )
                 }
         }
+        .distinctUntilChanged()
         .catch {
             logcat(LogPriority.ERROR, it)
             emit(emptyList())

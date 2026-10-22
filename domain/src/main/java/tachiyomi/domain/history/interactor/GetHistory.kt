@@ -15,6 +15,11 @@ class GetHistory(
         return repository.getHistoryByMangaId(mangaId)
     }
 
+    /** Only the most recent entry, without loading the whole history. */
+    fun subscribeLast(): Flow<HistoryWithRelations?> {
+        return repository.subscribeLastHistory()
+    }
+
     fun subscribe(query: String): Flow<List<HistoryWithRelations>> {
         return repository.getHistory(query)
     }

@@ -66,7 +66,7 @@ fun LibraryPager(
         }
 
         val displayMode by getDisplayMode(page)
-        val columns by if (displayMode != LibraryDisplayMode.List && displayMode != LibraryDisplayMode.Shelf) {
+        val columns by if (displayMode != LibraryDisplayMode.List && displayMode != LibraryDisplayMode.Spines) {
             val configuration = LocalConfiguration.current
             val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
@@ -91,9 +91,21 @@ fun LibraryPager(
                     onGlobalSearchClicked = onGlobalSearchClicked,
                 )
             }
+            LibraryDisplayMode.Spines -> {
+                LibrarySpines(
+                    items = items,
+                    contentPadding = contentPadding,
+                    selection = selection,
+                    onClick = onClickManga,
+                    onLongClick = onLongClickManga,
+                    searchQuery = searchQuery,
+                    onGlobalSearchClicked = onGlobalSearchClicked,
+                )
+            }
             LibraryDisplayMode.Shelf -> {
                 LibraryShelf(
                     items = items,
+                    columns = columns,
                     contentPadding = contentPadding,
                     selection = selection,
                     onClick = onClickManga,
