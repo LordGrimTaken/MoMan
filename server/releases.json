@@ -1,10 +1,10 @@
 {
-  "version": "1.0.10",
-  "versionCode": 11,
+  "version": "1.0.11",
+  "versionCode": 12,
   "minSupportedVersionCode": 1,
-  "changelog": "Updater now asks for install permission and explains download failures. Library error log links to the new help entry.",
+  "changelog": "Redesigned the lower half of the You tab: modes card, library tiles, app card and a brand footer.",
   "releasedAt": "2026-10-22",
   "apks": {
-    "arm64-v8a": "MoMan-1.0.10-arm64-v8a.apk"
+    "arm64-v8a": "MoMan-1.0.11-arm64-v8a.apk"
   }
 }
