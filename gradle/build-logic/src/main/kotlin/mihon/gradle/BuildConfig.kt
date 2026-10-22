@@ -30,7 +30,7 @@ val Project.Config: BuildConfig get() = object : BuildConfig {
     override val uploadCrashlyticsMapping: Boolean = includeTelemetry && (distribution == Distribution.GITHUB)
 
     override val enableUpdater: Boolean = project.flag("enable-updater")
-        ?: (distribution != Distribution.LOCAL)
+        ?: true // MoMan ships its own update server; keep the updater on for every build type
 
     override val includeDependencyInfo: Boolean = project.flag("include-dependency-info") ?: false
 }

@@ -39,13 +39,15 @@ class ReleaseServiceImpl(
             }
         }
 
-        val downloadLink = pickApk(release) ?: return null
+        // A missing APK is reported by GetApplicationRelease (only when the release is actually newer).
+        val downloadLink = pickApk(release).orEmpty()
 
         return Release(
             version = release.version,
             info = release.changelog,
             releaseLink = baseUrl,
             downloadLink = downloadLink,
+            versionCode = release.versionCode,
         )
     }
 

@@ -11,53 +11,50 @@ class GetApplicationRelease(
     suspend fun await(arguments: Arguments): Result {
         val release = service.latest(arguments) ?: return Result.NoNewUpdate
 
-        // Check if latest version is different from current version
         val isNewVersion = isNewVersion(
-            arguments.isNightly,
-            arguments.commitCount,
-            arguments.versionName,
-            release.version,
+            currentVersionCode = arguments.versionCode,
+            currentVersionName = arguments.versionName,
+            release = release,
         )
-        return when {
-            isNewVersion -> Result.NewUpdate(release)
-            else -> Result.NoNewUpdate
+        if (!isNewVersion) return Result.NoNewUpdate
+
+        check(release.downloadLink.isNotBlank()) {
+            "Version ${release.version} is available but has no download for this device"
         }
+        return Result.NewUpdate(release)
     }
 
     private fun isNewVersion(
-        isNightly: Boolean,
-        commitCount: Int,
-        versionName: String,
-        versionTag: String,
+        currentVersionCode: Int,
+        currentVersionName: String,
+        release: Release,
     ): Boolean {
-        // Removes prefixes like "r" or "v"
-        val newVersion = versionTag.replace("[^\\d.]".toRegex(), "")
-        return if (isNightly) {
-            // Nightly builds: based on releases in "mihonapp/mihon-preview" repo
-            // tagged as something like "r1234"
-            newVersion.toInt() > commitCount
-        } else {
-            // Release builds: based on releases in "mihonapp/mihon" repo
-            // tagged as something like "v0.1.2"
-            val oldVersion = versionName.replace("[^\\d.]".toRegex(), "")
-
-            val newSemVer = newVersion.split(".").map { it.toInt() }
-            val oldSemVer = oldVersion.split(".").map { it.toInt() }
-
-            oldSemVer.mapIndexed { index, i ->
-                if (newSemVer[index] > i) {
-                    return true
-                }
-            }
-
-            false
+        // Preferred rule: the server's version code is authoritative (works for debug builds too).
+        if (release.versionCode > 0) {
+            return release.versionCode > currentVersionCode
         }
+
+        // Fallback: semver comparison, ignoring any "-suffix" (e.g. "-152" on debug builds).
+        val newSemVer = parseSemVer(release.version)
+        val oldSemVer = parseSemVer(currentVersionName)
+        val size = maxOf(newSemVer.size, oldSemVer.size)
+        for (i in 0 until size) {
+            val n = newSemVer.getOrElse(i) { 0 }
+            val o = oldSemVer.getOrElse(i) { 0 }
+            if (n != o) return n > o
+        }
+        return false
+    }
+
+    private fun parseSemVer(version: String): List<Int> {
+        // Strip "-suffix", then prefixes like "v"
+        val core = version.substringBefore('-').replace("[^\\d.]".toRegex(), "")
+        return core.split(".").mapNotNull { it.toIntOrNull() }
     }
 
     data class Arguments(
         val isFoss: Boolean,
-        val isNightly: Boolean,
-        val commitCount: Int,
+        val versionCode: Int,
         val versionName: String,
         val repository: String,
         val forceCheck: Boolean = false,

@@ -22,12 +22,13 @@ class GetApplicationReleaseTest {
     }
 
     @Test
-    fun `When has update but is nightly expect new update`() = runTest {
+    fun `When server versionCode is higher on debug build expect new update`() = runTest {
         val release = Release(
-            "r2000",
+            "1.0.1",
             "info",
             "http://example.com/release_link",
             "http://example.com/release_link.apk",
+            versionCode = 2,
         )
 
         coEvery { releaseService.latest(any()) } returns release
@@ -35,16 +36,13 @@ class GetApplicationReleaseTest {
         val result = getApplicationRelease.await(
             GetApplicationRelease.Arguments(
                 isFoss = false,
-                isNightly = true,
-                commitCount = 1000,
-                versionName = "",
+                versionCode = 1,
+                versionName = "1.0.0-152",
                 repository = "test",
             ),
         )
 
-        (result as GetApplicationRelease.Result.NewUpdate).release shouldBe GetApplicationRelease.Result.NewUpdate(
-            release,
-        ).release
+        (result as GetApplicationRelease.Result.NewUpdate).release shouldBe release
     }
 
     @Test
@@ -61,8 +59,7 @@ class GetApplicationReleaseTest {
         val result = getApplicationRelease.await(
             GetApplicationRelease.Arguments(
                 isFoss = false,
-                isNightly = false,
-                commitCount = 0,
+                versionCode = 0,
                 versionName = "v1.0.0",
                 repository = "test",
             ),
@@ -87,8 +84,7 @@ class GetApplicationReleaseTest {
         val result = getApplicationRelease.await(
             GetApplicationRelease.Arguments(
                 isFoss = false,
-                isNightly = false,
-                commitCount = 0,
+                versionCode = 0,
                 versionName = "v2.0.0",
                 repository = "test",
             ),
