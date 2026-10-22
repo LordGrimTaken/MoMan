@@ -70,7 +70,6 @@ object AboutScreen : Screen() {
     private const val WEBSITE_URL = "https://momanreader.com"
     private const val PRIVACY_URL = "https://momanreader.com/privacy"
     private const val CHANGELOG_URL = "https://momanreader.com/#changelog"
-    private const val MIHON_URL = "https://github.com/mihonapp/mihon"
 
     @Composable
     override fun Content() {
@@ -182,13 +181,6 @@ object AboutScreen : Screen() {
                     )
                 }
 
-                item {
-                    TextPreferenceWidget(
-                        title = stringResource(MR.strings.about_based_on_mihon),
-                        subtitle = stringResource(MR.strings.about_based_on_mihon_summary),
-                        onPreferenceClick = { uriHandler.openUri(MIHON_URL) },
-                    )
-                }
             }
         }
     }

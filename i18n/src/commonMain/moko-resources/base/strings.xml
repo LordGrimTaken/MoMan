@@ -709,8 +709,6 @@
     <string name="help_translate">Help translate</string>
     <string name="licenses">Open source licenses</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="about_based_on_mihon">Based on Mihon</string>
-    <string name="about_based_on_mihon_summary">MoMan is a fork of Mihon, licensed under Apache-2.0. Tap to view the project.</string>
     <string name="check_for_updates">Check for updates</string>
 
     <!-- ACRA -->
