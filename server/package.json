@@ -1,0 +1,8 @@
+{
+  "name": "moman-update-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Update feed and APK hosting for the MoMan app",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}
