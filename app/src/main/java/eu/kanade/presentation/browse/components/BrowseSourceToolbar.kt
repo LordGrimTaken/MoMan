@@ -63,6 +63,7 @@ fun BrowseSourceToolbar(
                                 LibraryDisplayMode.ComfortableGrid -> MaterialSymbols.RoundedFilled.ViewModule
                                 LibraryDisplayMode.CompactGrid,
                                 LibraryDisplayMode.CoverOnlyGrid,
+                                LibraryDisplayMode.Shelf,
                                 -> MaterialSymbols.RoundedFilled.ViewCompact
                             },
                             onClick = { selectingDisplayMode = true },

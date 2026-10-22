@@ -8,6 +8,7 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Folder
 import tachiyomi.presentation.core.components.Badge
+import tachiyomi.presentation.core.components.SealBadge
 
 @Composable
 internal fun DownloadsBadge(count: Int) {
@@ -23,7 +24,7 @@ internal fun DownloadsBadge(count: Int) {
 @Composable
 internal fun UnreadBadge(count: Long) {
     if (count > 0) {
-        Badge(text = "$count")
+        SealBadge(text = "$count")
     }
 }
 

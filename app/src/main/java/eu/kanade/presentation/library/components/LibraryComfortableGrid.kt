@@ -34,6 +34,7 @@ internal fun LibraryComfortableGrid(
         ) { libraryItem ->
             val manga = libraryItem.libraryManga.manga
             MangaComfortableGridItem(
+                readProgress = libraryItem.libraryManga.readFraction(),
                 isSelected = manga.id in selection,
                 title = manga.title,
                 coverData = MangaCover(

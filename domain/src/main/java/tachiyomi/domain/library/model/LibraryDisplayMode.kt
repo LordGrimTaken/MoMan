@@ -6,6 +6,7 @@ sealed interface LibraryDisplayMode {
     data object ComfortableGrid : LibraryDisplayMode
     data object List : LibraryDisplayMode
     data object CoverOnlyGrid : LibraryDisplayMode
+    data object Shelf : LibraryDisplayMode
 
     object Serializer {
         fun deserialize(serialized: String): LibraryDisplayMode {
@@ -18,8 +19,11 @@ sealed interface LibraryDisplayMode {
     }
 
     companion object {
-        val values by lazy { setOf(CompactGrid, ComfortableGrid, List, CoverOnlyGrid) }
+        val values by lazy { setOf(CompactGrid, ComfortableGrid, List, CoverOnlyGrid, Shelf) }
         val default = CompactGrid
+
+        /** Default for the library only (browse keeps [default]). */
+        val libraryDefault = Shelf
 
         fun deserialize(serialized: String): LibraryDisplayMode {
             return when (serialized) {
@@ -27,6 +31,7 @@ sealed interface LibraryDisplayMode {
                 "COMPACT_GRID" -> CompactGrid
                 "COVER_ONLY_GRID" -> CoverOnlyGrid
                 "LIST" -> List
+                "SHELF" -> Shelf
                 else -> default
             }
         }
@@ -38,6 +43,7 @@ sealed interface LibraryDisplayMode {
             CompactGrid -> "COMPACT_GRID"
             CoverOnlyGrid -> "COVER_ONLY_GRID"
             List -> "LIST"
+            Shelf -> "SHELF"
         }
     }
 }

@@ -19,7 +19,7 @@ class LibraryPreferences(
 
     val displayMode: Preference<LibraryDisplayMode> = preferenceStore.getObjectFromString(
         "pref_display_mode_library",
-        LibraryDisplayMode.default,
+        LibraryDisplayMode.libraryDefault,
         LibraryDisplayMode.Serializer::serialize,
         LibraryDisplayMode.Serializer::deserialize,
     )

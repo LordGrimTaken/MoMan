@@ -1148,4 +1148,5 @@
     <string name="update_summary_skipped_line">%1$d × %2$s</string>
     <string name="update_summary_tip_skipped">Skipped titles follow your update restrictions in Settings › Library.</string>
     <string name="action_update_library_force">Update all (ignore restrictions)</string>
+    <string name="shelf_display_mode">Shelf</string>
 </resources>

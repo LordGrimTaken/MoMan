@@ -75,6 +75,7 @@ fun MangaCompactGridItem(
     coverAlpha: Float = 1f,
     coverBadgeStart: @Composable (RowScope.() -> Unit)? = null,
     coverBadgeEnd: @Composable (RowScope.() -> Unit)? = null,
+    readProgress: Float? = null,
 ) {
     GridItemSelectable(
         isSelected = isSelected,
@@ -92,6 +93,7 @@ fun MangaCompactGridItem(
             },
             badgesStart = coverBadgeStart,
             badgesEnd = coverBadgeEnd,
+            readProgress = readProgress,
             content = {
                 if (title != null) {
                     CoverTextOverlay(
@@ -172,6 +174,7 @@ fun MangaComfortableGridItem(
     coverBadgeStart: (@Composable RowScope.() -> Unit)? = null,
     coverBadgeEnd: (@Composable RowScope.() -> Unit)? = null,
     onClickContinueReading: (() -> Unit)? = null,
+    readProgress: Float? = null,
 ) {
     GridItemSelectable(
         isSelected = isSelected,
@@ -190,6 +193,7 @@ fun MangaComfortableGridItem(
                 },
                 badgesStart = coverBadgeStart,
                 badgesEnd = coverBadgeEnd,
+                readProgress = readProgress,
                 content = {
                     if (onClickContinueReading != null) {
                         ContinueReadingButton(
@@ -225,6 +229,7 @@ private fun MangaGridCover(
     cover: @Composable BoxScope.() -> Unit = {},
     badgesStart: (@Composable RowScope.() -> Unit)? = null,
     badgesEnd: (@Composable RowScope.() -> Unit)? = null,
+    readProgress: Float? = null,
     content: @Composable (BoxScope.() -> Unit)? = null,
 ) {
     Box(
@@ -249,6 +254,17 @@ private fun MangaGridCover(
                     .padding(5.dp)
                     .align(Alignment.TopEnd),
                 content = badgesEnd,
+            )
+        }
+
+        if (readProgress != null && readProgress > 0f) {
+            // Thin seal-colored progress edge along the cover's bottom
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .fillMaxWidth(readProgress.coerceIn(0f, 1f))
+                    .height(2.dp)
+                    .background(MaterialTheme.colorScheme.secondary),
             )
         }
     }
@@ -388,4 +404,10 @@ private fun ContinueReadingButton(
             )
         }
     }
+}
+
+/** Fraction of chapters read (0..1), or null when unknown / nothing to show. */
+fun tachiyomi.domain.library.model.LibraryManga.readFraction(): Float? {
+    if (totalChapters <= 0L) return null
+    return (readCount.toFloat() / totalChapters.toFloat()).coerceIn(0f, 1f)
 }

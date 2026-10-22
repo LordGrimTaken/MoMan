@@ -1,6 +1,7 @@
 package tachiyomi.presentation.core.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -26,10 +27,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+private val StampShape = RoundedCornerShape(2.dp)
+
 @Composable
 fun BadgeGroup(
     modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(3.dp),
+    shape: Shape = StampShape,
     content: @Composable RowScope.() -> Unit,
 ) {
     Row(modifier = modifier.clip(shape)) {
@@ -43,7 +46,7 @@ fun Badge(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.secondary,
     textColor: Color = MaterialTheme.colorScheme.onSecondary,
-    shape: Shape = RoundedCornerShape(3.dp),
+    shape: Shape = StampShape,
 ) {
     Box(
         modifier = modifier
@@ -70,7 +73,7 @@ fun Badge(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.secondary,
     iconColor: Color = MaterialTheme.colorScheme.onSecondary,
-    shape: Shape = RoundedCornerShape(3.dp),
+    shape: Shape = StampShape,
 ) {
     val iconContentPlaceholder = "[icon]"
     val text = buildAnnotatedString {
@@ -108,6 +111,37 @@ fun Badge(
             inlineContent = inlineContent,
             color = iconColor,
             fontWeight = FontWeight.Medium,
+            maxLines = 1,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.labelSmall,
+        )
+    }
+}
+
+/**
+ * Seal-style badge: a vermilion square stamp with an inset carved border and the [text] inside.
+ */
+@Composable
+fun SealBadge(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.secondary,
+    textColor: Color = MaterialTheme.colorScheme.onSecondary,
+) {
+    Box(
+        modifier = modifier
+            .clip(StampShape)
+            .background(color)
+            .defaultMinSize(minWidth = 20.dp, minHeight = 20.dp)
+            .padding(1.5.dp)
+            .border(0.75.dp, textColor.copy(alpha = 0.6f), RoundedCornerShape(1.dp))
+            .padding(horizontal = 3.dp, vertical = 1.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = text,
+            color = textColor,
+            fontWeight = FontWeight.Bold,
             maxLines = 1,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.labelSmall,

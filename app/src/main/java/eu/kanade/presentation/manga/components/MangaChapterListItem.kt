@@ -1,6 +1,7 @@
 package eu.kanade.presentation.manga.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -123,6 +124,18 @@ fun MangaChapterListItem(
                                 .background(MaterialTheme.colorScheme.secondary, RoundedCornerShape(2.dp))
                                 .semantics { contentDescription = unreadDescription },
                         )
+                    } else {
+                        // Read: faded outlined stamp
+                        Box(
+                            modifier = Modifier
+                                .padding(end = 6.dp)
+                                .size(8.dp)
+                                .border(
+                                    1.dp,
+                                    MaterialTheme.colorScheme.secondary.copy(alpha = 0.35f),
+                                    RoundedCornerShape(2.dp),
+                                ),
+                        )
                     }
                     if (bookmark) {
                         Icon(
@@ -130,7 +143,7 @@ fun MangaChapterListItem(
                             contentDescription = stringResource(MR.strings.action_filter_bookmarked),
                             modifier = Modifier
                                 .sizeIn(maxHeight = with(LocalDensity.current) { textHeight.toDp() - 2.dp }),
-                            tint = MaterialTheme.colorScheme.primary,
+                            tint = MaterialTheme.colorScheme.tertiary,
                         )
                     }
                     Text(
