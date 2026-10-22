@@ -26,7 +26,7 @@ class AppUpdateChecker(
                     isNightlyBuildType,
                     BuildConfig.COMMIT_COUNT.toInt(),
                     BuildConfig.VERSION_NAME,
-                    GITHUB_REPO,
+                    UPDATE_BASE_URL,
                     forceCheck,
                 ),
             )
@@ -36,20 +36,7 @@ class AppUpdateChecker(
     }
 }
 
-val GITHUB_REPO: String by lazy {
-    if (isNightlyBuildType) {
-        "mihonapp/mihon-preview"
-    } else {
-        "mihonapp/mihon"
-    }
-}
+/** Base URL of the MoMan update server (see /server in this repo). */
+const val UPDATE_BASE_URL = "https://moman-updates.onrender.com"
 
-val RELEASE_TAG: String by lazy {
-    if (isNightlyBuildType) {
-        "r${BuildConfig.COMMIT_COUNT}"
-    } else {
-        "v${BuildConfig.VERSION_NAME}"
-    }
-}
-
-val RELEASE_URL = "https://github.com/$GITHUB_REPO/releases/tag/$RELEASE_TAG"
+val RELEASE_URL = UPDATE_BASE_URL
