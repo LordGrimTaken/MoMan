@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.ui.more
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
+import android.widget.Toast
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -70,6 +73,7 @@ class NewUpdateScreenModel(
             } catch (e: Exception) {
                 logcat(LogPriority.ERROR, e)
                 apkFile.delete()
+                Toast.makeText(context, "Update download failed: ${e.message ?: e::class.java.simpleName}", Toast.LENGTH_LONG).show()
                 state.update { it.copy(stage = Stage.Failed) }
             }
         }
@@ -104,6 +108,18 @@ class NewUpdateScreenModel(
     }
 
     fun installUpdate() {
+        if (!context.packageManager.canRequestPackageInstalls()) {
+            Toast.makeText(
+                context,
+                "Allow MoMan to install apps, then come back and tap Install again",
+                Toast.LENGTH_LONG,
+            ).show()
+            context.startActivity(
+                Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:${context.packageName}"))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+            )
+            return
+        }
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setDataAndType(apkFile.getUriCompat(context), ExtensionInstaller.APK_MIME)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
