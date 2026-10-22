@@ -2,6 +2,7 @@ package eu.kanade.presentation.reader.appbars
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -19,11 +20,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -111,22 +114,27 @@ fun ReaderAppBars(
 
         // Edge scrubber between the bars; trailing edge for LTR/vertical modes, leading edge for RTL
         Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
-            AnimatedVisibility(
-                visible = visible,
-                modifier = Modifier
-                    .align(if (chapterNavigatorType.scrubberOnLeft()) Alignment.CenterStart else Alignment.CenterEnd)
-                    .fillMaxHeight(if (chapterNavigatorType.isHorizontal()) 1f else verticalNavigatorHeight)
-                    .padding(vertical = MaterialTheme.padding.small),
-                enter = fadeIn(readerBarsFadeAnimationSpec),
-                exit = fadeOut(readerBarsFadeAnimationSpec),
-            ) {
-                EdgeScrubber(
-                    currentPage = currentPage,
-                    totalPages = totalPages,
-                    onPageIndexChange = onPageIndexChange,
-                    onPageIndexChangeFinished = onPageIndexChangeFinished,
-                    onLeft = chapterNavigatorType.scrubberOnLeft(),
-                )
+            val scrubberAlpha by animateFloatAsState(
+                targetValue = if (visible) 1f else 0f,
+                animationSpec = readerBarsFadeAnimationSpec,
+                label = "scrubberAlpha",
+            )
+            if (scrubberAlpha > 0f) {
+                Box(
+                    modifier = Modifier
+                        .align(if (chapterNavigatorType.scrubberOnLeft()) Alignment.CenterStart else Alignment.CenterEnd)
+                        .fillMaxHeight(if (chapterNavigatorType.isHorizontal()) 1f else verticalNavigatorHeight)
+                        .padding(vertical = MaterialTheme.padding.small)
+                        .graphicsLayer { alpha = scrubberAlpha },
+                ) {
+                    EdgeScrubber(
+                        currentPage = currentPage,
+                        totalPages = totalPages,
+                        onPageIndexChange = onPageIndexChange,
+                        onPageIndexChangeFinished = onPageIndexChangeFinished,
+                        onLeft = chapterNavigatorType.scrubberOnLeft(),
+                    )
+                }
             }
         }
 
