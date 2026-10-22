@@ -1171,4 +1171,37 @@
     <string name="reader_prev">Prev</string>
     <string name="reader_next">Next</string>
     <string name="spines_display_mode">Spines</string>
+
+    <string name="you_section_sources">Sources</string>
+    <string name="you_section_library">Library &amp; downloads</string>
+    <string name="you_section_app">App</string>
+    <string name="you_add_hero_title">Add manga sources</string>
+    <string name="you_add_hero_body">MoMan starts empty. A short guide will get you reading in a few minutes.</string>
+    <string name="you_add_hero_button">Start the guide</string>
+    <string name="you_my_sources">My sources</string>
+    <string name="you_my_sources_desc">See the sources you have, pin favourites or switch them off</string>
+    <string name="you_extensions">Extensions</string>
+    <string name="you_extensions_desc">Add-ons that bring in manga sites</string>
+    <string name="you_migrate">Migrate</string>
+    <string name="you_migrate_desc">Move a series to another source</string>
+    <string name="addsources_title">Add manga sources</string>
+    <string name="addsources_intro">Four quick steps. You only need to do this once.</string>
+    <string name="addsources_step1_title">What is a repository?</string>
+    <string name="addsources_step1_body">A repository is a list of manga sites, a bit like the catalog of an app store. MoMan comes with none, so you add one from a place you trust.</string>
+    <string name="addsources_step2_title">Paste the repository link</string>
+    <string name="addsources_step2_body">Copy the repository link (it starts with https://), then tap the button and paste it from your clipboard.</string>
+    <string name="addsources_step2_button">Add repository</string>
+    <string name="addsources_step3_title">Install a source</string>
+    <string name="addsources_step3_body">Open Extensions, tap Install next to a source you want, and confirm that you trust it.</string>
+    <string name="addsources_step3_button">Open Extensions</string>
+    <string name="addsources_step4_title">Read</string>
+    <string name="addsources_step4_body">Go to Discover to browse your new sources and start reading.</string>
+    <string name="addsources_step4_button">Go to Discover</string>
+    <string name="addsources_legal">MoMan does not provide or endorse any content or repositories. You are responsible for what you add and read.</string>
+    <string name="discover_latest_from">Latest from %1$s</string>
+    <string name="discover_see_all">See all</string>
+    <string name="discover_load_failed">Couldn\'t load this source</string>
+    <string name="discover_empty_title">No sources yet</string>
+    <string name="discover_add_sources">Add sources</string>
+    <string name="discover_nothing_here">Nothing new from this source</string>
 </resources>
