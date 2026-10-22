@@ -2,6 +2,37 @@ package eu.kanade.tachiyomi.ui.home
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.BadgedBox
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.semantics.Role
+import eu.kanade.tachiyomi.ui.today.TodayTab
+import tachiyomi.presentation.core.i18n.stringResource
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +50,6 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaul
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteItem
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
-import androidx.compose.material3.adaptive.navigationsuite.rememberNavigationSuiteScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -28,7 +58,6 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -74,52 +103,33 @@ object HomeScreen : Screen() {
     private const val TabNavigatorKey = "HomeTabs"
 
     private val TABS = listOf(
+        TodayTab,
         LibraryTab,
-        UpdatesTab,
-        HistoryTab,
         BrowseTab,
         MoreTab,
     )
+
+    // Scroll distance (px) before the floating dock reacts
+    private const val DockScrollThreshold = 6f
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
         TabNavigator(
-            tab = LibraryTab,
+            tab = TodayTab,
             key = TabNavigatorKey,
         ) { tabNavigator ->
             // Provide usable navigator to content screen
             CompositionLocalProvider(LocalNavigator provides navigator) {
                 val tabletUi = isTabletUi()
-                val navigationSuiteType = if (tabletUi) {
-                    NavigationSuiteType.NavigationRail
-                } else {
-                    NavigationSuiteType.NavigationBar
+                var navShown by remember { mutableStateOf(true) }
+                val scrollShown = remember { mutableStateOf(true) }
+                LaunchedEffect(Unit) {
+                    showBottomNavEvent.receiveAsFlow().collectLatest { show -> navShown = show }
                 }
-                val navigationSuiteState = rememberNavigationSuiteScaffoldState()
-                LaunchedEffect(navigationSuiteState, tabletUi) {
-                    if (tabletUi) navigationSuiteState.show()
-                    showBottomNavEvent.receiveAsFlow().collectLatest { show ->
-                        if (tabletUi || show) {
-                            navigationSuiteState.show()
-                        } else {
-                            navigationSuiteState.hide()
-                        }
-                    }
-                }
+                LaunchedEffect(tabNavigator.current) { scrollShown.value = true }
 
-                NavigationSuiteScaffold(
-                    navigationSuiteType = navigationSuiteType,
-                    state = navigationSuiteState,
-                    navigationSuiteColors = NavigationSuiteDefaults.colors(
-                        navigationBarContainerColor = MaterialTheme.colorScheme.surfaceContainer,
-                        navigationRailContainerColor = MaterialTheme.colorScheme.surfaceContainer,
-                    ),
-                    navigationItemVerticalArrangement = Arrangement.Center,
-                    navigationItems = {
-                        TABS.fastForEach { NavigationSuiteItem(it, navigationSuiteType) }
-                    },
-                ) {
+                val tabContent: @Composable () -> Unit = {
                     AnimatedContent(
                         targetState = tabNavigator.current,
                         transitionSpec = {
@@ -135,22 +145,81 @@ object HomeScreen : Screen() {
                         }
                     }
                 }
+
+                if (tabletUi) {
+                    NavigationSuiteScaffold(
+                        navigationSuiteType = NavigationSuiteType.NavigationRail,
+                        navigationSuiteColors = NavigationSuiteDefaults.colors(
+                            navigationBarContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+                            navigationRailContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+                        ),
+                        navigationItemVerticalArrangement = Arrangement.Center,
+                        navigationItems = {
+                            TABS.fastForEach { NavigationSuiteItem(it, NavigationSuiteType.NavigationRail) }
+                        },
+                    ) {
+                        tabContent()
+                    }
+                } else {
+                    val dockVisible = navShown && scrollShown.value
+                    val scrollConnection = remember {
+                        object : NestedScrollConnection {
+                            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                                if (available.y < -DockScrollThreshold) {
+                                    scrollShown.value = false
+                                } else if (available.y > DockScrollThreshold) {
+                                    scrollShown.value = true
+                                }
+                                return Offset.Zero
+                            }
+                        }
+                    }
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.background),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                                .nestedScroll(scrollConnection)
+                                .then(
+                                    if (dockVisible) {
+                                        Modifier.consumeWindowInsets(WindowInsets.navigationBars)
+                                    } else {
+                                        Modifier
+                                    },
+                                ),
+                        ) {
+                            tabContent()
+                        }
+                        AnimatedVisibility(
+                            visible = dockVisible,
+                            enter = slideInVertically { it } + fadeIn() + expandVertically(),
+                            exit = slideOutVertically { it } + fadeOut() + shrinkVertically(),
+                        ) {
+                            InkDock()
+                        }
+                    }
+                }
             }
 
-            val goToLibraryTab = { tabNavigator.current = LibraryTab }
+            val goToTodayTab = { tabNavigator.current = TodayTab }
 
-            BackHandler(enabled = tabNavigator.current != LibraryTab, onBack = goToLibraryTab)
+            BackHandler(enabled = tabNavigator.current != TodayTab, onBack = goToTodayTab)
 
             LaunchedEffect(Unit) {
                 launch {
                     librarySearchEvent.receiveAsFlow().collectLatest {
-                        goToLibraryTab()
+                        tabNavigator.current = LibraryTab
                         LibraryTab.search(it)
                     }
                 }
                 launch {
                     openTabEvent.receiveAsFlow().collectLatest {
                         tabNavigator.current = when (it) {
+                            Tab.Today -> TodayTab
                             is Tab.Library -> LibraryTab
                             Tab.Updates -> UpdatesTab
                             Tab.History -> HistoryTab
@@ -175,6 +244,110 @@ object HomeScreen : Screen() {
         }
     }
 
+    /**
+     * Updates and History are no longer in the bar; they are reached from Today, so Today stays lit.
+     */
+    @Composable
+    private fun isTabSelected(tab: eu.kanade.presentation.util.Tab): Boolean {
+        val current = LocalTabNavigator.current.current
+        return when (tab) {
+            is TodayTab -> current is TodayTab || current is UpdatesTab || current is HistoryTab
+            else -> current::class == tab::class
+        }
+    }
+
+    @Composable
+    private fun tabLabel(tab: eu.kanade.presentation.util.Tab): String {
+        return when (tab) {
+            is TodayTab -> stringResource(MR.strings.nav_today)
+            is LibraryTab -> stringResource(MR.strings.nav_shelf)
+            is BrowseTab -> stringResource(MR.strings.nav_discover)
+            is MoreTab -> stringResource(MR.strings.nav_you)
+            else -> tab.options.title
+        }
+    }
+
+    /**
+     * Floating pill dock: icon over label, selected item gets a vermilion underline stroke.
+     */
+    @Composable
+    private fun InkDock() {
+        val colorScheme = MaterialTheme.colorScheme
+        val shape = MaterialTheme.shapes.extraLarge
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.navigationBars)
+                .padding(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 12.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            Row(
+                modifier = Modifier
+                    .widthIn(max = 420.dp)
+                    .fillMaxWidth()
+                    .height(64.dp)
+                    .background(colorScheme.surfaceContainerHigh, shape)
+                    .border(1.dp, colorScheme.outlineVariant, shape)
+                    .clip(shape),
+            ) {
+                TABS.fastForEach { DockItem(it) }
+            }
+        }
+    }
+
+    @Composable
+    private fun RowScope.DockItem(tab: eu.kanade.presentation.util.Tab) {
+        val tabNavigator = LocalTabNavigator.current
+        val navigator = LocalNavigator.currentOrThrow
+        val scope = rememberCoroutineScope()
+        val selected = isTabSelected(tab)
+        val label = tabLabel(tab)
+        val colorScheme = MaterialTheme.colorScheme
+        val contentColor = if (selected) colorScheme.onBackground else colorScheme.onSurfaceVariant
+        val badge = tabBadge(tab)
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+                .clickable(role = Role.Tab) {
+                    if (tabNavigator.current::class != tab::class) {
+                        tabNavigator.current = tab
+                    } else {
+                        scope.launch { tab.onReselect(navigator) }
+                    }
+                },
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            val icon: @Composable () -> Unit = {
+                Icon(
+                    painter = tab.options.icon!!,
+                    contentDescription = label,
+                    tint = contentColor,
+                )
+            }
+            if (badge != null) {
+                BadgedBox(badge = { badge() }) { icon() }
+            } else {
+                icon()
+            }
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
+                color = contentColor,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Spacer(Modifier.height(3.dp))
+            Box(
+                Modifier
+                    .width(16.dp)
+                    .height(2.dp)
+                    .background(if (selected) colorScheme.primary else Color.Transparent),
+            )
+        }
+    }
+
     @Composable
     private fun NavigationSuiteItem(
         tab: eu.kanade.presentation.util.Tab,
@@ -183,17 +356,9 @@ object HomeScreen : Screen() {
         val tabNavigator = LocalTabNavigator.current
         val navigator = LocalNavigator.currentOrThrow
         val scope = rememberCoroutineScope()
-        val selected = tabNavigator.current::class == tab::class
-        val displayLabel = when (tab) {
-            is LibraryTab -> "Library"
-            is UpdatesTab -> "New"
-            is HistoryTab -> "History"
-            is BrowseTab -> "Discover"
-            is MoreTab -> "More"
-            else -> tab.options.title
-        }
+        val selected = isTabSelected(tab)
+        val displayLabel = tabLabel(tab)
         val colorScheme = MaterialTheme.colorScheme
-        val hairline = colorScheme.outlineVariant
         val itemColors = ShortNavigationBarItemDefaults.colors(
             selectedIconColor = colorScheme.onBackground,
             selectedTextColorTopIconPosition = colorScheme.onBackground,
@@ -202,31 +367,17 @@ object HomeScreen : Screen() {
             unselectedIconColor = colorScheme.onSurfaceVariant,
             unselectedTextColor = colorScheme.onSurfaceVariant,
         )
-        val itemModifier = if (navigationSuiteType == NavigationSuiteType.NavigationBar) {
-            // 0.5dp top hairline across the bar, drawn per item (items tile the full bar width)
-            Modifier.drawBehind {
-                val stroke = 0.5.dp.toPx()
-                drawLine(
-                    color = hairline,
-                    start = Offset(0f, stroke / 2),
-                    end = Offset(size.width, stroke / 2),
-                    strokeWidth = stroke,
-                )
-            }
-        } else {
-            Modifier
-        }
         NavigationSuiteItem(
             navigationSuiteType = navigationSuiteType,
             selected = selected,
             onClick = {
-                if (!selected) {
+                if (tabNavigator.current::class != tab::class) {
                     tabNavigator.current = tab
                 } else {
                     scope.launch { tab.onReselect(navigator) }
                 }
             },
-            modifier = itemModifier,
+            modifier = Modifier,
             colors = itemColors,
             icon = {
                 Icon(
@@ -261,7 +412,7 @@ object HomeScreen : Screen() {
         val count by produceState(initialValue = 0, tab) {
             val graph = context.appGraph
             when (tab) {
-                is UpdatesTab -> {
+                is TodayTab -> {
                     combine(
                         graph.libraryPreferences.newShowUpdatesCount.changes(),
                         graph.libraryPreferences.newUpdatesCount.changes(),
@@ -283,7 +434,7 @@ object HomeScreen : Screen() {
         return {
             Badge {
                 val desc = when (tab) {
-                    is UpdatesTab -> pluralStringResource(
+                    is TodayTab -> pluralStringResource(
                         MR.plurals.notification_chapters_generic,
                         count = count,
                         count,
@@ -321,6 +472,7 @@ object HomeScreen : Screen() {
 
     sealed interface Tab {
         data class Library(val mangaIdToOpen: Long? = null) : Tab
+        data object Today : Tab
         data object Updates : Tab
         data object History : Tab
         data class Browse(val toExtensions: Boolean = false) : Tab
