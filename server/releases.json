@@ -1,10 +1,10 @@
 {
-  "version": "1.0.6",
-  "versionCode": 7,
+  "version": "1.0.7",
+  "versionCode": 8,
   "minSupportedVersionCode": 1,
-  "changelog": "Discover now shows the latest chapters from your installed sources. Sources, Extensions and Migrate moved into the You tab, with a simple step-by-step guide to adding repositories.",
+  "changelog": "Removed the remaining third-party branding. Tracker requests now identify as MoMan.",
   "releasedAt": "2026-10-22",
   "apks": {
-    "arm64-v8a": "MoMan-1.0.6-arm64-v8a.apk"
+    "arm64-v8a": "MoMan-1.0.7-arm64-v8a.apk"
   }
 }
