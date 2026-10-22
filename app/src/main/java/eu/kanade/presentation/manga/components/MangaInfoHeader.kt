@@ -6,7 +6,6 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.graphics.res.animatedVectorResource
 import androidx.compose.animation.graphics.res.rememberAnimatedVectorPainter
 import androidx.compose.animation.graphics.vector.AnimatedImageVector
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -26,11 +25,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedIconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.appendInlineContent
@@ -107,7 +103,6 @@ import org.intellij.markdown.MarkdownTokenTypes
 import org.intellij.markdown.ast.findChildOfType
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
 import tachiyomi.presentation.core.components.material.TextButton
 import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.i18n.pluralStringResource
@@ -217,17 +212,21 @@ fun MangaActionRow(
             } else {
                 Spacer(Modifier.weight(1f))
             }
-            OutlinedIconButton(
-                onClick = onAddToLibraryClicked,
+            Box(
                 modifier = Modifier
                     .size(48.dp)
                     .clip(MaterialTheme.shapes.medium)
+                    .border(
+                        width = 1.dp,
+                        color = if (favorite) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.outlineVariant
+                        },
+                        shape = MaterialTheme.shapes.medium,
+                    )
                     .combinedClickable(onClick = onAddToLibraryClicked, onLongClick = onEditCategory),
-                shape = MaterialTheme.shapes.medium,
-                border = BorderStroke(
-                    width = 1.dp,
-                    color = if (favorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
-                ),
+                contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     imageVector = if (favorite) {
@@ -240,7 +239,11 @@ fun MangaActionRow(
                     } else {
                         stringResource(MR.strings.add_to_library)
                     },
-                    tint = if (favorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                    tint = if (favorite) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
                 )
             }
         }
@@ -434,7 +437,7 @@ private fun MangaAndSourceTitlesSmall(
     ) {
         MangaCover.Book(
             modifier = Modifier
-                .sizeIn(maxWidth = 100.dp)
+                .width(104.dp)
                 .align(Alignment.Top),
             data = ImageRequest.Builder(LocalContext.current)
                 .data(manga)
@@ -473,7 +476,7 @@ private fun ColumnScope.MangaContentInfo(
     val context = LocalContext.current
     Text(
         text = title.ifBlank { stringResource(MR.strings.unknown_title) },
-        style = MaterialTheme.typography.titleLarge,
+        style = MaterialTheme.typography.headlineSmall,
         modifier = Modifier.clickableNoIndication(
             onLongClick = {
                 if (title.isNotBlank()) {
@@ -490,8 +493,9 @@ private fun ColumnScope.MangaContentInfo(
 
     Spacer(modifier = Modifier.height(2.dp))
 
+    CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurfaceVariant) {
     Row(
-        modifier = Modifier.secondaryItemAlpha(),
+        modifier = Modifier,
         horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.extraSmall),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -503,7 +507,7 @@ private fun ColumnScope.MangaContentInfo(
         Text(
             text = author?.takeIf { it.isNotBlank() }
                 ?: stringResource(MR.strings.unknown_author),
-            style = MaterialTheme.typography.titleSmall,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .clickableNoIndication(
                     onLongClick = {
@@ -522,7 +526,6 @@ private fun ColumnScope.MangaContentInfo(
 
     if (!artist.isNullOrBlank() && author != artist) {
         Row(
-            modifier = Modifier.secondaryItemAlpha(),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.padding.extraSmall),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -533,7 +536,7 @@ private fun ColumnScope.MangaContentInfo(
             )
             Text(
                 text = artist,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier
                     .clickableNoIndication(
                         onLongClick = { context.copyToClipboard(artist, artist) },
@@ -547,7 +550,6 @@ private fun ColumnScope.MangaContentInfo(
     Spacer(modifier = Modifier.height(2.dp))
 
     Row(
-        modifier = Modifier.secondaryItemAlpha(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
@@ -599,6 +601,7 @@ private fun ColumnScope.MangaContentInfo(
                 maxLines = 1,
             )
         }
+    }
     }
 }
 
@@ -745,11 +748,17 @@ private fun TagsChip(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
-        SuggestionChip(
-            modifier = modifier,
-            onClick = onClick,
-            label = { Text(text = text, style = MaterialTheme.typography.bodySmall) },
+    Box(
+        modifier = modifier
+            .clip(CircleShape)
+            .border(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant, shape = CircleShape)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 10.dp, vertical = 4.dp),
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

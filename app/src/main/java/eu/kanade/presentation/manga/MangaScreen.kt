@@ -395,6 +395,8 @@ private fun MangaScreenSmallImpl(
                             onTrackingClicked = onTrackingClicked,
                             onEditIntervalClicked = onEditIntervalClicked,
                             onEditCategory = onEditCategoryClicked,
+                            hasReadChapters = state.hasReadChapters,
+                            onContinueReading = onContinueReading.takeIf { state.hasUnreadChapters },
                         )
                     }
 
@@ -613,6 +615,8 @@ fun MangaScreenLargeImpl(
                             onTrackingClicked = onTrackingClicked,
                             onEditIntervalClicked = onEditIntervalClicked,
                             onEditCategory = onEditCategoryClicked,
+                            hasReadChapters = state.hasReadChapters,
+                            onContinueReading = onContinueReading.takeIf { state.hasUnreadChapters },
                         )
                         ExpandableMangaDescription(
                             defaultExpandState = true,

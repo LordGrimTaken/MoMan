@@ -3,26 +3,25 @@ package eu.kanade.presentation.reader.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.SliderState
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalSlider
 import androidx.compose.material3.rememberSliderState
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -41,6 +40,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
@@ -104,12 +104,12 @@ fun ChapterNavigator(
     val mainAxisPadding = if (isTabletUi) 24.dp else 8.dp
 
     // Match with toolbar background color set in ReaderActivity
-    val backgroundColor = MaterialTheme.colorScheme
-        .surfaceColorAtElevation(3.dp)
-        .copy(alpha = if (isSystemInDarkTheme()) 0.9f else 0.95f)
-    val buttonColor = IconButtonDefaults.filledIconButtonColors(
-        containerColor = backgroundColor,
-        disabledContainerColor = backgroundColor,
+    val backgroundColor = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.94f)
+    val buttonColor = IconButtonDefaults.iconButtonColors(
+        containerColor = Color.Transparent,
+        contentColor = MaterialTheme.colorScheme.onSurface,
+        disabledContainerColor = Color.Transparent,
+        disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
     )
 
     val onPageChange: (Int) -> Unit = { onPageIndexChange(it - 1) }
@@ -180,7 +180,7 @@ fun HorizontalChapterNavigator(
                 .padding(horizontal = mainAxisPadding),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            FilledIconButton(
+            IconButton(
                 enabled = if (isRtl) enabledNext else enabledPrevious,
                 onClick = if (isRtl) onNextChapter else onPreviousChapter,
                 colors = buttonColor,
@@ -198,15 +198,15 @@ fun HorizontalChapterNavigator(
                     Row(
                         modifier = Modifier
                             .weight(1f)
-                            .clip(RoundedCornerShape(24.dp))
+                            .clip(MaterialTheme.shapes.large)
                             .background(backgroundColor)
                             .padding(horizontal = 16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Box(contentAlignment = Alignment.CenterEnd) {
-                            Text(text = currentPage.toString())
+                            Text(text = currentPage.toString(), style = MaterialTheme.typography.labelMedium)
                             // Taking up full length so the slider doesn't shift when 'currentPage' length changes
-                            Text(text = totalPages.toString(), color = Color.Transparent)
+                            Text(text = totalPages.toString(), style = MaterialTheme.typography.labelMedium, color = Color.Transparent)
                         }
 
                         Slider(
@@ -217,16 +217,19 @@ fun HorizontalChapterNavigator(
                             onValueChange = { onPageChange(it.roundToInt()) },
                             onValueChangeFinished = onPageChangeFinished,
                             interactionSource = interactionSource,
+                            colors = inkSliderColors(),
+                            thumb = { InkThumb(interactionSource) },
+                            track = { InkTrack(currentPage, totalPages) },
                         )
 
-                        Text(text = totalPages.toString())
+                        Text(text = totalPages.toString(), style = MaterialTheme.typography.labelMedium)
                     }
                 }
             } else {
                 Spacer(Modifier.weight(1f))
             }
 
-            FilledIconButton(
+            IconButton(
                 enabled = if (isRtl) enabledPrevious else enabledNext,
                 onClick = if (isRtl) onPreviousChapter else onNextChapter,
                 colors = buttonColor,
@@ -265,7 +268,7 @@ fun VerticalChapterNavigator(
             .padding(vertical = mainAxisPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        FilledIconButton(
+        IconButton(
             enabled = enabledPrevious,
             onClick = onPreviousChapter,
             colors = buttonColor,
@@ -281,12 +284,12 @@ fun VerticalChapterNavigator(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(24.dp))
+                    .clip(MaterialTheme.shapes.large)
                     .background(backgroundColor)
                     .padding(vertical = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(text = currentPage.toString())
+                Text(text = currentPage.toString(), style = MaterialTheme.typography.labelMedium)
 
                 VerticalSlider(
                     state = state,
@@ -296,15 +299,18 @@ fun VerticalChapterNavigator(
                     onValueChange = { onPageChange(it.roundToInt()) },
                     onValueChangeFinished = onPageChangeFinished,
                     interactionSource = interactionSource,
+                    colors = inkSliderColors(),
+                    thumb = { InkThumb(interactionSource) },
+                    track = { InkTrack(currentPage, totalPages) },
                 )
 
-                Text(text = totalPages.toString())
+                Text(text = totalPages.toString(), style = MaterialTheme.typography.labelMedium)
             }
         } else {
             Spacer(Modifier.weight(1f))
         }
 
-        FilledIconButton(
+        IconButton(
             enabled = enabledNext,
             onClick = onNextChapter,
             colors = buttonColor,
@@ -315,6 +321,47 @@ fun VerticalChapterNavigator(
                 modifier = Modifier.rotate(90f),
             )
         }
+    }
+}
+
+@Composable
+private fun inkSliderColors() = SliderDefaults.colors(
+    thumbColor = MaterialTheme.colorScheme.primary,
+    activeTrackColor = MaterialTheme.colorScheme.primary,
+    inactiveTrackColor = MaterialTheme.colorScheme.outlineVariant,
+    activeTickColor = Color.Transparent,
+    inactiveTickColor = Color.Transparent,
+)
+
+@Composable
+private fun InkThumb(interactionSource: MutableInteractionSource) {
+    SliderDefaults.Thumb(
+        interactionSource = interactionSource,
+        colors = inkSliderColors(),
+        thumbSize = DpSize(14.dp, 14.dp),
+    )
+}
+
+@Composable
+private fun InkTrack(currentPage: Int, totalPages: Int) {
+    val fraction = if (totalPages > 1) {
+        ((currentPage - 1).toFloat() / (totalPages - 1)).coerceIn(0f, 1f)
+    } else {
+        0f
+    }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 7.dp)
+            .height(2.dp)
+            .background(MaterialTheme.colorScheme.outlineVariant),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(fraction)
+                .fillMaxHeight()
+                .background(MaterialTheme.colorScheme.primary),
+        )
     }
 }
 

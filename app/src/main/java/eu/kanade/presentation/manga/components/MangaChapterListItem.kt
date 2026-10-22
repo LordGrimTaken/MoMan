@@ -1,6 +1,13 @@
 package eu.kanade.presentation.manga.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,7 +44,6 @@ import mihon.icons.materialsymbols.rounded.Download
 import mihon.icons.materialsymbols.rounded.FileDownloadOff
 import mihon.icons.materialsymbols.rounded.RemoveDone
 import mihon.icons.materialsymbols.roundedfilled.Bookmark
-import mihon.icons.materialsymbols.roundedfilled.Circle
 import tachiyomi.domain.library.service.LibraryPreferences
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
@@ -65,6 +71,7 @@ fun MangaChapterListItem(
     onChapterSwipe: (LibraryPreferences.ChapterSwipeAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val unreadDescription = stringResource(MR.strings.unread)
     val start = getSwipeAction(
         action = chapterSwipeStartAction,
         read = read,
@@ -89,8 +96,9 @@ fun MangaChapterListItem(
         swipeThreshold = swipeActionThreshold,
         backgroundUntilSwipeThreshold = MaterialTheme.colorScheme.surfaceContainerLowest,
     ) {
+        Column(modifier = modifier) {
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .selectedBackground(selected)
                 .combinedClickable(
                     onClick = onClick,
@@ -108,13 +116,12 @@ fun MangaChapterListItem(
                 ) {
                     var textHeight by remember { mutableIntStateOf(0) }
                     if (!read) {
-                        Icon(
-                            imageVector = MaterialSymbols.RoundedFilled.Circle,
-                            contentDescription = stringResource(MR.strings.unread),
+                        Box(
                             modifier = Modifier
-                                .height(8.dp)
-                                .padding(end = 4.dp),
-                            tint = MaterialTheme.colorScheme.primary,
+                                .padding(end = 6.dp)
+                                .size(8.dp)
+                                .background(MaterialTheme.colorScheme.secondary, RoundedCornerShape(2.dp))
+                                .semantics { contentDescription = unreadDescription },
                         )
                     }
                     if (bookmark) {
@@ -132,7 +139,7 @@ fun MangaChapterListItem(
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         onTextLayout = { textHeight = it.size.height },
-                        color = LocalContentColor.current.copy(alpha = if (read) DISABLED_ALPHA else 1f),
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = if (read) READ_ALPHA else 1f),
                     )
                 }
 
@@ -178,6 +185,8 @@ fun MangaChapterListItem(
                 downloadProgressProvider = downloadProgressProvider,
                 onClick = { onDownloadClick?.invoke(it) },
             )
+        }
+        HorizontalDivider(thickness = 0.5.dp, color = MaterialTheme.colorScheme.outlineVariant)
         }
     }
 }
@@ -238,3 +247,4 @@ private fun swipeAction(
 }
 
 private val swipeActionThreshold = 56.dp
+private const val READ_ALPHA = 0.55f
