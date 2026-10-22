@@ -17,7 +17,7 @@ import mihon.core.migration.MigrationContext
 class InkSealThemeMigration(
     private val uiPreferences: UiPreferences,
 ) : Migration {
-    override val version: Float = 3f
+    override val version: Float = 5f
 
     override suspend fun invoke(migrationContext: MigrationContext): Boolean {
         uiPreferences.appTheme.set(AppTheme.DEFAULT)

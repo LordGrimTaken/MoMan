@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -37,7 +38,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eu.kanade.tachiyomi.ui.library.LibraryItem
@@ -46,10 +46,12 @@ import tachiyomi.presentation.core.components.FastScrollLazyColumn
 import tachiyomi.presentation.core.util.plus
 import kotlin.math.min
 
+private val SpineShape = RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp, bottomStart = 1.dp, bottomEnd = 1.dp)
 private val SpineGap = 5.dp
 private val ShelfHorizontalPadding = 12.dp
 private val SpineRiseOnSelect = 10.dp
 private val SpineTextColor = Color(0xFFF1E6D3)
+private val SpineBand = Color.White.copy(alpha = 0.22f)
 
 /** Curated, ink-friendly spine colours (dark enough for light serif text on both themes). */
 private val SpinePalette = listOf(
@@ -85,7 +87,7 @@ private fun spineSpecFor(item: LibraryItem): SpineSpec {
 }
 
 @Composable
-internal fun LibraryShelf(
+internal fun LibrarySpines(
     items: List<LibraryItem>,
     contentPadding: PaddingValues,
     selection: Set<Long>,
@@ -120,7 +122,7 @@ internal fun LibraryShelf(
             contentPadding = contentPadding + PaddingValues(vertical = 8.dp),
         ) {
             if (!searchQuery.isNullOrEmpty()) {
-                item(contentType = "library_shelf_search") {
+                item(contentType = "library_spines_search") {
                     GlobalSearchItem(
                         modifier = Modifier.fillMaxWidth(),
                         searchQuery = searchQuery,
@@ -132,9 +134,9 @@ internal fun LibraryShelf(
             items(
                 items = rows,
                 key = { row -> row.first().item.id },
-                contentType = { "library_shelf_row" },
+                contentType = { "library_spines_row" },
             ) { row ->
-                ShelfRow(
+                SpineRow(
                     row = row,
                     selection = selection,
                     onClick = onClick,
@@ -146,13 +148,14 @@ internal fun LibraryShelf(
 }
 
 @Composable
-private fun ShelfRow(
+private fun SpineRow(
     row: List<SpineSpec>,
     selection: Set<Long>,
     onClick: (LibraryManga) -> Unit,
     onLongClick: (LibraryManga) -> Unit,
 ) {
-    val lineColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+    val onSurface = MaterialTheme.colorScheme.onSurface
+    val lineColor = remember(onSurface) { onSurface.copy(alpha = 0.2f) }
     Box(modifier = Modifier.fillMaxWidth().padding(top = 14.dp, bottom = 6.dp)) {
         Row(
             modifier = Modifier
@@ -201,32 +204,33 @@ private fun Spine(
         targetValue = if (isSelected) SpineRiseOnSelect else 0.dp,
         label = "shelf_spine_rise",
     )
+    val spineBrush = remember(spec.color) {
+        Brush.horizontalGradient(
+            listOf(
+                spec.color.copy(alpha = 0.85f),
+                spec.color,
+                spec.color.copy(alpha = 0.9f),
+            ),
+        )
+    }
     val seal = MaterialTheme.colorScheme.primary
-    val shape = RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp, bottomStart = 1.dp, bottomEnd = 1.dp)
+    val shape = SpineShape
     val unread = spec.item.unreadCount
     val title = spec.item.libraryManga.manga.title
 
     Box(
         modifier = Modifier
-            .offset { IntOffset(0, -rise.roundToPx()) }
+            .graphicsLayer { translationY = -rise.toPx() }
             .size(width = spec.width, height = spec.height)
             .clip(shape)
-            .background(
-                Brush.horizontalGradient(
-                    listOf(
-                        spec.color.copy(alpha = 0.85f),
-                        spec.color,
-                        spec.color.copy(alpha = 0.9f),
-                    ),
-                ),
-            )
+            .background(spineBrush)
             .drawBehind {
-                val band = Color.White.copy(alpha = 0.22f)
                 val stroke = 1.dp.toPx()
-                listOf(26.dp.toPx(), 30.dp.toPx(), size.height - 14.dp.toPx(), size.height - 10.dp.toPx())
-                    .forEach { y ->
-                        drawLine(band, Offset(0f, y), Offset(size.width, y), strokeWidth = stroke)
-                    }
+                val h = size.height
+                drawLine(SpineBand, Offset(0f, 26.dp.toPx()), Offset(size.width, 26.dp.toPx()), strokeWidth = stroke)
+                drawLine(SpineBand, Offset(0f, 30.dp.toPx()), Offset(size.width, 30.dp.toPx()), strokeWidth = stroke)
+                drawLine(SpineBand, Offset(0f, h - 14.dp.toPx()), Offset(size.width, h - 14.dp.toPx()), strokeWidth = stroke)
+                drawLine(SpineBand, Offset(0f, h - 10.dp.toPx()), Offset(size.width, h - 10.dp.toPx()), strokeWidth = stroke)
             }
             .then(
                 if (isSelected) {
