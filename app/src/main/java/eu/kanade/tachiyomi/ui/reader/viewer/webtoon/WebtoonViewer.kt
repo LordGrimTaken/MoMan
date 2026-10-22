@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
+import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.ui.reader.viewer.Viewer
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation.NavigationRegion
 import kotlinx.coroutines.MainScope
@@ -70,6 +72,47 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      */
     private var currentPage: Any? = null
 
+    /**
+     * Auto-scroll state. [isAutoScrolling] is the user-facing toggle; [isTouching] temporarily pauses the
+     * scrolling while a finger is on the list.
+     */
+    var isAutoScrolling = false
+        private set
+    private var isTouching = false
+    private var lastAutoScrollFrameNanos = 0L
+    private var autoScrollRemainder = 0f
+    private var autoScrollChapter: ReaderChapter? = null
+
+    private val autoScrollRunnable = object : Runnable {
+        override fun run() {
+            if (!isAutoScrolling) return
+            val now = System.nanoTime()
+            val elapsedSeconds = ((now - lastAutoScrollFrameNanos) / 1_000_000_000f).coerceIn(0f, 0.05f)
+            lastAutoScrollFrameNanos = now
+
+            if (!isTouching && recycler.scrollState == RecyclerView.SCROLL_STATE_IDLE) {
+                val lastItem = adapter.items.getOrNull(layoutManager.findLastEndVisibleItemPosition())
+                val reachedNextChapter = autoScrollChapter != null &&
+                    (currentPage as? ReaderPage)?.chapter.let { it != null && it != autoScrollChapter }
+                if (reachedNextChapter || lastItem is ChapterTransition.Next || !recycler.canScrollVertically(1)) {
+                    stopAutoScroll()
+                    return
+                }
+                val speed = readerPreferences.autoScrollSpeed.get()
+                    .coerceIn(ReaderPreferences.AUTO_SCROLL_SPEED_MIN, ReaderPreferences.AUTO_SCROLL_SPEED_MAX)
+                val pixelsPerSecond = speed * AUTO_SCROLL_DP_PER_SECOND_PER_STEP *
+                    activity.resources.displayMetrics.density
+                autoScrollRemainder += pixelsPerSecond * elapsedSeconds
+                val whole = autoScrollRemainder.toInt()
+                if (whole > 0) {
+                    autoScrollRemainder -= whole
+                    recycler.scrollBy(0, whole)
+                }
+            }
+            recycler.postOnAnimation(this)
+        }
+    }
+
     private val threshold: Int by lazy { readerPreferences.readerHideThreshold.get().threshold }
 
     init {
@@ -121,6 +164,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
                 NavigationRegion.PREV, NavigationRegion.LEFT -> scrollUp()
             }
         }
+        recycler.touchStateListener = { isTouching = it }
         recycler.longTapListener = f@{ event ->
             if (activity.viewModel.state.value.menuVisible || config.longTapEnabled) {
                 val child = recycler.findChildViewUnder(event.x, event.y)
@@ -194,6 +238,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      */
     override fun destroy() {
         super.destroy()
+        stopAutoScroll()
         scope.cancel()
     }
 
@@ -273,6 +318,31 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
                 is ChapterTransition -> onTransitionSelected(item)
             }
         }
+    }
+
+    /**
+     * Starts continuous scrolling at the speed set in the reader preferences. Stops by itself at the end of
+     * the chapter. The speed is re-read on every frame so changing it in the settings applies immediately.
+     */
+    fun startAutoScroll() {
+        if (isAutoScrolling) return
+        isAutoScrolling = true
+        autoScrollRemainder = 0f
+        autoScrollChapter = (currentPage as? ReaderPage)?.chapter
+        lastAutoScrollFrameNanos = System.nanoTime()
+        activity.onAutoScrollStateChanged(true)
+        recycler.postOnAnimation(autoScrollRunnable)
+    }
+
+    fun stopAutoScroll() {
+        recycler.removeCallbacks(autoScrollRunnable)
+        if (!isAutoScrolling) return
+        isAutoScrolling = false
+        activity.onAutoScrollStateChanged(false)
+    }
+
+    fun toggleAutoScroll() {
+        if (isAutoScrolling) stopAutoScroll() else startAutoScroll()
     }
 
     /**
@@ -359,3 +429,6 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
 
 // Double the cache size to reduce rebinds/recycles incurred by the extra layout space on scroll direction changes
 private const val RECYCLER_VIEW_CACHE_SIZE = 4
+
+// Auto-scroll speed is 1..10 steps of this many dp per second
+private const val AUTO_SCROLL_DP_PER_SECOND_PER_STEP = 25f

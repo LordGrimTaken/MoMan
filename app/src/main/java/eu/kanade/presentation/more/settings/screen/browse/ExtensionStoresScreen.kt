@@ -2,7 +2,9 @@ package eu.kanade.presentation.more.settings.screen.browse
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -15,6 +17,8 @@ import eu.kanade.presentation.more.settings.screen.browse.components.ExtensionSt
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.openInBrowser
+import tachiyomi.core.common.i18n.stringResource
+import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.screens.LoadingScreen
 
 class ExtensionStoresScreen(
@@ -29,8 +33,21 @@ class ExtensionStoresScreen(
         val viewModel = metroViewModel<ExtensionStoresViewModel>()
         val state by viewModel.state.collectAsStateWithLifecycle()
 
+        val snackbarHostState = remember { SnackbarHostState() }
+
         LaunchedEffect(url) {
             url?.let { viewModel.addFromDeeplink(url) }
+        }
+
+        LaunchedEffect(Unit) {
+            viewModel.events.collect { event ->
+                val message = when (event) {
+                    ExtensionStoreEvent.Added -> context.stringResource(MR.strings.import_repo_added)
+                    is ExtensionStoreEvent.AddFailed ->
+                        context.stringResource(MR.strings.import_repo_add_failed, event.message)
+                }
+                snackbarHostState.showSnackbar(message)
+            }
         }
 
         if (state is ExtensionStoreScreenState.Loading) {
@@ -49,6 +66,7 @@ class ExtensionStoresScreen(
             onClickDelete = { viewModel.showDialog(ExtensionStoreDialog.Delete(it)) },
             onClickRefresh = { viewModel.refreshRepos() },
             navigateUp = navigator::pop,
+            snackbarHostState = snackbarHostState,
         )
 
         when (val dialog = successState.dialog) {

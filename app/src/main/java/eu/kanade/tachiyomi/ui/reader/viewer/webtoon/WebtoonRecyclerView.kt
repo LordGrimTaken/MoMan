@@ -62,6 +62,9 @@ class WebtoonRecyclerView @JvmOverloads constructor(
     var tapListener: ((MotionEvent) -> Unit)? = null
     var longTapListener: ((MotionEvent) -> Boolean)? = null
 
+    /** Notified with true when a finger goes down on the list and false when all fingers are lifted. */
+    var touchStateListener: ((Boolean) -> Unit)? = null
+
     private var isManuallyScrolling = false
     private var tapDuringManualScroll = false
 
@@ -74,6 +77,14 @@ class WebtoonRecyclerView @JvmOverloads constructor(
         }
         super.onMeasure(widthSpec, heightSpec)
         x = getPositionX(x)
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        when (ev.actionMasked) {
+            MotionEvent.ACTION_DOWN -> touchStateListener?.invoke(true)
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> touchStateListener?.invoke(false)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     override fun onTouchEvent(e: MotionEvent): Boolean {

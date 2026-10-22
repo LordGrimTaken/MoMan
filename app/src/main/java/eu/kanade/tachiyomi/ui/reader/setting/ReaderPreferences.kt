@@ -62,7 +62,7 @@ class ReaderPreferences(
 
     val drawUnderCutout: Preference<Boolean> = preferenceStore.getBoolean("cutout_short", true)
 
-    val keepScreenOn: Preference<Boolean> = preferenceStore.getBoolean("pref_keep_screen_on_key", false)
+    val keepScreenOn: Preference<Boolean> = preferenceStore.getBoolean("pref_keep_screen_on_key", true)
 
     // MoMan: manhua/manhwa first. Default to gapless continuous long strip (series can still be set per title).
     val defaultReadingMode: Preference<Int> = preferenceStore.getInt(
@@ -113,6 +113,9 @@ class ReaderPreferences(
     val skipFiltered: Preference<Boolean> = preferenceStore.getBoolean("skip_filtered", true)
 
     val skipDupe: Preference<Boolean> = preferenceStore.getBoolean("skip_dupe", false)
+
+    /** Auto-scroll speed for the long-strip reader, 1..[AUTO_SCROLL_SPEED_MAX]. */
+    val autoScrollSpeed: Preference<Int> = preferenceStore.getInt("webtoon_auto_scroll_speed", AUTO_SCROLL_SPEED_DEFAULT)
 
     val webtoonDisableZoomOut: Preference<Boolean> = preferenceStore.getBoolean("webtoon_disable_zoom_out", false)
 
@@ -316,6 +319,10 @@ class ReaderPreferences(
         const val WEBTOON_PADDING_MAX = 25
 
         const val MILLI_CONVERSION = 100
+
+        const val AUTO_SCROLL_SPEED_MIN = 1
+        const val AUTO_SCROLL_SPEED_MAX = 10
+        const val AUTO_SCROLL_SPEED_DEFAULT = 4
 
         val TapZones = listOf(
             MR.strings.label_default,

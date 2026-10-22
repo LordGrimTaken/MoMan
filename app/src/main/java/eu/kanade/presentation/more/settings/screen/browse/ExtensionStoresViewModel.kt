@@ -10,12 +10,14 @@ import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -38,6 +40,9 @@ class ExtensionStoresViewModel(
 ) : ViewModel() {
 
     private val dialog = MutableStateFlow<ExtensionStoreDialog?>(null)
+
+    private val _events = Channel<ExtensionStoreEvent>(Channel.BUFFERED)
+    val events = _events.receiveAsFlow()
 
     val state: StateFlow<ExtensionStoreScreenState> = combine(
         getExtensionStores.subscribe(),
@@ -66,8 +71,10 @@ class ExtensionStoresViewModel(
                 .onSuccess {
                     extensionManager.findAvailableExtensions()
                     dismissDialog()
+                    _events.trySend(ExtensionStoreEvent.Added)
                 }
                 .onFailure { throwable ->
+                    _events.trySend(ExtensionStoreEvent.AddFailed(throwable.message ?: "unknown error"))
                     dialog.update {
                         when (it) {
                             is ExtensionStoreDialog.Create -> it.copy(
@@ -118,6 +125,11 @@ class ExtensionStoresViewModel(
     fun dismissDialog() {
         dialog.update { null }
     }
+}
+
+sealed class ExtensionStoreEvent {
+    data object Added : ExtensionStoreEvent()
+    data class AddFailed(val message: String) : ExtensionStoreEvent()
 }
 
 sealed class ExtensionStoreDialog {

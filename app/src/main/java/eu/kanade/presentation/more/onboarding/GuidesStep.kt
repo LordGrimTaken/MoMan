@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -29,7 +31,9 @@ internal class GuidesStep(
         val handler = LocalUriHandler.current
 
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.small),
         ) {
             Text(stringResource(MR.strings.onboarding_guides_new_user, stringResource(MR.strings.app_name)))
@@ -39,6 +43,19 @@ internal class GuidesStep(
             ) {
                 Text(stringResource(MR.strings.getting_started_guide))
             }
+
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 8.dp),
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+
+            Text(
+                text = stringResource(MR.strings.import_onboarding_intro),
+                style = MaterialTheme.typography.titleSmall,
+            )
+            Text(stringResource(MR.strings.import_onboarding_backup))
+            Text(stringResource(MR.strings.import_onboarding_sources))
+            Text(stringResource(MR.strings.import_onboarding_local))
 
             HorizontalDivider(
                 modifier = Modifier.padding(vertical = 8.dp),

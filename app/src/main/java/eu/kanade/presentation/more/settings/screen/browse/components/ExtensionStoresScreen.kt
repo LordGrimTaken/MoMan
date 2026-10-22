@@ -1,13 +1,21 @@
 package eu.kanade.presentation.more.settings.screen.browse.components
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.category.components.CategoryFloatingActionButton
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoreScreenState
@@ -17,10 +25,7 @@ import mihon.icons.materialsymbols.rounded.Refresh
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.components.material.topSmallPaddingValues
 import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.util.plus
 
 @Composable
 fun ExtensionStoresScreen(
@@ -32,6 +37,7 @@ fun ExtensionStoresScreen(
     onClickDelete: (ExtensionStore) -> Unit,
     onClickRefresh: () -> Unit,
     navigateUp: () -> Unit,
+    snackbarHostState: SnackbarHostState,
 ) {
     val lazyListState = rememberLazyListState()
     Scaffold(
@@ -50,6 +56,7 @@ fun ExtensionStoresScreen(
                 },
             )
         },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             CategoryFloatingActionButton(
                 lazyListState = lazyListState,
@@ -58,22 +65,43 @@ fun ExtensionStoresScreen(
         },
     ) { paddingValues ->
         if (state.isEmpty) {
-            EmptyScreen(
-                MR.strings.extensionStoresScreen_emptyLabel,
-                modifier = Modifier.padding(paddingValues),
-            )
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(MaterialTheme.padding.medium),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.padding.medium),
+            ) {
+                ExtensionStoreExplainer()
+                Text(
+                    text = stringResource(MR.strings.extensionStoresScreen_emptyLabel),
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                )
+            }
             return@Scaffold
         }
 
-        ExtensionStoresContent(
-            repos = state.stores,
-            lazyListState = lazyListState,
-            paddingValues = paddingValues + topSmallPaddingValues +
-                PaddingValues(horizontal = MaterialTheme.padding.medium),
-            onCopy = onCopy,
-            onOpenWebsite = onOpenWebsite,
-            onOpenDiscord = onOpenDiscord,
-            onClickDelete = onClickDelete,
-        )
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .padding(
+                    start = MaterialTheme.padding.medium,
+                    top = MaterialTheme.padding.small,
+                    end = MaterialTheme.padding.medium,
+                ),
+        ) {
+            ExtensionStoreExplainer()
+            ExtensionStoresContent(
+                repos = state.stores,
+                lazyListState = lazyListState,
+                paddingValues = PaddingValues(top = MaterialTheme.padding.small, bottom = 88.dp),
+                onCopy = onCopy,
+                onOpenWebsite = onOpenWebsite,
+                onOpenDiscord = onOpenDiscord,
+                onClickDelete = onClickDelete,
+            )
+        }
     }
 }
