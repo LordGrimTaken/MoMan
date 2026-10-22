@@ -176,6 +176,48 @@ class LibraryUpdateNotifier(
     }
 
     /**
+     * Shows a short summary of a library update run, including why titles were skipped.
+     */
+    fun showUpdateSummaryNotification(
+        checked: Int,
+        withNewChapters: Int,
+        skippedByReason: List<Pair<String, Int>>,
+        failed: Int,
+    ) {
+        val skipped = skippedByReason.sumOf { it.second }
+        val counts = context.stringResource(
+            MR.strings.update_summary_counts,
+            checked.coerceAtLeast(0),
+            withNewChapters,
+            skipped,
+            failed,
+        )
+        val details = buildString {
+            append(counts)
+            skippedByReason.forEach { (reason, count) ->
+                append('\n')
+                append(context.stringResource(MR.strings.update_summary_skipped_line, count, reason))
+            }
+            if (skipped > 0) {
+                append('\n')
+                append(context.stringResource(MR.strings.update_summary_tip_skipped))
+            }
+        }
+
+        context.notify(
+            Notifications.ID_LIBRARY_SUMMARY,
+            Notifications.CHANNEL_LIBRARY_ERROR,
+        ) {
+            setContentTitle(context.stringResource(MR.strings.update_summary_title))
+            setContentText(counts)
+            setStyle(NotificationCompat.BigTextStyle().bigText(details))
+            setSmallIcon(R.drawable.ic_mihon)
+            setAutoCancel(true)
+            setTimeoutAfter(SUMMARY_TIMEOUT_MS)
+        }
+    }
+
+    /**
      * Shows the notification containing the result of the update done by the service.
      *
      * @param updates a list of manga with new updates.
@@ -391,7 +433,7 @@ class LibraryUpdateNotifier(
 
     companion object {
         const val HELP_WARNING_URL =
-            "https://moman-updates.onrender.com"
+            "https://momanreader.com"
     }
 }
 
@@ -400,3 +442,4 @@ private const val NOTIF_TITLE_MAX_LEN = 45
 private const val NOTIF_ICON_SIZE = 192
 private const val MANGA_PER_SOURCE_QUEUE_WARNING_THRESHOLD = 60
 private const val NOTIF_PROGRESS_INTERVAL_MS = 500L
+private const val SUMMARY_TIMEOUT_MS = 6L * 60 * 60 * 1000

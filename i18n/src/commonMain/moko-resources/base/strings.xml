@@ -709,6 +709,8 @@
     <string name="help_translate">Help translate</string>
     <string name="licenses">Open source licenses</string>
     <string name="privacy_policy">Privacy policy</string>
+    <string name="about_based_on_mihon">Based on Mihon</string>
+    <string name="about_based_on_mihon_summary">MoMan is a fork of Mihon, licensed under Apache-2.0. Tap to view the project.</string>
     <string name="check_for_updates">Check for updates</string>
 
     <!-- ACRA -->
@@ -952,7 +954,7 @@
 
     <!-- Crash screen -->
     <string name="crash_screen_title">Whoops!</string>
-    <string name="crash_screen_description">%s ran into an unexpected error. We suggest you share the crash logs in our support channel on Discord.</string>
+    <string name="crash_screen_description">%s ran into an unexpected error. We suggest you save the crash logs so the problem can be reported and fixed.</string>
     <string name="crash_screen_restart_application">Restart the application</string>
 
     <!-- Stats screen -->
@@ -1004,7 +1006,7 @@
 
     <!--UpdateCheck-->
     <string name="update_check_confirm">Download</string>
-    <string name="update_check_open">Open on GitHub</string>
+    <string name="update_check_open">Open release page</string>
     <string name="update_check_skip">Skip this version</string>
     <string name="update_check_skip_title">Skip %s?</string>
     <string name="update_check_skip_message">Updates often contain bug fixes and security improvements. You won\'t be reminded about this version again, but you\'ll still be notified when a newer one is released.</string>
@@ -1111,5 +1113,31 @@
     <string name="migrationListScreen.progressDialog.cancelLabel">Cancel</string>
     <string name="migrationListScreen.matchWithoutChapterToast">No chapters found, this entry cannot be used for migration</string>
 
+    <!-- Import paths (MoMan) -->
+    <string name="import_empty_title">Your library is empty</string>
+    <string name="import_empty_flavor">空空如也</string>
+    <string name="import_empty_intro">MoMan comes with no sources. Pick a way to fill your shelves.</string>
+    <string name="import_action_backup">Import a backup</string>
+    <string name="import_action_backup_desc">Restore a library from a .tachibk backup file. Opens Settings, Data and storage.</string>
+    <string name="import_action_sources">Add sources</string>
+    <string name="import_action_sources_desc">Add an extension store, then install extensions from Browse. Stores live in Settings, Browse, Extension stores.</string>
+    <string name="import_action_local">Read local files</string>
+    <string name="import_action_local_desc">Put folders or .cbz, .zip and .epub files in the \"local\" folder inside your MoMan storage folder.</string>
+    <string name="import_onboarding_intro">MoMan ships with no sources. You can fill your library in three ways.</string>
+    <string name="import_onboarding_backup">Import a backup: restore a .tachibk file from Settings, Data and storage.</string>
+    <string name="import_onboarding_sources">Add sources: add an extension store in Settings, Browse, Extension stores, then install extensions from Browse.</string>
+    <string name="import_onboarding_local">Read local files: put folders or .cbz, .zip and .epub files in the \"local\" folder inside your MoMan storage folder.</string>
+    <string name="import_extensions_empty_title">No extensions yet</string>
+    <string name="import_extensions_empty_body">Extensions come from extension stores, and MoMan has none by default. Add a store to see extensions here.</string>
+    <string name="import_extensions_empty_action">Open extension stores</string>
+    <string name="import_repo_explainer_title">What is an extension store?</string>
+    <string name="import_repo_explainer_body">A store (repository) is a link that provides sources and extensions. MoMan ships with none. Only add stores you trust, and remember you are responsible for what you install.</string>
+    <string name="import_repo_paste">Paste from clipboard</string>
+    <string name="import_repo_paste_empty">Clipboard has no link</string>
+    <string name="import_repo_error_scheme">Link must start with https://</string>
+    <string name="import_repo_hint_index">Most stores use a link ending in index.min.json</string>
+    <string name="import_repo_added">Extension store added</string>
+    <string name="import_repo_add_failed">Could not add store: %1$s</string>
+    <string name="import_repo_remove_note">Extensions already installed from this store will stay installed. You just won\'t get updates or new extensions from it.</string>
 
 </resources>

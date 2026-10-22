@@ -318,7 +318,7 @@ fun WebViewScreenContent(
                                     .clip(MaterialTheme.shapes.small)
                                     .clickable {
                                         uriHandler.openUri(
-                                            "https://moman-updates.onrender.com",
+                                            "https://momanreader.com",
                                         )
                                     },
                             )

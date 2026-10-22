@@ -30,7 +30,6 @@ import eu.kanade.presentation.util.LocalBackPress
 import eu.kanade.presentation.util.Screen
 import eu.kanade.presentation.util.rememberIs24HourSystem
 import eu.kanade.tachiyomi.BuildConfig
-import eu.kanade.tachiyomi.data.updater.RELEASE_URL
 import eu.kanade.tachiyomi.ui.more.NewUpdateScreen
 import eu.kanade.tachiyomi.util.lang.toDateTimestampString
 import eu.kanade.tachiyomi.util.system.copyToClipboard
@@ -67,6 +66,11 @@ import java.util.Locale
 import kotlin.time.Instant
 
 object AboutScreen : Screen() {
+
+    private const val WEBSITE_URL = "https://momanreader.com"
+    private const val PRIVACY_URL = "https://momanreader.com/privacy"
+    private const val CHANGELOG_URL = "https://momanreader.com/#changelog"
+    private const val MIHON_URL = "https://github.com/mihonapp/mihon"
 
     @Composable
     override fun Content() {
@@ -149,13 +153,26 @@ object AboutScreen : Screen() {
                     }
                 }
 
-                if (!BuildConfig.DEBUG) {
-                    item {
-                        TextPreferenceWidget(
-                            title = stringResource(MR.strings.whats_new),
-                            onPreferenceClick = { uriHandler.openUri(RELEASE_URL) },
-                        )
-                    }
+                item {
+                    TextPreferenceWidget(
+                        title = stringResource(MR.strings.whats_new),
+                        onPreferenceClick = { uriHandler.openUri(CHANGELOG_URL) },
+                    )
+                }
+
+                item {
+                    TextPreferenceWidget(
+                        title = stringResource(MR.strings.website),
+                        subtitle = WEBSITE_URL,
+                        onPreferenceClick = { uriHandler.openUri(WEBSITE_URL) },
+                    )
+                }
+
+                item {
+                    TextPreferenceWidget(
+                        title = stringResource(MR.strings.privacy_policy),
+                        onPreferenceClick = { uriHandler.openUri(PRIVACY_URL) },
+                    )
                 }
 
                 item {
@@ -167,15 +184,9 @@ object AboutScreen : Screen() {
 
                 item {
                     TextPreferenceWidget(
-                        title = stringResource(MR.strings.website),
-                        subtitle = "https://moman-updates.onrender.com",
-                        onPreferenceClick = { uriHandler.openUri("https://moman-updates.onrender.com") },
-                    )
-                }
-
-                item {
-                    TextPreferenceWidget(
-                        subtitle = "MoMan is based on Mihon (Apache-2.0)",
+                        title = stringResource(MR.strings.about_based_on_mihon),
+                        subtitle = stringResource(MR.strings.about_based_on_mihon_summary),
+                        onPreferenceClick = { uriHandler.openUri(MIHON_URL) },
                     )
                 }
             }

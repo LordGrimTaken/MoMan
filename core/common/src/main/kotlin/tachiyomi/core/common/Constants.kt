@@ -1,8 +1,8 @@
 package tachiyomi.core.common
 
 object Constants {
-    const val URL_HELP = "https://moman-updates.onrender.com"
-    const val URL_HELP_UPCOMING = "https://moman-updates.onrender.com"
+    const val URL_HELP = "https://momanreader.com"
+    const val URL_HELP_UPCOMING = "https://momanreader.com"
 
     const val MANGA_EXTRA = "manga"
 

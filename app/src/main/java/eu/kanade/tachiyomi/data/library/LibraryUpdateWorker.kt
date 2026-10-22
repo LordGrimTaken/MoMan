@@ -106,6 +106,9 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
 
     private var mangaToUpdate: List<LibraryManga> = mutableListOf()
 
+    /** Skipped titles of the current run, grouped by human readable reason. */
+    private var skippedByReason: List<Pair<String, Int>> = emptyList()
+
     override suspend fun doWork(): Result {
         graph.inject(this)
 
@@ -181,7 +184,11 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
             }
         }
 
-        val restrictions = libraryPreferences.autoUpdateMangaRestrictions.get()
+        val restrictions = if (inputData.getBoolean(KEY_IGNORE_RESTRICTIONS, false)) {
+            emptySet()
+        } else {
+            libraryPreferences.autoUpdateMangaRestrictions.get()
+        }
         val skippedUpdates = mutableListOf<Pair<Manga, String?>>()
         val timeZone = TimeZone.currentSystemDefault()
         val fetchWindowUpperBound = fetchInterval.getWindow(
@@ -229,8 +236,12 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
 
         notifier.showQueueSizeWarningNotificationIfNeeded(mangaToUpdate)
 
+        skippedByReason = skippedUpdates
+            .groupBy { it.second.orEmpty() }
+            .map { (reason, entries) -> reason to entries.size }
+            .sortedByDescending { it.second }
+
         if (skippedUpdates.isNotEmpty()) {
-            // TODO: surface skipped reasons to user?
             logcat {
                 skippedUpdates
                     .groupBy { it.second }
@@ -328,11 +339,22 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
             }
         }
 
+        val skippedTotal = skippedByReason.sumOf { it.second }
         if (failedUpdates.isNotEmpty()) {
             val errorFile = writeErrorFile(failedUpdates)
             notifier.showUpdateErrorNotification(
                 failedUpdates.size,
                 errorFile.getUriCompat(context),
+            )
+        }
+
+        // Tell the user what happened to titles that were not (successfully) checked
+        if (skippedTotal > 0 || failedUpdates.isNotEmpty()) {
+            notifier.showUpdateSummaryNotification(
+                checked = mangaToUpdate.size - failedUpdates.size,
+                withNewChapters = newUpdates.size,
+                skippedByReason = skippedByReason,
+                failed = failedUpdates.size,
             )
         }
     }
@@ -427,7 +449,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         private const val WORK_NAME_AUTO = "LibraryUpdate-auto"
         private const val WORK_NAME_MANUAL = "LibraryUpdate-manual"
 
-        private const val ERROR_LOG_HELP_URL = "https://moman-updates.onrender.com"
+        private const val ERROR_LOG_HELP_URL = "https://momanreader.com"
 
         private const val MANGA_PER_SOURCE_QUEUE_WARNING_THRESHOLD = 60
 
@@ -435,6 +457,9 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
          * Key for category to update.
          */
         private const val KEY_CATEGORY = "category"
+
+        /** When true, manga update restrictions (completed, unread, release period...) are not applied. */
+        private const val KEY_IGNORE_RESTRICTIONS = "ignore_restrictions"
 
         fun setupTask(
             context: Context,
@@ -491,6 +516,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
         suspend fun startNow(
             workManager: WorkManager,
             category: Category? = null,
+            ignoreRestrictions: Boolean = false,
         ): Boolean {
             if (workManager.isRunning(TAG)) {
                 // Already running either as a scheduled or manual job
@@ -499,6 +525,7 @@ class LibraryUpdateWorker(private val context: Context, workerParams: WorkerPara
 
             val inputData = workDataOf(
                 KEY_CATEGORY to category?.id,
+                KEY_IGNORE_RESTRICTIONS to ignoreRestrictions,
             )
             val request = OneTimeWorkRequestBuilder<LibraryUpdateWorker>()
                 .addTag(TAG)

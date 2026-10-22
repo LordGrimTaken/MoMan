@@ -56,7 +56,7 @@ internal class GuidesStep(
     }
 }
 
-const val GETTING_STARTED_URL = "https://moman-updates.onrender.com"
+const val GETTING_STARTED_URL = "https://momanreader.com"
 
 @PreviewLightDark
 @Composable
