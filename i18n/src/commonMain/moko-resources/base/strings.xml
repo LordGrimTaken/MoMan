@@ -1149,4 +1149,23 @@
     <string name="update_summary_tip_skipped">Skipped titles follow your update restrictions in Settings › Library.</string>
     <string name="action_update_library_force">Update all (ignore restrictions)</string>
     <string name="shelf_display_mode">Shelf</string>
+
+    <string name="nav_today">Today</string>
+    <string name="nav_shelf">Shelf</string>
+    <string name="nav_discover">Discover</string>
+    <string name="nav_you">You</string>
+    <string name="today_continue">Continue</string>
+    <string name="today_resume">Resume</string>
+    <string name="today_chapter_short">Ch. %1$s</string>
+    <string name="today_empty_title">Nothing in progress yet</string>
+    <string name="today_empty_body">Pick a series from your shelf and it will wait for you here.</string>
+    <string name="today_open_shelf">Open Shelf</string>
+    <string name="today_dropped">Dropped today</string>
+    <string name="today_dropped_empty">No new chapters in the last 24 hours.</string>
+    <string name="today_see_all_updates">See all updates</string>
+    <string name="today_up_next">Up next</string>
+    <string name="today_up_next_empty">Nothing waiting. Start a series and it will queue up here.</string>
+    <string name="today_unread_count">%1$d unread</string>
+    <string name="today_recently_read">Recently read</string>
+    <string name="today_loading">Preparing your day</string>
 </resources>
