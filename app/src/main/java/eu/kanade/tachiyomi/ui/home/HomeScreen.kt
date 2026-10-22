@@ -3,24 +3,34 @@ package eu.kanade.tachiyomi.ui.home
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Badge
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ShortNavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteItem
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.material3.adaptive.navigationsuite.rememberNavigationSuiteScaffoldState
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -102,8 +112,8 @@ object HomeScreen : Screen() {
                     navigationSuiteType = navigationSuiteType,
                     state = navigationSuiteState,
                     navigationSuiteColors = NavigationSuiteDefaults.colors(
-                        navigationRailContainerColor = MaterialTheme.colorScheme
-                            .surfaceColorAtElevation(3.dp),
+                        navigationBarContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+                        navigationRailContainerColor = MaterialTheme.colorScheme.surfaceContainer,
                     ),
                     navigationItemVerticalArrangement = Arrangement.Center,
                     navigationItems = {
@@ -174,6 +184,38 @@ object HomeScreen : Screen() {
         val navigator = LocalNavigator.currentOrThrow
         val scope = rememberCoroutineScope()
         val selected = tabNavigator.current::class == tab::class
+        val displayLabel = when (tab) {
+            is LibraryTab -> "Library"
+            is UpdatesTab -> "New"
+            is HistoryTab -> "History"
+            is BrowseTab -> "Discover"
+            is MoreTab -> "More"
+            else -> tab.options.title
+        }
+        val colorScheme = MaterialTheme.colorScheme
+        val hairline = colorScheme.outlineVariant
+        val itemColors = ShortNavigationBarItemDefaults.colors(
+            selectedIconColor = colorScheme.onBackground,
+            selectedTextColorTopIconPosition = colorScheme.onBackground,
+            selectedTextColorStartIconPosition = colorScheme.onBackground,
+            selectedIndicatorColor = Color.Transparent,
+            unselectedIconColor = colorScheme.onSurfaceVariant,
+            unselectedTextColor = colorScheme.onSurfaceVariant,
+        )
+        val itemModifier = if (navigationSuiteType == NavigationSuiteType.NavigationBar) {
+            // 0.5dp top hairline across the bar, drawn per item (items tile the full bar width)
+            Modifier.drawBehind {
+                val stroke = 0.5.dp.toPx()
+                drawLine(
+                    color = hairline,
+                    start = Offset(0f, stroke / 2),
+                    end = Offset(size.width, stroke / 2),
+                    strokeWidth = stroke,
+                )
+            }
+        } else {
+            Modifier
+        }
         NavigationSuiteItem(
             navigationSuiteType = navigationSuiteType,
             selected = selected,
@@ -184,19 +226,30 @@ object HomeScreen : Screen() {
                     scope.launch { tab.onReselect(navigator) }
                 }
             },
+            modifier = itemModifier,
+            colors = itemColors,
             icon = {
                 Icon(
                     painter = tab.options.icon!!,
-                    contentDescription = tab.options.title,
+                    contentDescription = displayLabel,
                 )
             },
             label = {
-                Text(
-                    text = tab.options.title,
-                    style = MaterialTheme.typography.labelLarge,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = displayLabel,
+                        style = MaterialTheme.typography.labelLarge,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Spacer(Modifier.height(2.dp))
+                    Box(
+                        Modifier
+                            .width(16.dp)
+                            .height(2.dp)
+                            .background(if (selected) colorScheme.primary else Color.Transparent),
+                    )
+                }
             },
             badge = tabBadge(tab),
         )
