@@ -1,10 +1,10 @@
 {
-  "version": "1.0.8",
-  "versionCode": 9,
+  "version": "1.0.9",
+  "versionCode": 10,
   "minSupportedVersionCode": 1,
-  "changelog": "MoMan is now fully its own project: internals renamed, own project files, behind-the-scenes cleanup. No visible changes.",
+  "changelog": "New MoMan logo: the Enso Seal app icon, splash and notification icon.",
   "releasedAt": "2026-10-22",
   "apks": {
-    "arm64-v8a": "MoMan-1.0.8-arm64-v8a.apk"
+    "arm64-v8a": "MoMan-1.0.9-arm64-v8a.apk"
   }
 }
