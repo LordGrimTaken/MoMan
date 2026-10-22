@@ -35,6 +35,6 @@ class AppUpdateChecker(
 }
 
 /** Base URL of the MoMan update server (see /server in this repo). */
-const val UPDATE_BASE_URL = "https://moman-updates.onrender.com"
+const val UPDATE_BASE_URL = "https://momanreader.com"
 
 val RELEASE_URL = UPDATE_BASE_URL
