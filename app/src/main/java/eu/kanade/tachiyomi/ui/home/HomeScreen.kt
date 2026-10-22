@@ -3,10 +3,8 @@ package eu.kanade.tachiyomi.ui.home
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.border
@@ -23,6 +21,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.BadgedBox
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -122,29 +123,12 @@ object HomeScreen : Screen() {
             // Provide usable navigator to content screen
             CompositionLocalProvider(LocalNavigator provides navigator) {
                 val tabletUi = isTabletUi()
-                var navShown by remember { mutableStateOf(true) }
+                val navShownState = remember { mutableStateOf(true) }
                 val scrollShown = remember { mutableStateOf(true) }
                 LaunchedEffect(Unit) {
-                    showBottomNavEvent.receiveAsFlow().collectLatest { show -> navShown = show }
+                    showBottomNavEvent.receiveAsFlow().collectLatest { show -> navShownState.value = show }
                 }
                 LaunchedEffect(tabNavigator.current) { scrollShown.value = true }
-
-                val tabContent: @Composable () -> Unit = {
-                    AnimatedContent(
-                        targetState = tabNavigator.current,
-                        transitionSpec = {
-                            materialFadeThroughIn(
-                                initialScale = 1f,
-                                durationMillis = TabFadeDuration,
-                            ) togetherWith materialFadeThroughOut(durationMillis = TabFadeDuration)
-                        },
-                        label = "tabContent",
-                    ) {
-                        tabNavigator.saveableState(key = "currentTab", it) {
-                            it.Content()
-                        }
-                    }
-                }
 
                 if (tabletUi) {
                     NavigationSuiteScaffold(
@@ -158,50 +142,14 @@ object HomeScreen : Screen() {
                             TABS.fastForEach { NavigationSuiteItem(it, NavigationSuiteType.NavigationRail) }
                         },
                     ) {
-                        tabContent()
+                        TabContent(tabNavigator)
                     }
                 } else {
-                    val dockVisible = navShown && scrollShown.value
-                    val scrollConnection = remember {
-                        object : NestedScrollConnection {
-                            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
-                                if (available.y < -DockScrollThreshold) {
-                                    scrollShown.value = false
-                                } else if (available.y > DockScrollThreshold) {
-                                    scrollShown.value = true
-                                }
-                                return Offset.Zero
-                            }
-                        }
-                    }
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background),
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxWidth()
-                                .nestedScroll(scrollConnection)
-                                .then(
-                                    if (dockVisible) {
-                                        Modifier.consumeWindowInsets(WindowInsets.navigationBars)
-                                    } else {
-                                        Modifier
-                                    },
-                                ),
-                        ) {
-                            tabContent()
-                        }
-                        AnimatedVisibility(
-                            visible = dockVisible,
-                            enter = slideInVertically { it } + fadeIn() + expandVertically(),
-                            exit = slideOutVertically { it } + fadeOut() + shrinkVertically(),
-                        ) {
-                            InkDock()
-                        }
-                    }
+                    PhoneHome(
+                        tabNavigator = tabNavigator,
+                        navShown = navShownState,
+                        scrollShown = scrollShown,
+                    )
                 }
             }
 
@@ -240,6 +188,79 @@ object HomeScreen : Screen() {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @Composable
+    private fun TabContent(tabNavigator: TabNavigator) {
+        AnimatedContent(
+            targetState = tabNavigator.current,
+            transitionSpec = {
+                materialFadeThroughIn(
+                    initialScale = 1f,
+                    durationMillis = TabFadeDuration,
+                ) togetherWith materialFadeThroughOut(durationMillis = TabFadeDuration)
+            },
+            label = "tabContent",
+        ) {
+            tabNavigator.saveableState(key = "currentTab", it) {
+                it.Content()
+            }
+        }
+    }
+
+    /**
+     * Phone layout. The dock state is read only in here, so toggling the dock never recomposes the
+     * tab content, and the dock only fades/drifts (no height animation, so content is not re-laid-out
+     * every frame).
+     */
+    @Composable
+    private fun PhoneHome(
+        tabNavigator: TabNavigator,
+        navShown: State<Boolean>,
+        scrollShown: MutableState<Boolean>,
+    ) {
+        val dockVisible by remember { derivedStateOf { navShown.value && scrollShown.value } }
+        val scrollConnection = remember {
+            object : NestedScrollConnection {
+                override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                    // Only writes when the value actually flips, so most scroll deltas cost nothing
+                    if (available.y < -DockScrollThreshold) {
+                        if (scrollShown.value) scrollShown.value = false
+                    } else if (available.y > DockScrollThreshold) {
+                        if (!scrollShown.value) scrollShown.value = true
+                    }
+                    return Offset.Zero
+                }
+            }
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .nestedScroll(scrollConnection)
+                    .then(
+                        if (dockVisible) {
+                            Modifier.consumeWindowInsets(WindowInsets.navigationBars)
+                        } else {
+                            Modifier
+                        },
+                    ),
+            ) {
+                TabContent(tabNavigator)
+            }
+            AnimatedVisibility(
+                visible = dockVisible,
+                enter = slideInVertically { it / 2 } + fadeIn(),
+                exit = slideOutVertically { it / 2 } + fadeOut(),
+            ) {
+                InkDock()
             }
         }
     }
