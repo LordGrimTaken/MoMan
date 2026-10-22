@@ -13,6 +13,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Switch
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
@@ -27,8 +34,8 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import eu.kanade.presentation.more.settings.widget.SwitchPreferenceWidget
-import eu.kanade.presentation.more.settings.widget.TextPreferenceWidget
+import eu.kanade.tachiyomi.BuildConfig
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.more.DownloadQueueState
 import moman.icons.materialsymbols.MaterialSymbols
 import moman.icons.materialsymbols.automirroredrounded.Help
@@ -128,97 +135,158 @@ fun MoreScreen(
 
             // Library & downloads
             item(key = "library_label") { SectionLabel(stringResource(MR.strings.you_section_library)) }
-            item(key = "downloaded_only") {
-                SwitchPreferenceWidget(
-                    title = stringResource(MR.strings.label_downloaded_only),
-                    subtitle = stringResource(MR.strings.downloaded_only_summary),
-                    icon = MaterialSymbols.Rounded.CloudOff,
-                    checked = downloadedOnly,
-                    onCheckedChanged = onDownloadedOnlyChange,
-                )
+            item(key = "modes") {
+                Surface(
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 4.dp)
+                        .fillMaxWidth(),
+                    shape = MaterialTheme.shapes.large,
+                    color = MaterialTheme.colorScheme.surfaceContainerLow,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                ) {
+                    Column {
+                        ModeRow(
+                            icon = MaterialSymbols.Rounded.CloudOff,
+                            title = stringResource(MR.strings.label_downloaded_only),
+                            subtitle = stringResource(MR.strings.downloaded_only_summary),
+                            checked = downloadedOnly,
+                            onCheckedChange = onDownloadedOnlyChange,
+                        )
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                        ModeRow(
+                            icon = MaterialSymbols.Rounded.Eyeglasses2,
+                            title = stringResource(MR.strings.pref_incognito_mode),
+                            subtitle = stringResource(MR.strings.pref_incognito_mode_summary),
+                            checked = incognitoMode,
+                            onCheckedChange = onIncognitoModeChange,
+                        )
+                    }
+                }
             }
-            item(key = "incognito") {
-                SwitchPreferenceWidget(
-                    title = stringResource(MR.strings.pref_incognito_mode),
-                    subtitle = stringResource(MR.strings.pref_incognito_mode_summary),
-                    icon = MaterialSymbols.Rounded.Eyeglasses2,
-                    checked = incognitoMode,
-                    onCheckedChanged = onIncognitoModeChange,
-                )
-            }
-            item(key = "download_queue") {
+            item(key = "tiles") {
                 val downloadQueueState = downloadQueueStateProvider()
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_download_queue),
-                    subtitle = when (downloadQueueState) {
-                        DownloadQueueState.Stopped -> null
-                        is DownloadQueueState.Paused -> {
-                            val pending = downloadQueueState.pending
-                            if (pending == 0) {
-                                stringResource(MR.strings.paused)
-                            } else {
-                                "${stringResource(MR.strings.paused)} • ${
-                                    pluralStringResource(
-                                        MR.plurals.download_queue_summary,
-                                        count = pending,
-                                        pending,
-                                    )
-                                }"
-                            }
+                val queueSubtitle: String? = when (downloadQueueState) {
+                    DownloadQueueState.Stopped -> null
+                    is DownloadQueueState.Paused -> {
+                        val pending = downloadQueueState.pending
+                        if (pending == 0) {
+                            stringResource(MR.strings.paused)
+                        } else {
+                            "${stringResource(MR.strings.paused)} • ${
+                                pluralStringResource(MR.plurals.download_queue_summary, count = pending, pending)
+                            }"
                         }
-                        is DownloadQueueState.Downloading -> {
-                            val pending = downloadQueueState.pending
-                            pluralStringResource(MR.plurals.download_queue_summary, count = pending, pending)
-                        }
-                    },
-                    icon = MaterialSymbols.Rounded.Download,
-                    onPreferenceClick = onClickDownloadQueue,
-                )
-            }
-            item(key = "categories") {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.categories),
-                    icon = MaterialSymbols.AutoMirroredRounded.Label,
-                    onPreferenceClick = onClickCategories,
-                )
-            }
-            item(key = "data_storage") {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_data_storage),
-                    icon = MaterialSymbols.Rounded.Storage,
-                    onPreferenceClick = onClickDataAndStorage,
-                )
-            }
-            item(key = "stats") {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_stats),
-                    icon = MaterialSymbols.Rounded.QueryStats,
-                    onPreferenceClick = onClickStats,
-                )
+                    }
+                    is DownloadQueueState.Downloading -> {
+                        val pending = downloadQueueState.pending
+                        pluralStringResource(MR.plurals.download_queue_summary, count = pending, pending)
+                    }
+                }
+                Column(
+                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    Row(
+                        modifier = Modifier.height(IntrinsicSize.Max),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        LibraryTile(
+                            icon = MaterialSymbols.Rounded.Download,
+                            title = stringResource(MR.strings.label_download_queue),
+                            subtitle = queueSubtitle,
+                            onClick = onClickDownloadQueue,
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        )
+                        LibraryTile(
+                            icon = MaterialSymbols.AutoMirroredRounded.Label,
+                            title = stringResource(MR.strings.categories),
+                            subtitle = null,
+                            onClick = onClickCategories,
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.height(IntrinsicSize.Max),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        LibraryTile(
+                            icon = MaterialSymbols.Rounded.Storage,
+                            title = stringResource(MR.strings.label_data_storage),
+                            subtitle = null,
+                            onClick = onClickDataAndStorage,
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        )
+                        LibraryTile(
+                            icon = MaterialSymbols.Rounded.QueryStats,
+                            title = stringResource(MR.strings.label_stats),
+                            subtitle = null,
+                            onClick = onClickStats,
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        )
+                    }
+                }
             }
 
             // App
             item(key = "app_label") { SectionLabel(stringResource(MR.strings.you_section_app)) }
-            item(key = "settings") {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_settings),
-                    icon = MaterialSymbols.Rounded.Settings,
-                    onPreferenceClick = onClickSettings,
-                )
+            item(key = "app_card") {
+                Surface(
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 4.dp)
+                        .fillMaxWidth(),
+                    shape = MaterialTheme.shapes.large,
+                    color = MaterialTheme.colorScheme.surfaceContainerLow,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                ) {
+                    Column {
+                        AppRow(
+                            icon = MaterialSymbols.Rounded.Settings,
+                            title = stringResource(MR.strings.label_settings),
+                            description = stringResource(MR.strings.you_settings_desc),
+                            onClick = onClickSettings,
+                        )
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                        AppRow(
+                            icon = MaterialSymbols.Rounded.Info,
+                            title = stringResource(MR.strings.pref_category_about),
+                            description = stringResource(MR.strings.you_about_desc),
+                            onClick = onClickAbout,
+                        )
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                        AppRow(
+                            icon = MaterialSymbols.AutoMirroredRounded.Help,
+                            title = stringResource(MR.strings.label_help),
+                            description = stringResource(MR.strings.you_help_desc),
+                            onClick = { uriHandler.openUri(Constants.URL_HELP) },
+                        )
+                    }
+                }
             }
-            item(key = "about") {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.pref_category_about),
-                    icon = MaterialSymbols.Rounded.Info,
-                    onPreferenceClick = onClickAbout,
-                )
-            }
-            item(key = "help") {
-                TextPreferenceWidget(
-                    title = stringResource(MR.strings.label_help),
-                    icon = MaterialSymbols.AutoMirroredRounded.Help,
-                    onPreferenceClick = { uriHandler.openUri(Constants.URL_HELP) },
-                )
+            item(key = "footer") {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 36.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_moman),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(44.dp),
+                    )
+                    Text(
+                        text = "\u58A8\u6F2B MoMan",
+                        style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Serif),
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                    Text(
+                        text = "v${BuildConfig.VERSION_NAME}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
         }
     }
@@ -321,6 +389,131 @@ private fun SourceRow(
                     color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
+        }
+        Icon(
+            imageVector = MaterialSymbols.Rounded.KeyboardArrowRight,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+
+@Composable
+private fun IconTile(icon: ImageVector) {
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.14f), RoundedCornerShape(12.dp)),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(22.dp),
+        )
+    }
+}
+
+@Composable
+private fun ModeRow(
+    icon: ImageVector,
+    title: String,
+    subtitle: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .toggleable(value = checked, role = Role.Switch, onValueChange = onCheckedChange)
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        IconTile(icon)
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Serif),
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Switch(checked = checked, onCheckedChange = null)
+    }
+}
+
+@Composable
+private fun LibraryTile(
+    icon: ImageVector,
+    title: String,
+    subtitle: String?,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Surface(
+        onClick = onClick,
+        modifier = modifier,
+        shape = MaterialTheme.shapes.large,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            IconTile(icon)
+            Column {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Serif),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+                if (subtitle != null) {
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AppRow(
+    icon: ImageVector,
+    title: String,
+    description: String,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        IconTile(icon)
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Serif),
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
         Icon(
             imageVector = MaterialSymbols.Rounded.KeyboardArrowRight,

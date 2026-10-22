@@ -1202,4 +1202,7 @@
     <string name="discover_empty_title">No sources yet</string>
     <string name="discover_add_sources">Add sources</string>
     <string name="discover_nothing_here">Nothing new from this source</string>
+    <string name="you_settings_desc">Look, reader, downloads, security and more</string>
+    <string name="you_about_desc">Version, updates and licenses</string>
+    <string name="you_help_desc">Guides and answers on the website</string>
 </resources>
