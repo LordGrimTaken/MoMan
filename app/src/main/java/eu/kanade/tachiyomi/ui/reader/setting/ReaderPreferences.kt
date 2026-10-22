@@ -64,9 +64,10 @@ class ReaderPreferences(
 
     val keepScreenOn: Preference<Boolean> = preferenceStore.getBoolean("pref_keep_screen_on_key", false)
 
+    // MoMan: manhua/manhwa first. Default to gapless continuous long strip (series can still be set per title).
     val defaultReadingMode: Preference<Int> = preferenceStore.getInt(
         "pref_default_reading_mode_key",
-        ReadingMode.RIGHT_TO_LEFT.flagValue,
+        ReadingMode.WEBTOON.flagValue,
     )
 
     val defaultOrientationType: Preference<Int> = preferenceStore.getInt(
