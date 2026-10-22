@@ -1,10 +1,10 @@
 {
-  "version": "1.0.5",
-  "versionCode": 6,
+  "version": "1.0.6",
+  "versionCode": 7,
   "minSupportedVersionCode": 1,
-  "changelog": "Fixes a crash on the setup screens of a fresh install. Includes the cover Shelf, performance improvements and the Ink & Seal theme.",
+  "changelog": "Discover now shows the latest chapters from your installed sources. Sources, Extensions and Migrate moved into the You tab, with a simple step-by-step guide to adding repositories.",
   "releasedAt": "2026-10-22",
   "apks": {
-    "arm64-v8a": "MoMan-1.0.5-arm64-v8a.apk"
+    "arm64-v8a": "MoMan-1.0.6-arm64-v8a.apk"
   }
 }
