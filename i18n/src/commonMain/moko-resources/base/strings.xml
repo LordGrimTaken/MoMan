@@ -1140,4 +1140,12 @@
     <string name="import_repo_add_failed">Could not add store: %1$s</string>
     <string name="import_repo_remove_note">Extensions already installed from this store will stay installed. You just won\'t get updates or new extensions from it.</string>
 
+    <string name="auto_scroll_start">Start auto-scroll</string>
+    <string name="auto_scroll_stop">Pause auto-scroll</string>
+    <string name="pref_auto_scroll_speed">Auto-scroll speed</string>
+    <string name="update_summary_title">Library update finished</string>
+    <string name="update_summary_counts">Checked %1$d, new chapters in %2$d, skipped %3$d, failed %4$d</string>
+    <string name="update_summary_skipped_line">%1$d × %2$s</string>
+    <string name="update_summary_tip_skipped">Skipped titles follow your update restrictions in Settings › Library.</string>
+    <string name="action_update_library_force">Update all (ignore restrictions)</string>
 </resources>

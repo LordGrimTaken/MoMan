@@ -16,6 +16,8 @@ import mihon.icons.custommaterialsymbols.rounded.CropOff
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.rounded.Crop
 import mihon.icons.materialsymbols.rounded.Settings
+import mihon.icons.materialsymbols.roundedfilled.Pause
+import mihon.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 
@@ -28,6 +30,9 @@ fun ReaderBottomBar(
     cropEnabled: Boolean,
     onClickCropBorder: () -> Unit,
     onClickSettings: () -> Unit,
+    autoScrollAvailable: Boolean,
+    autoScrolling: Boolean,
+    onToggleAutoScroll: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -58,6 +63,26 @@ fun ReaderBottomBar(
                 contentDescription = stringResource(MR.strings.pref_crop_borders),
                 tint = MaterialTheme.colorScheme.onSurface,
             )
+        }
+
+        if (autoScrollAvailable) {
+            IconButton(onClick = onToggleAutoScroll) {
+                Icon(
+                    imageVector = if (autoScrolling) {
+                        MaterialSymbols.RoundedFilled.Pause
+                    } else {
+                        MaterialSymbols.RoundedFilled.PlayArrow
+                    },
+                    contentDescription = stringResource(
+                        if (autoScrolling) MR.strings.auto_scroll_stop else MR.strings.auto_scroll_start,
+                    ),
+                    tint = if (autoScrolling) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.onSurface
+                    },
+                )
+            }
         }
 
         IconButton(onClick = onClickSettings) {

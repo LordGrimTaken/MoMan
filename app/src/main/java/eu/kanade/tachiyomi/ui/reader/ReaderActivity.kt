@@ -31,7 +31,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -75,6 +77,7 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressIndicator
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.R2LPagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webgpu.WebGpuViewer
+import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.readerBackgroundColor
@@ -139,6 +142,16 @@ class ReaderActivity : BaseActivity() {
 
     var isScrollingThroughPages = false
         private set
+
+    /** True while the webtoon viewer is auto-scrolling. Drives the play/pause button in the bottom bar. */
+    private var isAutoScrolling by mutableStateOf(false)
+
+    /**
+     * Called by [WebtoonViewer] when auto-scroll starts or stops.
+     */
+    fun onAutoScrollStateChanged(active: Boolean) {
+        isAutoScrolling = active
+    }
 
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
@@ -344,6 +357,7 @@ class ReaderActivity : BaseActivity() {
     }
 
     override fun onPause() {
+        (viewModel.state.value.viewer as? WebtoonViewer)?.stopAutoScroll()
         viewModel.saveHistory()
         super.onPause()
     }
@@ -515,6 +529,10 @@ class ReaderActivity : BaseActivity() {
                 menuToggleToast = toast(if (enabled) MR.strings.on else MR.strings.off)
             },
             onClickSettings = viewModel::openSettingsDialog,
+
+            autoScrollAvailable = state.viewer is WebtoonViewer,
+            autoScrolling = isAutoScrolling,
+            onToggleAutoScroll = { (viewModel.state.value.viewer as? WebtoonViewer)?.toggleAutoScroll() },
         )
     }
 

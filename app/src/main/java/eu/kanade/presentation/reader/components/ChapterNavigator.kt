@@ -204,9 +204,17 @@ fun HorizontalChapterNavigator(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Box(contentAlignment = Alignment.CenterEnd) {
-                            Text(text = currentPage.toString(), style = MaterialTheme.typography.labelMedium)
+                            Text(
+                                text = currentPage.toString(),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurface,
+                            )
                             // Taking up full length so the slider doesn't shift when 'currentPage' length changes
-                            Text(text = totalPages.toString(), style = MaterialTheme.typography.labelMedium, color = Color.Transparent)
+                            Text(
+                                text = totalPages.toString(),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = Color.Transparent,
+                            )
                         }
 
                         Slider(
@@ -222,7 +230,11 @@ fun HorizontalChapterNavigator(
                             track = { InkTrack(currentPage, totalPages) },
                         )
 
-                        Text(text = totalPages.toString(), style = MaterialTheme.typography.labelMedium)
+                        Text(
+                            text = totalPages.toString(),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
                     }
                 }
             } else {
@@ -289,7 +301,11 @@ fun VerticalChapterNavigator(
                     .padding(vertical = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(text = currentPage.toString(), style = MaterialTheme.typography.labelMedium)
+                Text(
+                    text = currentPage.toString(),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
 
                 VerticalSlider(
                     state = state,
@@ -304,7 +320,11 @@ fun VerticalChapterNavigator(
                     track = { InkTrack(currentPage, totalPages) },
                 )
 
-                Text(text = totalPages.toString(), style = MaterialTheme.typography.labelMedium)
+                Text(
+                    text = totalPages.toString(),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
             }
         } else {
             Spacer(Modifier.weight(1f))
@@ -328,7 +348,7 @@ fun VerticalChapterNavigator(
 private fun inkSliderColors() = SliderDefaults.colors(
     thumbColor = MaterialTheme.colorScheme.primary,
     activeTrackColor = MaterialTheme.colorScheme.primary,
-    inactiveTrackColor = MaterialTheme.colorScheme.outlineVariant,
+    inactiveTrackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.28f),
     activeTickColor = Color.Transparent,
     inactiveTickColor = Color.Transparent,
 )
@@ -353,8 +373,8 @@ private fun InkTrack(currentPage: Int, totalPages: Int) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 7.dp)
-            .height(2.dp)
-            .background(MaterialTheme.colorScheme.outlineVariant),
+            .height(3.dp)
+            .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.28f)),
     ) {
         Box(
             modifier = Modifier

@@ -10,10 +10,13 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -44,6 +48,7 @@ import eu.kanade.presentation.browse.components.ExtensionPill
 import eu.kanade.presentation.browse.components.label
 import eu.kanade.presentation.components.WarningBanner
 import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoresScreen
+import eu.kanade.presentation.more.settings.screen.browse.components.ExtensionStoreExplainer
 import eu.kanade.presentation.util.rememberRequestPackageInstallsPermissionState
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
@@ -69,7 +74,6 @@ import tachiyomi.presentation.core.components.material.padding
 import tachiyomi.presentation.core.components.material.topSmallPaddingValues
 import tachiyomi.presentation.core.i18n.stringResource
 import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.EmptyScreenAction
 import tachiyomi.presentation.core.screens.LoadingScreen
 import tachiyomi.presentation.core.theme.header
 import tachiyomi.presentation.core.util.plus
@@ -100,22 +104,17 @@ fun ExtensionScreen(
         when {
             state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))
             state.isEmpty -> {
-                val msg = if (!searchQuery.isNullOrEmpty()) {
-                    MR.strings.no_results_found
+                if (!searchQuery.isNullOrEmpty()) {
+                    EmptyScreen(
+                        stringRes = MR.strings.no_results_found,
+                        modifier = Modifier.padding(contentPadding),
+                    )
                 } else {
-                    MR.strings.empty_screen
+                    ExtensionsEmptyState(
+                        onOpenStores = { navigator.push(ExtensionStoresScreen()) },
+                        modifier = Modifier.padding(contentPadding),
+                    )
                 }
-                EmptyScreen(
-                    stringRes = msg,
-                    modifier = Modifier.padding(contentPadding),
-                    actions = listOf(
-                        EmptyScreenAction(
-                            stringRes = MR.strings.extensionStores,
-                            icon = MaterialSymbols.Rounded.Settings,
-                            onClick = { navigator.push(ExtensionStoresScreen()) },
-                        ),
-                    ),
-                )
             }
             else -> {
                 ExtensionContent(
@@ -132,6 +131,38 @@ fun ExtensionScreen(
                     onClickUpdateAll = onClickUpdateAll,
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun ExtensionsEmptyState(
+    onOpenStores: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 24.dp, vertical = 24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
+    ) {
+        Text(
+            text = stringResource(MR.strings.import_extensions_empty_title),
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            text = stringResource(MR.strings.import_extensions_empty_body),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+        )
+        ExtensionStoreExplainer()
+        Button(onClick = onOpenStores) {
+            Text(text = stringResource(MR.strings.import_extensions_empty_action))
         }
     }
 }
