@@ -22,3 +22,7 @@
 *.woff binary
 *.pyc binary
 *.swp binary
+
+# Release binaries must never be line-ending converted
+*.apk binary
+server/apks/*.apk binary
