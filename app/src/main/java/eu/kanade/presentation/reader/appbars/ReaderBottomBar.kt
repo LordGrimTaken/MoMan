@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +40,7 @@ fun ReaderBottomBar(
             Icon(
                 imageVector = readingMode.icon,
                 contentDescription = stringResource(MR.strings.viewer),
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
 
@@ -46,6 +48,7 @@ fun ReaderBottomBar(
             Icon(
                 imageVector = orientation.icon,
                 contentDescription = stringResource(MR.strings.rotation_type),
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
 
@@ -53,6 +56,7 @@ fun ReaderBottomBar(
             Icon(
                 imageVector = if (cropEnabled) MaterialSymbols.Rounded.Crop else CustomMaterialSymbols.Rounded.CropOff,
                 contentDescription = stringResource(MR.strings.pref_crop_borders),
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
 
@@ -60,6 +64,7 @@ fun ReaderBottomBar(
             Icon(
                 imageVector = MaterialSymbols.Rounded.Settings,
                 contentDescription = stringResource(MR.strings.action_settings),
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
     }

@@ -77,6 +77,7 @@ private fun LibraryRegularToolbar(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = title.text,
+                    style = MaterialTheme.typography.titleLarge,
                     maxLines = 1,
                     modifier = Modifier.weight(1f, false),
                     overflow = TextOverflow.Ellipsis,
@@ -129,7 +130,7 @@ private fun LibrarySelectionToolbar(
     onClickInvertSelection: () -> Unit,
 ) {
     AppBar(
-        titleContent = { Text(text = "$selectedCount") },
+        titleContent = { Text(text = "$selectedCount", style = MaterialTheme.typography.titleLarge) },
         actions = {
             AppBarActions(
                 listOf(

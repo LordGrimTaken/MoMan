@@ -71,7 +71,7 @@ fun OnboardingScreen(
                 .padding(vertical = MaterialTheme.padding.small)
                 .clip(MaterialTheme.shapes.small)
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceVariant),
+                .background(MaterialTheme.colorScheme.background),
         ) {
             AnimatedContent(
                 targetState = currentStep,

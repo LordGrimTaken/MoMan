@@ -77,8 +77,11 @@ private fun AppThemesList(
 ) {
     val context = LocalContext.current
     val appThemes = remember {
-        AppTheme.entries
-            .filterNot { it.titleRes == null || (it == AppTheme.MONET && !DeviceUtil.isDynamicColorAvailable) }
+        buildList {
+            add(AppTheme.DEFAULT)
+            if (DeviceUtil.isDynamicColorAvailable) add(AppTheme.MONET)
+            add(AppTheme.MONOCHROME)
+        }
     }
     LazyRow(
         contentPadding = PaddingValues(horizontal = PrefsHorizontalPadding),
@@ -109,7 +112,7 @@ private fun AppThemesList(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = stringResource(appTheme.titleRes!!),
+                    text = appThemeLabel(appTheme),
                     modifier = Modifier
                         .fillMaxWidth()
                         .secondaryItemAlpha(),
@@ -121,6 +124,13 @@ private fun AppThemesList(
             }
         }
     }
+}
+
+private fun appThemeLabel(appTheme: AppTheme): String = when (appTheme) {
+    AppTheme.DEFAULT -> "Ink & Seal"
+    AppTheme.MONET -> "Dynamic"
+    AppTheme.MONOCHROME -> "Plain"
+    else -> appTheme.name
 }
 
 @Composable

@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -28,14 +27,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
 import mihon.icons.materialsymbols.MaterialSymbols
 import mihon.icons.materialsymbols.roundedfilled.PlayArrow
@@ -127,13 +123,8 @@ private fun BoxScope.CoverTextOverlay(
 ) {
     Box(
         modifier = Modifier
-            .clip(RoundedCornerShape(bottomStart = 4.dp, bottomEnd = 4.dp))
-            .background(
-                Brush.verticalGradient(
-                    0f to Color.Transparent,
-                    1f to Color(0xAA000000),
-                ),
-            )
+            .clip(MaterialTheme.shapes.small)
+            .background(MaterialTheme.colorScheme.scrim.copy(alpha = 0.6f))
             .fillMaxHeight(0.33f)
             .fillMaxWidth()
             .align(Alignment.BottomCenter),
@@ -147,12 +138,8 @@ private fun BoxScope.CoverTextOverlay(
                 .weight(1f)
                 .padding(8.dp),
             title = title,
-            style = MaterialTheme.typography.titleSmall.copy(
+            style = MaterialTheme.typography.labelMedium.copy(
                 color = Color.White,
-                shadow = Shadow(
-                    color = Color.Black,
-                    blurRadius = 4f,
-                ),
             ),
             minLines = 1,
         )
@@ -219,7 +206,9 @@ fun MangaComfortableGridItem(
             GridItemTitle(
                 modifier = Modifier.padding(4.dp),
                 title = title,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    color = MaterialTheme.colorScheme.onBackground,
+                ),
                 minLines = 2,
                 maxLines = titleMaxLines,
             )
@@ -248,7 +237,7 @@ private fun MangaGridCover(
         if (badgesStart != null) {
             BadgeGroup(
                 modifier = Modifier
-                    .padding(4.dp)
+                    .padding(5.dp)
                     .align(Alignment.TopStart),
                 content = badgesStart,
             )
@@ -257,7 +246,7 @@ private fun MangaGridCover(
         if (badgesEnd != null) {
             BadgeGroup(
                 modifier = Modifier
-                    .padding(4.dp)
+                    .padding(5.dp)
                     .align(Alignment.TopEnd),
                 content = badgesEnd,
             )
@@ -276,8 +265,6 @@ private fun GridItemTitle(
     Text(
         modifier = modifier,
         text = title,
-        fontSize = 12.sp,
-        lineHeight = 18.sp,
         minLines = minLines,
         maxLines = maxLines,
         overflow = TextOverflow.Ellipsis,
@@ -303,11 +290,11 @@ private fun GridItemSelectable(
                 onClick = onClick,
                 onLongClick = onLongClick,
             )
-            .selectedOutline(isSelected = isSelected, color = MaterialTheme.colorScheme.secondary)
+            .selectedOutline(isSelected = isSelected, color = MaterialTheme.colorScheme.primary)
             .padding(4.dp),
     ) {
         val contentColor = if (isSelected) {
-            MaterialTheme.colorScheme.onSecondary
+            MaterialTheme.colorScheme.onPrimary
         } else {
             LocalContentColor.current
         }
