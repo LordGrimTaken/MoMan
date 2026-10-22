@@ -71,11 +71,11 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import kotlinx.coroutines.launch
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.ArrowBack
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.roundedfilled.CheckCircle
-import mihon.icons.materialsymbols.roundedfilled.VisibilityOff
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.automirroredrounded.ArrowBack
+import moman.icons.materialsymbols.rounded.Close
+import moman.icons.materialsymbols.roundedfilled.CheckCircle
+import moman.icons.materialsymbols.roundedfilled.VisibilityOff
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
 import tachiyomi.presentation.core.components.material.Scaffold

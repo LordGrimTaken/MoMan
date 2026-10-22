@@ -62,9 +62,9 @@ import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.updates.UpdatesTab
 import kotlinx.coroutines.launch
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.CalendarMonth
-import mihon.icons.materialsymbols.rounded.KeyboardArrowRight
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.rounded.CalendarMonth
+import moman.icons.materialsymbols.rounded.KeyboardArrowRight
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 import java.time.LocalDate

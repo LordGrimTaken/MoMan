@@ -19,10 +19,10 @@ import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.util.formattedMessage
 import eu.kanade.tachiyomi.source.Source
 import kotlinx.coroutines.flow.StateFlow
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.Help
-import mihon.icons.materialsymbols.rounded.Public
-import mihon.icons.materialsymbols.rounded.Refresh
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.automirroredrounded.Help
+import moman.icons.materialsymbols.rounded.Public
+import moman.icons.materialsymbols.rounded.Refresh
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.domain.library.model.LibraryDisplayMode
 import tachiyomi.domain.manga.model.Manga

@@ -8,13 +8,13 @@ import eu.kanade.tachiyomi.util.lang.htmlDecode
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
-import mihon.graphql.anilist.AniListGetCurrentUserQuery
-import mihon.graphql.anilist.AniListGetLibMangaQuery
-import mihon.graphql.anilist.AniListGetMangaDetailsQuery
-import mihon.graphql.anilist.AniListSearchMangaQuery
-import mihon.graphql.anilist.fragment.MangaFragment
-import mihon.graphql.anilist.type.MediaListStatus
-import mihon.graphql.anilist.type.ScoreFormat
+import moman.graphql.anilist.AniListGetCurrentUserQuery
+import moman.graphql.anilist.AniListGetLibMangaQuery
+import moman.graphql.anilist.AniListGetMangaDetailsQuery
+import moman.graphql.anilist.AniListSearchMangaQuery
+import moman.graphql.anilist.fragment.MangaFragment
+import moman.graphql.anilist.type.MediaListStatus
+import moman.graphql.anilist.type.ScoreFormat
 import tachiyomi.domain.track.model.Track as DomainTrack
 
 internal fun AniListGetCurrentUserQuery.Viewer.toALUser(): ALUser {

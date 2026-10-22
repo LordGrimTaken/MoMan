@@ -21,10 +21,10 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.manga.components.MarkdownRender
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.ui.more.NewUpdateScreenModel
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.OpenInNew
-import mihon.icons.materialsymbols.rounded.UpdateDisabled
-import mihon.icons.materialsymbols.rounded.Verified
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.automirroredrounded.OpenInNew
+import moman.icons.materialsymbols.rounded.UpdateDisabled
+import moman.icons.materialsymbols.rounded.Verified
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.padding

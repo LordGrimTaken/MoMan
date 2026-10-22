@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.withContext
 import logcat.LogPriority
-import mihon.app.di.appGraph
+import moman.app.di.appGraph
 import okhttp3.OkHttpClient
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.domain.track.interactor.UpsertTrack

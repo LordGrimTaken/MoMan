@@ -19,9 +19,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.launch
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.roundedfilled.Cancel
-import mihon.icons.materialsymbols.roundedfilled.Error
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.roundedfilled.Cancel
+import moman.icons.materialsymbols.roundedfilled.Error
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

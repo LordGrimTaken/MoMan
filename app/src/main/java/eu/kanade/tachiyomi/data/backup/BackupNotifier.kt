@@ -19,7 +19,7 @@ import tachiyomi.core.common.storage.displayablePath
 import tachiyomi.i18n.MR
 import java.io.File
 import kotlin.time.Duration.Companion.milliseconds
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import moman.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject
 class BackupNotifier(
@@ -30,7 +30,7 @@ class BackupNotifier(
         Notifications.CHANNEL_BACKUP_RESTORE_PROGRESS,
     ) {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
-        setSmallIcon(R.drawable.ic_mihon)
+        setSmallIcon(R.drawable.ic_moman)
         setAutoCancel(false)
         setOngoing(true)
         setOnlyAlertOnce(true)
@@ -40,7 +40,7 @@ class BackupNotifier(
         Notifications.CHANNEL_BACKUP_RESTORE_COMPLETE,
     ) {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
-        setSmallIcon(R.drawable.ic_mihon)
+        setSmallIcon(R.drawable.ic_moman)
         setAutoCancel(false)
     }
 

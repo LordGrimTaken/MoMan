@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import dev.zacsweers.metrox.viewmodel.LocalMetroViewModelFactory
 import eu.kanade.presentation.theme.TachiyomiTheme
-import mihon.app.di.appGraph
+import moman.app.di.appGraph
 
 inline fun ComponentActivity.setComposeContent(
     parent: CompositionContext? = null,

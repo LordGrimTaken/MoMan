@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
-import mihon.app.di.appGraph
+import moman.app.di.appGraph
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.metadata.comicinfo.ComicInfo
 import tachiyomi.core.metadata.comicinfo.ComicInfoPublishingStatus

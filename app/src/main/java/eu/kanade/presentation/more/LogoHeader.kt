@@ -27,7 +27,7 @@ fun LogoHeader(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
-            painter = painterResource(R.drawable.ic_mihon),
+            painter = painterResource(R.drawable.ic_moman),
             contentDescription = null,
             // The glyph is drawn in white strokes; tint it so it stays visible on light surfaces.
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),

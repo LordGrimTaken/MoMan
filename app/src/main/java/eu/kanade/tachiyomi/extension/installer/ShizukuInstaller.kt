@@ -21,8 +21,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import logcat.LogPriority
-import mihon.app.shizuku.IShellInterface
-import mihon.app.shizuku.ShellInterface
+import moman.app.shizuku.IShellInterface
+import moman.app.shizuku.ShellInterface
 import rikka.shizuku.Shizuku
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR

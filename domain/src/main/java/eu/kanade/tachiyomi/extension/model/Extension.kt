@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.extension.model
 
 import eu.kanade.tachiyomi.source.Source
-import mihon.domain.extension.model.ContentWarning
-import mihon.domain.extension.model.ExtensionStore
+import moman.domain.extension.model.ContentWarning
+import moman.domain.extension.model.ExtensionStore
 import tachiyomi.domain.source.model.StubSource
 
 sealed interface Extension {

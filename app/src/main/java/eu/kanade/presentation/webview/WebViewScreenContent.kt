@@ -51,11 +51,11 @@ import eu.kanade.tachiyomi.util.system.setUserAgent
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.launch
 import logcat.LogPriority
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.automirroredrounded.ArrowBack
-import mihon.icons.materialsymbols.automirroredrounded.ArrowForward
-import mihon.icons.materialsymbols.rounded.Close
-import mihon.icons.materialsymbols.rounded.TabClose
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.automirroredrounded.ArrowBack
+import moman.icons.materialsymbols.automirroredrounded.ArrowForward
+import moman.icons.materialsymbols.rounded.Close
+import moman.icons.materialsymbols.rounded.TabClose
 import tachiyomi.core.common.util.system.logcat
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.material.Scaffold

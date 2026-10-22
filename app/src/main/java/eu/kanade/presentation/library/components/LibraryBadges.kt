@@ -5,8 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Folder
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.rounded.Folder
 import tachiyomi.presentation.core.components.Badge
 import tachiyomi.presentation.core.components.SealBadge
 

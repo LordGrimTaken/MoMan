@@ -23,11 +23,11 @@ import eu.kanade.presentation.browse.components.BaseSourceItem
 import eu.kanade.presentation.browse.components.SourceIcon
 import eu.kanade.tachiyomi.ui.browse.migration.sources.MigrateSourceViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.ArrowDownward
-import mihon.icons.materialsymbols.rounded.ArrowUpward
-import mihon.icons.materialsymbols.rounded.Numbers
-import mihon.icons.materialsymbols.rounded.SortByAlpha
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.rounded.ArrowDownward
+import moman.icons.materialsymbols.rounded.ArrowUpward
+import moman.icons.materialsymbols.rounded.Numbers
+import moman.icons.materialsymbols.rounded.SortByAlpha
 import tachiyomi.domain.source.model.Source
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.components.Badge

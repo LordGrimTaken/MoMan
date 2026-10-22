@@ -20,7 +20,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.delegate.ThemingDelegate
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import logcat.LogPriority
-import mihon.app.di.appGraph
+import moman.app.di.appGraph
 import rikka.shizuku.ShizukuProvider
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.util.system.logcat

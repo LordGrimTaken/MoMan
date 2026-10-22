@@ -1,8 +1,8 @@
 package eu.kanade.domain.chapter.model
 
 import eu.kanade.tachiyomi.source.model.SChapter
-import mihon.core.common.extensions.toEpochMillisOrZero
-import mihon.core.common.extensions.toInstantOrNull
+import moman.core.common.extensions.toEpochMillisOrZero
+import moman.core.common.extensions.toInstantOrNull
 import tachiyomi.domain.chapter.model.Chapter
 
 fun Chapter.toSChapter(): SChapter {

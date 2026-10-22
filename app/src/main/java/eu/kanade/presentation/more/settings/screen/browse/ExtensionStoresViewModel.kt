@@ -21,11 +21,11 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import mihon.domain.extension.interactor.AddExtensionStore
-import mihon.domain.extension.interactor.GetExtensionStores
-import mihon.domain.extension.interactor.RemoveExtensionStore
-import mihon.domain.extension.interactor.UpdateExtensionStores
-import mihon.domain.extension.model.ExtensionStore
+import moman.domain.extension.interactor.AddExtensionStore
+import moman.domain.extension.interactor.GetExtensionStores
+import moman.domain.extension.interactor.RemoveExtensionStore
+import moman.domain.extension.interactor.UpdateExtensionStores
+import moman.domain.extension.model.ExtensionStore
 import kotlin.time.Duration.Companion.seconds
 
 @Inject

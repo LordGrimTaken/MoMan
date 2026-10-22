@@ -10,11 +10,11 @@ import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.source.sourcePreferences
 import kotlinx.coroutines.Dispatchers
-import mihon.graphql.suwayomi.SuwayomiGetMangaQuery
-import mihon.graphql.suwayomi.SuwayomiGetMangaUnreadChaptersQuery
-import mihon.graphql.suwayomi.SuwayomiMarkAndDeleteChaptersMutation
-import mihon.graphql.suwayomi.SuwayomiMarkChaptersReadMutation
-import mihon.graphql.suwayomi.SuwayomiUpdateMangaProgressMutation
+import moman.graphql.suwayomi.SuwayomiGetMangaQuery
+import moman.graphql.suwayomi.SuwayomiGetMangaUnreadChaptersQuery
+import moman.graphql.suwayomi.SuwayomiMarkAndDeleteChaptersMutation
+import moman.graphql.suwayomi.SuwayomiMarkChaptersReadMutation
+import moman.graphql.suwayomi.SuwayomiUpdateMangaProgressMutation
 import tachiyomi.domain.source.service.SourceManager
 import java.security.MessageDigest
 

@@ -1,19 +1,19 @@
 import com.android.build.api.variant.ApplicationVariant
 import com.android.build.api.variant.BuildConfigField
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
-import mihon.gradle.Config
-import mihon.gradle.getCurrentTime
-import mihon.gradle.getLatestCommitCount
-import mihon.gradle.getLatestCommitSha
-import mihon.gradle.getLatestCommitTime
-import mihon.gradle.tasks.ReplaceShortcutsPlaceholderTask
+import moman.gradle.Config
+import moman.gradle.getCurrentTime
+import moman.gradle.getLatestCommitCount
+import moman.gradle.getLatestCommitSha
+import moman.gradle.getLatestCommitTime
+import moman.gradle.tasks.ReplaceShortcutsPlaceholderTask
 import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
-    alias(mihonx.plugins.android.application)
-    alias(mihonx.plugins.compose)
-    alias(mihonx.plugins.spotless)
+    alias(momanx.plugins.android.application)
+    alias(momanx.plugins.compose)
+    alias(momanx.plugins.spotless)
 
     alias(libs.plugins.metro)
     alias(libs.plugins.aboutLibraries)
@@ -37,8 +37,8 @@ android {
     defaultConfig {
         applicationId = "com.moman.reader"
 
-        versionCode = 8
-        versionName = "1.0.7"
+        versionCode = 9
+        versionName = "1.0.8"
 
         buildConfigField("boolean", "TELEMETRY_INCLUDED", "${Config.includeTelemetry}")
         buildConfigField("boolean", "UPDATER_ENABLED", "${Config.enableUpdater}")
@@ -46,7 +46,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    if (System.getenv("MIHON_GITHUB_RELEASE").toBoolean()) {
+    if (System.getenv("MOMAN_GITHUB_RELEASE").toBoolean()) {
         signingConfigs {
             named("debug") {
                 storeFile = file(System.getenv("storeFile"))
@@ -336,9 +336,9 @@ dependencies {
 }
 
 apollo {
-    val schemaBasePath = "src/main/graphql/mihon/graphql"
+    val schemaBasePath = "src/main/graphql/moman/graphql"
     service("anilist") {
-        packageName.set("mihon.graphql.anilist")
+        packageName.set("moman.graphql.anilist")
         val srcDir = "$schemaBasePath/anilist"
         srcDir(file(srcDir))
 
@@ -352,7 +352,7 @@ apollo {
     }
 
     service("kitsu") {
-        packageName.set("mihon.graphql.kitsu")
+        packageName.set("moman.graphql.kitsu")
         val srcDir = "$schemaBasePath/kitsu"
         srcDir(file(srcDir))
         android.defaultConfig.versionCode
@@ -375,12 +375,12 @@ apollo {
         mapScalar(
             "Map",
             "kotlin.collections.Map<String, Any?>",
-            "mihon.graphql.kitsu.adapter.KitsuMapAdapter",
+            "moman.graphql.kitsu.adapter.KitsuMapAdapter",
         )
     }
 
     service("shikimori") {
-        packageName.set("mihon.graphql.shikimori")
+        packageName.set("moman.graphql.shikimori")
         val srcDir = "$schemaBasePath/shikimori"
         srcDir(file(srcDir))
 
@@ -394,7 +394,7 @@ apollo {
     }
 
     service("suwayomi") {
-        packageName.set("mihon.graphql.suwayomi")
+        packageName.set("moman.graphql.suwayomi")
         val srcDir = "$schemaBasePath/suwayomi"
         srcDir(file(srcDir))
 

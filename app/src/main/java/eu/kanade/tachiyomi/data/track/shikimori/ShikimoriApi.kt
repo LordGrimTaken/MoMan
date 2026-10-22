@@ -22,10 +22,10 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
-import mihon.graphql.shikimori.ShikimoriGetCurrentUserQuery
-import mihon.graphql.shikimori.ShikimoriGetLibMangaQuery
-import mihon.graphql.shikimori.ShikimoriGetMangaDetailsQuery
-import mihon.graphql.shikimori.ShikimoriSearchMangaQuery
+import moman.graphql.shikimori.ShikimoriGetCurrentUserQuery
+import moman.graphql.shikimori.ShikimoriGetLibMangaQuery
+import moman.graphql.shikimori.ShikimoriGetMangaDetailsQuery
+import moman.graphql.shikimori.ShikimoriSearchMangaQuery
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody

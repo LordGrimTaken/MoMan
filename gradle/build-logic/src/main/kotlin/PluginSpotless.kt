@@ -1,7 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
-import mihon.gradle.extensions.alias
-import mihon.gradle.extensions.libs
-import mihon.gradle.extensions.plugins
+import moman.gradle.extensions.alias
+import moman.gradle.extensions.libs
+import moman.gradle.extensions.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -23,22 +23,22 @@ class PluginSpotless : Plugin<Project> {
                 endWithNewline()
                 forbidRegex(
                     "materialSymbolsRImport",
-                    "(?m)^import mihon\\.icons\\.materialsymbols\\.R(?! as MaterialSymbolsR$)\\b.*$",
-                    "Import mihon.icons.materialsymbols.R as MaterialSymbolsR",
+                    "(?m)^import moman\\.icons\\.materialsymbols\\.R(?! as MaterialSymbolsR$)\\b.*$",
+                    "Import moman.icons.materialsymbols.R as MaterialSymbolsR",
                 )
                 forbidRegex(
                     "materialSymbolsRQualified",
-                    "(?m)^(?!import ).*\\bmihon\\.icons\\.materialsymbols\\.R\\.",
+                    "(?m)^(?!import ).*\\bmoman\\.icons\\.materialsymbols\\.R\\.",
                     "Use the MaterialSymbolsR import alias instead of the qualified name",
                 )
                 forbidRegex(
                     "customMaterialSymbolsRImport",
-                    "(?m)^import mihon\\.icons\\.custommaterialsymbols\\.R(?! as CustomMaterialSymbolsR$)\\b.*$",
-                    "Import mihon.icons.custommaterialsymbols.R as CustomMaterialSymbolsR",
+                    "(?m)^import moman\\.icons\\.custommaterialsymbols\\.R(?! as CustomMaterialSymbolsR$)\\b.*$",
+                    "Import moman.icons.custommaterialsymbols.R as CustomMaterialSymbolsR",
                 )
                 forbidRegex(
                     "customMaterialSymbolsRQualified",
-                    "(?m)^(?!import ).*\\bmihon\\.icons\\.custommaterialsymbols\\.R\\.",
+                    "(?m)^(?!import ).*\\bmoman\\.icons\\.custommaterialsymbols\\.R\\.",
                     "Use the CustomMaterialSymbolsR import alias instead of the qualified name",
                 )
             }

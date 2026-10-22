@@ -21,13 +21,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
-import mihon.icons.custommaterialsymbols.CustomMaterialSymbols
-import mihon.icons.custommaterialsymbols.rounded.CropOff
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Crop
-import mihon.icons.materialsymbols.rounded.Settings
-import mihon.icons.materialsymbols.roundedfilled.Pause
-import mihon.icons.materialsymbols.roundedfilled.PlayArrow
+import moman.icons.custommaterialsymbols.CustomMaterialSymbols
+import moman.icons.custommaterialsymbols.rounded.CropOff
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.rounded.Crop
+import moman.icons.materialsymbols.rounded.Settings
+import moman.icons.materialsymbols.roundedfilled.Pause
+import moman.icons.materialsymbols.roundedfilled.PlayArrow
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

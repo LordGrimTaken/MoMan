@@ -20,10 +20,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.StringResource
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Download
-import mihon.icons.materialsymbols.rounded.Folder
-import mihon.icons.materialsymbols.rounded.Public
+import moman.icons.materialsymbols.MaterialSymbols
+import moman.icons.materialsymbols.rounded.Download
+import moman.icons.materialsymbols.rounded.Folder
+import moman.icons.materialsymbols.rounded.Public
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

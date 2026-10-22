@@ -1,22 +1,17 @@
 # 墨漫 MoMan
 
-**墨 (mò) = ink, 漫 (màn) = manga / manhua.** MoMan is an Android manhua, manga and webtoon reader.
+**墨 (mò) = ink, 漫 (màn) = manga / manhua.** MoMan is an Android reader for manhua, manga and webtoons.
+Gapless long-strip reading, a library you own, no ads and no tracking. Bring your own sources.
 
-MoMan is a fork of [Mihon](https://github.com/mihonapp/mihon), licensed under the
-[Apache License 2.0](LICENSE). Huge thanks to the Mihon and Tachiyomi contributors.
-
-## Status
-- Rebranded app name, package ID (`com.moman.reader`) and launcher icon
-- Debug APK builds with Gradle (`./gradlew assembleDebug`)
+Website and downloads: https://momanreader.com
 
 ## Building
-Requires JDK 21 and the Android SDK (compile SDK 37.2, NDK 29.0.14206865).
+Requires JDK 21 and the Android SDK.
 
 ```
-./gradlew assembleDebug
+./gradlew assembleDebug     # debug build
+./gradlew assembleRelease   # optimized release build (needs keystore.properties)
 ```
 
-The APK is written to `app/build/outputs/apk/debug/`.
-
-## Disclaimer
-MoMan does not host or provide any content. Sources/extensions are provided by third parties.
+## License
+Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

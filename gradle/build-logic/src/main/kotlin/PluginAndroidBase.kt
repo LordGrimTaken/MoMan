@@ -2,13 +2,13 @@ import com.android.build.api.dsl.ApplicationDefaultConfig
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.CompileOptions
 import com.android.build.api.dsl.DefaultConfig
-import mihon.gradle.configurations.configureKotlin
-import mihon.gradle.extensions.android
-import mihon.gradle.extensions.configureTest
-import mihon.gradle.extensions.coreLibraryDesugaring
-import mihon.gradle.extensions.libs
-import mihon.gradle.extensions.mihonx
-import mihon.gradle.extensions.release
+import moman.gradle.configurations.configureKotlin
+import moman.gradle.extensions.android
+import moman.gradle.extensions.configureTest
+import moman.gradle.extensions.coreLibraryDesugaring
+import moman.gradle.extensions.libs
+import moman.gradle.extensions.momanx
+import moman.gradle.extensions.release
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -21,16 +21,16 @@ class PluginAndroidBase : Plugin<Project> {
 
         android {
             defaultConfig {
-                minSdk = mihonx.versions.android.sdk.min.get().toInt()
+                minSdk = momanx.versions.android.sdk.min.get().toInt()
                 if (this is ApplicationDefaultConfig) {
-                    targetSdk = mihonx.versions.android.sdk.target.get().toInt()
+                    targetSdk = momanx.versions.android.sdk.target.get().toInt()
                 }
 
-                ndkVersion = mihonx.versions.android.ndk.get()
+                ndkVersion = momanx.versions.android.ndk.get()
             }
 
             compileSdk {
-                version = release(mihonx.versions.android.sdk.compile)
+                version = release(momanx.versions.android.sdk.compile)
             }
 
             compileOptions {

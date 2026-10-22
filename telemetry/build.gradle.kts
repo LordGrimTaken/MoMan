@@ -1,12 +1,12 @@
-import mihon.gradle.Config
+import moman.gradle.Config
 
 plugins {
-    alias(mihonx.plugins.android.library)
-    alias(mihonx.plugins.spotless)
+    alias(momanx.plugins.android.library)
+    alias(momanx.plugins.spotless)
 }
 
 android {
-    namespace = "mihon.telemetry"
+    namespace = "moman.telemetry"
 
     sourceSets {
         getByName("main") {

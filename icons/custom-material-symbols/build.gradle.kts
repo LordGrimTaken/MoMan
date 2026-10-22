@@ -1,14 +1,14 @@
 plugins {
-    alias(mihonx.plugins.android.library)
-    alias(mihonx.plugins.compose)
+    alias(momanx.plugins.android.library)
+    alias(momanx.plugins.compose)
 
-    alias(mihonx.plugins.spotless)
+    alias(momanx.plugins.spotless)
 
     alias(libs.plugins.valkyrie)
 }
 
 android {
-    namespace = "mihon.icons.custommaterialsymbols"
+    namespace = "moman.icons.custommaterialsymbols"
 }
 
 spotless {
@@ -20,7 +20,7 @@ spotless {
 }
 
 valkyrie {
-    packageName = "mihon.icons.custommaterialsymbols"
+    packageName = "moman.icons.custommaterialsymbols"
     generateAtSync = true
 
     imageVector {

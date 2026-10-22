@@ -35,7 +35,7 @@ dependencies {
 
     // These allow us to reference the dependency catalog inside our compiled plugins
     compileOnly(files(libs::class.java.superclass.protectionDomain.codeSource.location))
-    compileOnly(files(mihonx::class.java.superclass.protectionDomain.codeSource.location))
+    compileOnly(files(momanx::class.java.superclass.protectionDomain.codeSource.location))
 }
 
 samWithReceiver {
@@ -45,31 +45,31 @@ samWithReceiver {
 gradlePlugin {
     plugins {
         register("android-application") {
-            id = mihonx.plugins.android.application.get().pluginId
+            id = momanx.plugins.android.application.get().pluginId
             implementationClass = "PluginAndroidApplication"
         }
         register("android-base") {
-            id = mihonx.plugins.android.base.get().pluginId
+            id = momanx.plugins.android.base.get().pluginId
             implementationClass = "PluginAndroidBase"
         }
         register("android-library") {
-            id = mihonx.plugins.android.library.get().pluginId
+            id = momanx.plugins.android.library.get().pluginId
             implementationClass = "PluginAndroidLibrary"
         }
         register("android-test") {
-            id = mihonx.plugins.android.test.get().pluginId
+            id = momanx.plugins.android.test.get().pluginId
             implementationClass = "PluginAndroidTest"
         }
         register("compose-android") {
-            id = mihonx.plugins.compose.get().pluginId
+            id = momanx.plugins.compose.get().pluginId
             implementationClass = "PluginComposeAndroid"
         }
         register("kotlin-multiplatform") {
-            id = mihonx.plugins.kotlin.multiplatform.get().pluginId
+            id = momanx.plugins.kotlin.multiplatform.get().pluginId
             implementationClass = "PluginKotlinMultiplatform"
         }
         register("spotless") {
-            id = mihonx.plugins.spotless.get().pluginId
+            id = momanx.plugins.spotless.get().pluginId
             implementationClass = "PluginSpotless"
         }
     }

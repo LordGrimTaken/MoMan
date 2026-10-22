@@ -21,7 +21,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.Viewer
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation.NavigationRegion
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
-import mihon.app.di.appGraph
+import moman.app.di.appGraph
 import tachiyomi.core.common.util.system.logcat
 import kotlin.math.max
 import kotlin.math.min

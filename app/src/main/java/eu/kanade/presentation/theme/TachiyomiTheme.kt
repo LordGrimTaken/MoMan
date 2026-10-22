@@ -24,7 +24,7 @@ import eu.kanade.presentation.theme.colorscheme.TidalWaveColorScheme
 import eu.kanade.presentation.theme.colorscheme.TokyoNightColorScheme
 import eu.kanade.presentation.theme.colorscheme.YinYangColorScheme
 import eu.kanade.presentation.theme.colorscheme.YotsubaColorScheme
-import mihon.app.di.appGraph
+import moman.app.di.appGraph
 
 @Composable
 fun TachiyomiTheme(

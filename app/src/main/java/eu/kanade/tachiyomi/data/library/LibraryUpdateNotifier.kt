@@ -40,7 +40,7 @@ import tachiyomi.domain.source.service.SourceManager
 import tachiyomi.i18n.MR
 import java.math.RoundingMode
 import java.text.NumberFormat
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import moman.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject
 class LibraryUpdateNotifier(
@@ -169,7 +169,7 @@ class LibraryUpdateNotifier(
         ) {
             setContentTitle(context.pluralStringResource(MR.plurals.notification_update_error, failed, failed))
             setContentText(context.stringResource(MR.strings.action_show_errors))
-            setSmallIcon(R.drawable.ic_mihon)
+            setSmallIcon(R.drawable.ic_moman)
 
             setContentIntent(NotificationReceiver.openErrorLogPendingActivity(context, uri))
         }
@@ -211,7 +211,7 @@ class LibraryUpdateNotifier(
             setContentTitle(context.stringResource(MR.strings.update_summary_title))
             setContentText(counts)
             setStyle(NotificationCompat.BigTextStyle().bigText(details))
-            setSmallIcon(R.drawable.ic_mihon)
+            setSmallIcon(R.drawable.ic_moman)
             setAutoCancel(true)
             setTimeoutAfter(SUMMARY_TIMEOUT_MS)
         }
@@ -251,7 +251,7 @@ class LibraryUpdateNotifier(
                 }
             }
 
-            setSmallIcon(R.drawable.ic_mihon)
+            setSmallIcon(R.drawable.ic_moman)
             setLargeIcon(notificationBitmap)
 
             setGroup(Notifications.GROUP_NEW_CHAPTERS)
@@ -285,7 +285,7 @@ class LibraryUpdateNotifier(
             setContentText(description)
             setStyle(NotificationCompat.BigTextStyle().bigText(description))
 
-            setSmallIcon(R.drawable.ic_mihon)
+            setSmallIcon(R.drawable.ic_moman)
 
             if (icon != null) {
                 setLargeIcon(icon)

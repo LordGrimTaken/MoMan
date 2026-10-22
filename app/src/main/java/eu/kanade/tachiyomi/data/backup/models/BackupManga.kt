@@ -3,9 +3,9 @@ package eu.kanade.tachiyomi.data.backup.models
 import eu.kanade.tachiyomi.source.model.UpdateStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
-import mihon.core.common.extensions.JsonObjectEmptyBytes
-import mihon.core.common.extensions.toInstantOrNull
-import mihon.core.common.extensions.toJsonObject
+import moman.core.common.extensions.JsonObjectEmptyBytes
+import moman.core.common.extensions.toInstantOrNull
+import moman.core.common.extensions.toJsonObject
 import tachiyomi.domain.manga.model.Manga
 import kotlin.time.Instant
 
