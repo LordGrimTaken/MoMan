@@ -1168,4 +1168,6 @@
     <string name="today_unread_count">%1$d unread</string>
     <string name="today_recently_read">Recently read</string>
     <string name="today_loading">Preparing your day</string>
+    <string name="reader_prev">Prev</string>
+    <string name="reader_next">Next</string>
 </resources>

@@ -659,7 +659,8 @@ class ReaderViewModel(
 
         if (incognitoMode || page.status is Page.State.Error) return
 
-        val read = readerChapter.chapter.read || readerChapter.pages?.lastIndex == pageIndex
+        val wasRead = readerChapter.chapter.read
+        val read = wasRead || readerChapter.pages?.lastIndex == pageIndex
         // A page change in another chapter would replace that chapter's pending save
         if (pendingProgressChapter != readerChapter) saveChapterProgress()
         readerChapter.update { it.copy(lastPageRead = pageIndex, read = read) }
@@ -667,6 +668,7 @@ class ReaderViewModel(
 
         if (readerChapter.pages?.lastIndex == pageIndex) {
             pendingProgressChapter = null
+            if (!wasRead) eventChannel.trySend(Event.ChapterCompleted)
             writeChapterProgress(readerChapter, onComplete = true)
         } else {
             pendingProgressChapter = readerChapter
@@ -1137,6 +1139,7 @@ class ReaderViewModel(
     sealed interface Event {
         data object ReloadViewerChapters : Event
         data object PageChanged : Event
+        data object ChapterCompleted : Event
         data class SetOrientation(val orientation: Int) : Event
         data class SetCoverResult(val result: SetAsCoverResult) : Event
 
