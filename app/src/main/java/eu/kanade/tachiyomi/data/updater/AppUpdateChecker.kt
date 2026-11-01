@@ -36,7 +36,13 @@ class AppUpdateChecker(
     }
 }
 
-/** Base URL of the MoMan update server (see /server in this repo). */
-const val UPDATE_BASE_URL = "https://moman-updates.onrender.com"
+/**
+ * Base URL of the MoMan update server.
+ *
+ * Served by the Cloudflare Worker in `cloudflare/worker.js` from the `moman-site` R2 bucket, which answers
+ * `/latest.json` (see `server/releases.json`) and `/apk/<file>`. The legacy Render host
+ * (`moman-updates.onrender.com`) is decommissioned and returns 503 — do not point this back at it.
+ */
+const val UPDATE_BASE_URL = "https://momanreader.com"
 
 val RELEASE_URL = UPDATE_BASE_URL
