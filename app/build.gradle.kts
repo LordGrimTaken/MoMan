@@ -123,9 +123,13 @@ android {
         getByName("benchmark").res.directories.add("src/debug/res")
     }
 
+    // ABI splits are for sideloaded APKs. An Android App Bundle must NOT have them: AGP fails
+    // :app:buildReleasePreBundle with "Multiple shrunk-resources files found" when splits are on.
+    // Build a Play bundle with:  ./gradlew :app:bundleRelease -PabiSplits=false
+    val abiSplits = providers.gradleProperty("abiSplits").orNull?.toBoolean() ?: true
     splits {
         abi {
-            isEnable = true
+            isEnable = abiSplits
             isUniversalApk = true
             reset()
             include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
