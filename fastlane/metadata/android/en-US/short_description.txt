@@ -1,1 +1,1 @@
-Discover and read manga, webtoons, comics, and more on your device
+An open-source reader for manhua, manga and webtoons

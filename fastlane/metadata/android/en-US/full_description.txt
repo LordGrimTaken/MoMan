@@ -1,9 +1,15 @@
-Features:
-* Read your way with customizable viewing modes, including traditional right-to-left, left-to-right, and long strip for webtoons.
-* Organize your collection into custom categories, see unread badges, and get automatic updates when new chapters drop.
-* Sync your reading progress automatically with popular services like MangaBaka, MyAnimeList, AniList, Kitsu, and more.
-* Download chapters for offline reading and easily back up your entire library and settings for safe keeping or device migration.
-* Enjoy a beautiful Material You interface with full theme customization, including a strict True Dark mode.
-* And much more...
+MoMan is a calm, fast reader for manhua, manga and webtoons, built for long-strip reading.
 
-The developer of this application does not have any affiliation with the content providers available, and this application hosts zero content.
+It ships with no content of its own: you add third-party extensions for the sources you use, and everything you read, download and track stays on your device.
+
+Highlights
+• Gapless long-strip reader — vertical continuous scrolling by default
+• A library you own: categories, read state, downloads and backups, all local
+• Extension sources, installed by you — the app itself ships with none
+• Tracking with AniList, MyAnimeList, Kitsu, Shikimori, Bangumi, MangaBaka, MangaUpdates, Hikka, Comick, Kavita, Komga and Suwayomi
+• Per-chapter downloads with a queue and automatic cleanup
+• Paged and long-strip modes, dual-page spreads, colour filters, brightness and orientation controls
+• Ink & Seal theme, Material You, and a dozen palettes
+• No ads, no analytics, no telemetry and no account
+
+MoMan is free and open source (MIT for its own work, Apache-2.0 for the code inherited from Mihon). It is not affiliated with any content provider and does not host or distribute content.

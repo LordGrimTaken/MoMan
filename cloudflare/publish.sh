@@ -2,10 +2,10 @@
 # Publish to the live MoMan site on Cloudflare (R2 via the Worker's authenticated upload route).
 #   publish.sh site                      upload every file in server/public
 #   publish.sh release <apk> <json>      upload an APK, then releases.json (switches /latest.json to it)
-# The admin token lives in /root/moman-keys/cf-admin-token (never commit it).
+# The admin token lives in ${MOMAN_KEYS:-$HOME/moman-keys}/cf-admin-token (never commit it).
 set -euo pipefail
 HOST=${MOMAN_HOST:-momanreader.com}
-TOKEN=$(cat /root/moman-keys/cf-admin-token)
+TOKEN=$(cat "${MOMAN_KEYS:-$HOME/moman-keys}/cf-admin-token")
 put() { # key file
   code=$(curl -s -m 600 -o /dev/null -w '%{http_code}' -X PUT -H "Authorization: Bearer $TOKEN" --data-binary @"$2" "https://$HOST/_admin/put/$1")
   echo "$code $1"; [ "$code" = 200 ] || exit 1

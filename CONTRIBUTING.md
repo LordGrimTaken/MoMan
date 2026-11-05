@@ -1,49 +1,42 @@
-Looking to report an issue/bug or make a feature request? Please refer to the [README file](https://github.com/mihonapp/mihon#issues-feature-requests-and-contributing).
+# Contributing to MoMan
 
----
+Thanks for wanting to help. This is a small fork; the rules are short.
 
-Thanks for your interest in contributing to Mihon!
+## Reporting a problem
 
+Open an [issue](https://github.com/LordGrimTaken/MoMan/issues) and include:
 
-# Code contributions
+- what you did, what you expected, what happened;
+- the app version (**You → About**) and your Android version and device;
+- a log if you can get one (`adb logcat`), trimmed to the failure.
 
-Pull requests are welcome!
+Please **do not** open issues asking for content, sources, or extensions. MoMan ships with none and does not
+distribute them.
 
-If you're interested in taking on [an open issue](https://github.com/mihonapp/mihon/issues), please comment on it so others are aware.
-You do not need to ask for permission nor an assignment.
+## Pull requests
 
-## Prerequisites
+1. Fork, branch from `main`, keep the change focused.
+2. Build it: `./gradlew :app:assembleDebug` — see [docs/BUILDING.md](docs/BUILDING.md) for the toolchain.
+3. Run the checks: `./gradlew :app:testDebugUnitTest` and, if you touched UI or platform code,
+   `./gradlew :app:lintDebug`.
+4. Formatting is enforced with Spotless: `./gradlew spotlessApply` before committing.
+5. Describe the change and how you verified it. A screenshot or a test result beats a promise.
 
-Before you start, please note that the ability to use following technologies is **required** and that existing contributors will not actively teach them to you.
+Do not rename the `eu.kanade.tachiyomi.*` or `tachiyomi.*` packages — they are the extension ABI, and renaming them
+breaks every installed extension.
 
-- Basic [Android development](https://developer.android.com/)
-- [Kotlin](https://kotlinlang.org/)
+## Translations
 
-### Tools
+Strings live in `i18n/src/commonMain/moko-resources/`. Add or fix a locale there and open a PR; `base/strings.xml`
+is the English source of truth.
 
-- [Android Studio](https://developer.android.com/studio)
-- Emulator or phone with developer options enabled to test changes.
+## Forks
 
-## Getting help
+Forks are welcome under the terms in [LICENSE](LICENSE) and [NOTICE](NOTICE). If you publish one, change the app
+name, the icon, the `applicationId` and — importantly — the update URL in
+`app/src/main/java/eu/kanade/tachiyomi/data/updater/AppUpdateChecker.kt`, so your builds do not try to update over
+someone else's.
 
-- Join [the Discord server](https://discord.gg/mihon) for online help and to ask questions while developing.
+## Conduct
 
-# Translations
-
-Translations are done externally via Weblate. See [our website](https://mihon.app/docs/contribute#translation) for more details.
-
-
-# Forks
-
-Forks are allowed so long as they abide by [the project's LICENSE](https://github.com/mihonapp/mihon/blob/main/LICENSE).
-
-When creating a fork, remember to:
-
-- To avoid confusion with the main app:
-    - Change the app name
-    - Change the app icon
-    - Change or disable the [app update checker](https://github.com/mihonapp/mihon/blob/main/app/src/main/java/eu/kanade/tachiyomi/data/updater/AppUpdateChecker.kt)
-- To avoid installation conflicts:
-    - Change the `applicationId` in [`build.gradle.kts`](https://github.com/mihonapp/mihon/blob/main/app/build.gradle.kts)
-- To avoid having your data polluting the main app's analytics and crash report services:
-    - If you want to use Firebase analytics, replace [`google-services.json`](https://github.com/mihonapp/mihon/blob/main/app/src/standard/google-services.json) with your own
+By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
