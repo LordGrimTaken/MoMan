@@ -16,8 +16,8 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
-import eu.kanade.presentation.manga.MangaNotesScreen
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.manga.MangaNotesScreen
+import com.moman.presentation.util.Screen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

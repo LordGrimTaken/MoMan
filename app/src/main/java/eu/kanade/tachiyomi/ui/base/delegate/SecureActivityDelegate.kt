@@ -9,7 +9,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import dev.zacsweers.metro.Inject
-import eu.kanade.domain.base.BasePreferences
+import com.moman.domain.base.BasePreferences
 import eu.kanade.tachiyomi.core.security.SecurityPreferences
 import eu.kanade.tachiyomi.ui.security.UnlockActivity
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil

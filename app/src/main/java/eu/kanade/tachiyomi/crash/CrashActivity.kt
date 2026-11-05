@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.crash
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.WindowCompat
-import eu.kanade.presentation.crash.CrashScreen
+import com.moman.presentation.crash.CrashScreen
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.view.setComposeContent

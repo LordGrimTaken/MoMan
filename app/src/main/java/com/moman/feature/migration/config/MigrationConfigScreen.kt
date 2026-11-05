@@ -41,11 +41,11 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.domain.source.service.SourcePreferences
-import eu.kanade.presentation.browse.components.SourceIcon
-import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.components.AppBarActions
-import eu.kanade.presentation.util.Screen
+import com.moman.domain.source.service.SourcePreferences
+import com.moman.presentation.browse.components.SourceIcon
+import com.moman.presentation.components.AppBar
+import com.moman.presentation.components.AppBarActions
+import com.moman.presentation.util.Screen
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.browse.migration.search.MigrateSearchScreen
 import eu.kanade.tachiyomi.util.system.LocaleHelper

@@ -12,9 +12,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.presentation.components.TabbedScreen
-import eu.kanade.presentation.util.Tab
-import eu.kanade.presentation.util.rememberAnimatedVectorPainter
+import com.moman.presentation.components.TabbedScreen
+import com.moman.presentation.util.Tab
+import com.moman.presentation.util.rememberAnimatedVectorPainter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.browse.extension.ExtensionsViewModel
 import eu.kanade.tachiyomi.ui.browse.extension.extensionsTab

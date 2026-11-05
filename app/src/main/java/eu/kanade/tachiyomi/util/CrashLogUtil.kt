@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.util
 import android.content.Context
 import android.os.Build
 import dev.zacsweers.metro.Inject
-import eu.kanade.domain.base.BasePreferences
+import com.moman.domain.base.BasePreferences
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.Extension

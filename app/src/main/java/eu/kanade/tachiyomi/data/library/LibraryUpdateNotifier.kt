@@ -16,7 +16,7 @@ import coil3.request.ImageRequest
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
 import dev.zacsweers.metro.Inject
-import eu.kanade.presentation.util.formatChapterNumber
+import com.moman.presentation.util.formatChapterNumber
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.core.security.SecurityPreferences
 import eu.kanade.tachiyomi.data.download.Downloader

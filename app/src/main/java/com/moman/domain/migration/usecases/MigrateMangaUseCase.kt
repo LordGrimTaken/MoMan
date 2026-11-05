@@ -1,9 +1,9 @@
 package com.moman.domain.migration.usecases
 
 import dev.zacsweers.metro.Inject
-import eu.kanade.domain.manga.interactor.UpdateManga
-import eu.kanade.domain.manga.model.hasCustomCover
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.manga.interactor.UpdateManga
+import com.moman.domain.manga.model.hasCustomCover
+import com.moman.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.track.EnhancedTracker

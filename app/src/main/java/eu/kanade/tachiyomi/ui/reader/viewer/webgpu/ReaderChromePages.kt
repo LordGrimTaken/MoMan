@@ -29,9 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastCoerceIn
 import ca.mpreg.webgpuviewer.viewer.ComposePageSize
 import ca.mpreg.webgpuviewer.viewer.ImagePage
-import eu.kanade.presentation.reader.ChapterTransition
-import eu.kanade.presentation.theme.TachiyomiTheme
-import eu.kanade.presentation.util.formattedMessage
+import com.moman.presentation.reader.ChapterTransition
+import com.moman.presentation.theme.TachiyomiTheme
+import com.moman.presentation.util.formattedMessage
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity

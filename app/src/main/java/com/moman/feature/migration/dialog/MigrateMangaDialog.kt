@@ -26,8 +26,8 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.domain.manga.model.hasCustomCover
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.manga.model.hasCustomCover
+import com.moman.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import kotlinx.coroutines.Dispatchers

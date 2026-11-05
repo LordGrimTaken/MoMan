@@ -3,7 +3,7 @@ package com.moman.core.migration.migrations
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoSet
 import dev.zacsweers.metro.Inject
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.source.service.SourcePreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import logcat.LogPriority

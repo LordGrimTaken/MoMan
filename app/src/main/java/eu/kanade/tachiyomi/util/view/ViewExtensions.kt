@@ -16,7 +16,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import dev.zacsweers.metrox.viewmodel.LocalMetroViewModelFactory
-import eu.kanade.presentation.theme.TachiyomiTheme
+import com.moman.presentation.theme.TachiyomiTheme
 import com.moman.app.di.appGraph
 
 inline fun ComponentActivity.setComposeContent(

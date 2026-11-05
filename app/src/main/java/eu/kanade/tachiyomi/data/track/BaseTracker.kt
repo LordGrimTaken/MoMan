@@ -2,9 +2,9 @@ package eu.kanade.tachiyomi.data.track
 
 import android.content.Context
 import androidx.annotation.CallSuper
-import eu.kanade.domain.track.interactor.AddTracks
-import eu.kanade.domain.track.model.toDomainTrack
-import eu.kanade.domain.track.service.TrackPreferences
+import com.moman.domain.track.interactor.AddTracks
+import com.moman.domain.track.model.toDomainTrack
+import com.moman.domain.track.service.TrackPreferences
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.util.system.toast

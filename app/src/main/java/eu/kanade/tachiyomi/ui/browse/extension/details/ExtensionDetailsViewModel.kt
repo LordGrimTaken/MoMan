@@ -11,11 +11,11 @@ import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
-import eu.kanade.domain.extension.interactor.ExtensionSourceItem
-import eu.kanade.domain.extension.interactor.GetExtensionSources
-import eu.kanade.domain.source.interactor.ToggleIncognito
-import eu.kanade.domain.source.interactor.ToggleSource
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.extension.interactor.ExtensionSourceItem
+import com.moman.domain.extension.interactor.GetExtensionSources
+import com.moman.domain.source.interactor.ToggleIncognito
+import com.moman.domain.source.interactor.ToggleSource
+import com.moman.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.network.NetworkHelper

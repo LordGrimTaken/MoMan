@@ -12,8 +12,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.AbstractComposeView
-import eu.kanade.presentation.reader.ChapterTransition
-import eu.kanade.presentation.theme.TachiyomiTheme
+import com.moman.presentation.reader.ChapterTransition
+import com.moman.presentation.theme.TachiyomiTheme
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition

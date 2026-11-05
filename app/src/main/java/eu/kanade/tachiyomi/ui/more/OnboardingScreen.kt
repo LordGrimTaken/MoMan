@@ -7,10 +7,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import eu.kanade.presentation.more.onboarding.OnboardingScreen
-import eu.kanade.presentation.more.settings.screen.SearchableSettings
-import eu.kanade.presentation.more.settings.screen.SettingsDataScreen
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.more.onboarding.OnboardingScreen
+import com.moman.presentation.more.settings.screen.SearchableSettings
+import com.moman.presentation.more.settings.screen.SettingsDataScreen
+import com.moman.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.setting.SettingsScreen
 import com.moman.app.di.appGraph
 import com.moman.presentation.core.i18n.stringResource

@@ -18,9 +18,9 @@ import androidx.compose.ui.platform.LocalUriHandler
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
-import eu.kanade.presentation.browse.BrowseSourceContent
-import eu.kanade.presentation.components.SearchToolbar
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.browse.BrowseSourceContent
+import com.moman.presentation.components.SearchToolbar
+import com.moman.presentation.util.Screen
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceViewModel
 import eu.kanade.tachiyomi.ui.browse.source.browse.SourceFilterDialog

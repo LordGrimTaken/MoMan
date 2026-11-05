@@ -4,8 +4,8 @@ import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
-import eu.kanade.domain.extension.interactor.TrustExtension
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.extension.interactor.TrustExtension
+import com.moman.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.extension.api.ExtensionUpdateNotifier
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep

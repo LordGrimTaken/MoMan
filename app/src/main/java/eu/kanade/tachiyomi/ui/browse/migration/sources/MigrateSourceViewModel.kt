@@ -8,9 +8,9 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import eu.kanade.domain.source.interactor.GetSourcesWithFavoriteCount
-import eu.kanade.domain.source.interactor.SetMigrateSorting
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.source.interactor.GetSourcesWithFavoriteCount
+import com.moman.domain.source.interactor.SetMigrateSorting
+import com.moman.domain.source.service.SourcePreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted

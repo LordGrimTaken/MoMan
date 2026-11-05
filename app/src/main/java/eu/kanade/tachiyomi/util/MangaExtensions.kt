@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.util
 
-import eu.kanade.domain.manga.interactor.UpdateManga
-import eu.kanade.domain.manga.model.toSManga
+import com.moman.domain.manga.interactor.UpdateManga
+import com.moman.domain.manga.model.toSManga
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import com.moman.domain.manga.model.Manga
 import com.moman.source.local.image.LocalCoverManager

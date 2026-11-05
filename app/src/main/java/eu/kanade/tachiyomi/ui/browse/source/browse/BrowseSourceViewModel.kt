@@ -20,11 +20,11 @@ import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
-import eu.kanade.core.preference.asState
-import eu.kanade.domain.manga.interactor.UpdateManga
-import eu.kanade.domain.source.interactor.GetIncognitoState
-import eu.kanade.domain.source.service.SourcePreferences
-import eu.kanade.domain.track.interactor.AddTracks
+import com.moman.core.preference.asState
+import com.moman.domain.manga.interactor.UpdateManga
+import com.moman.domain.source.interactor.GetIncognitoState
+import com.moman.domain.source.service.SourcePreferences
+import com.moman.domain.track.interactor.AddTracks
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.FilterList

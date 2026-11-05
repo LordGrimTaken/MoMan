@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
-import eu.kanade.domain.track.service.TrackPreferences
+import com.moman.domain.track.service.TrackPreferences
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.anilist.dto.ALUser
 import eu.kanade.tachiyomi.data.track.model.TrackSearch

@@ -15,7 +15,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import com.hippo.unifile.UniFile
-import eu.kanade.domain.ui.model.ThemeMode
+import com.moman.domain.ui.model.ThemeMode
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.delegate.ThemingDelegate
 import eu.kanade.tachiyomi.util.lang.truncateCenter

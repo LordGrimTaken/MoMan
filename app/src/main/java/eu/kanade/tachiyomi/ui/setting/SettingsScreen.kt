@@ -12,15 +12,15 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import eu.kanade.presentation.more.settings.screen.SettingsAppearanceScreen
-import eu.kanade.presentation.more.settings.screen.SettingsDataScreen
-import eu.kanade.presentation.more.settings.screen.SettingsMainScreen
-import eu.kanade.presentation.more.settings.screen.SettingsTrackingScreen
-import eu.kanade.presentation.more.settings.screen.about.AboutScreen
-import eu.kanade.presentation.util.DefaultNavigatorScreenTransition
-import eu.kanade.presentation.util.LocalBackPress
-import eu.kanade.presentation.util.Screen
-import eu.kanade.presentation.util.isTabletUi
+import com.moman.presentation.more.settings.screen.SettingsAppearanceScreen
+import com.moman.presentation.more.settings.screen.SettingsDataScreen
+import com.moman.presentation.more.settings.screen.SettingsMainScreen
+import com.moman.presentation.more.settings.screen.SettingsTrackingScreen
+import com.moman.presentation.more.settings.screen.about.AboutScreen
+import com.moman.presentation.util.DefaultNavigatorScreenTransition
+import com.moman.presentation.util.LocalBackPress
+import com.moman.presentation.util.Screen
+import com.moman.presentation.util.isTabletUi
 import com.moman.presentation.core.components.TwoPanelBox
 
 class SettingsScreen(

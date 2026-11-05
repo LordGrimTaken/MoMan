@@ -1,0 +1,99 @@
+package com.moman.presentation.reader
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import dev.icerock.moko.resources.StringResource
+import com.moman.domain.manga.model.readerOrientation
+import com.moman.presentation.components.AdaptiveSheet
+import com.moman.presentation.reader.components.ModeSelectionDialog
+import com.moman.presentation.theme.TachiyomiPreviewTheme
+import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
+import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.SettingsIconGrid
+import com.moman.presentation.core.components.material.IconToggleButton
+import com.moman.presentation.core.i18n.stringResource
+
+private val ReaderOrientationsWithoutDefault = ReaderOrientation.entries - ReaderOrientation.DEFAULT
+
+@Composable
+fun OrientationSelectDialog(
+    onDismissRequest: () -> Unit,
+    viewModel: ReaderSettingsViewModel,
+    onChange: (StringResource) -> Unit,
+) {
+    val manga by viewModel.mangaFlow.collectAsState()
+    val orientation = remember(manga) { ReaderOrientation.fromPreference(manga?.readerOrientation?.toInt()) }
+
+    AdaptiveSheet(onDismissRequest = onDismissRequest) {
+        DialogContent(
+            orientation = orientation,
+            onChangeOrientation = {
+                viewModel.onChangeOrientation(it)
+                onChange(it.stringRes)
+                onDismissRequest()
+            },
+        )
+    }
+}
+
+@Composable
+private fun DialogContent(
+    orientation: ReaderOrientation,
+    onChangeOrientation: (ReaderOrientation) -> Unit,
+) {
+    var selected by remember { mutableStateOf(orientation) }
+
+    ModeSelectionDialog(
+        onUseDefault = {
+            onChangeOrientation(
+                ReaderOrientation.DEFAULT,
+            )
+        }.takeIf { orientation != ReaderOrientation.DEFAULT },
+        onApply = { onChangeOrientation(selected) },
+    ) {
+        SettingsIconGrid(MR.strings.rotation_type) {
+            items(ReaderOrientationsWithoutDefault) { mode ->
+                IconToggleButton(
+                    checked = mode == selected,
+                    onCheckedChange = {
+                        selected = mode
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    imageVector = mode.icon,
+                    title = stringResource(mode.stringRes),
+                )
+            }
+        }
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun DialogContentPreview() {
+    TachiyomiPreviewTheme {
+        Surface {
+            Column {
+                DialogContent(
+                    orientation = ReaderOrientation.DEFAULT,
+                    onChangeOrientation = {},
+                )
+
+                DialogContent(
+                    orientation = ReaderOrientation.FREE,
+                    onChangeOrientation = {},
+                )
+            }
+        }
+    }
+}

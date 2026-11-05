@@ -10,8 +10,8 @@ import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
-import eu.kanade.presentation.browse.GlobalSearchScreen
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.browse.GlobalSearchScreen
+import com.moman.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceScreen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import com.moman.presentation.core.screens.LoadingScreen

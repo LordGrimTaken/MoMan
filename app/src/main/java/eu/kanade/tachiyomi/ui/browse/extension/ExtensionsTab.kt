@@ -13,10 +13,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import eu.kanade.presentation.browse.ExtensionScreen
-import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.components.TabContent
-import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoresScreen
+import com.moman.presentation.browse.ExtensionScreen
+import com.moman.presentation.components.AppBar
+import com.moman.presentation.components.TabContent
+import com.moman.presentation.more.settings.screen.browse.ExtensionStoresScreen
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.ui.browse.extension.details.ExtensionDetailsScreen
 import eu.kanade.tachiyomi.ui.webview.WebViewScreen

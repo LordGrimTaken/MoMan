@@ -8,10 +8,10 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import eu.kanade.domain.source.interactor.GetEnabledSources
-import eu.kanade.domain.source.interactor.ToggleSource
-import eu.kanade.domain.source.interactor.ToggleSourcePin
-import eu.kanade.presentation.browse.SourceUiModel
+import com.moman.domain.source.interactor.GetEnabledSources
+import com.moman.domain.source.interactor.ToggleSource
+import com.moman.domain.source.interactor.ToggleSourcePin
+import com.moman.presentation.browse.SourceUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

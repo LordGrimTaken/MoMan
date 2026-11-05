@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import eu.kanade.presentation.manga.components.MangaCover
+import com.moman.presentation.manga.components.MangaCover
 import com.moman.domain.manga.model.Manga
 import com.moman.domain.manga.model.asMangaCover
 import com.moman.presentation.core.components.material.padding

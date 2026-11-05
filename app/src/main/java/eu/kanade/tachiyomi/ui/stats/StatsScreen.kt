@@ -6,10 +6,10 @@ import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.more.stats.StatsScreenContent
-import eu.kanade.presentation.more.stats.StatsScreenState
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.components.AppBar
+import com.moman.presentation.more.stats.StatsScreenContent
+import com.moman.presentation.more.stats.StatsScreenState
+import com.moman.presentation.util.Screen
 import com.moman.i18n.MR
 import com.moman.presentation.core.components.material.Scaffold
 import com.moman.presentation.core.i18n.stringResource

@@ -8,10 +8,10 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import eu.kanade.domain.source.interactor.GetLanguagesWithSources
-import eu.kanade.domain.source.interactor.ToggleLanguage
-import eu.kanade.domain.source.interactor.ToggleSource
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.source.interactor.GetLanguagesWithSources
+import com.moman.domain.source.interactor.ToggleLanguage
+import com.moman.domain.source.interactor.ToggleSource
+import com.moman.domain.source.service.SourcePreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

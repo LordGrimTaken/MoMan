@@ -40,11 +40,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.components.AppBarActions
-import eu.kanade.presentation.manga.components.MangaCover
-import eu.kanade.presentation.util.formatChapterNumber
-import eu.kanade.presentation.util.rememberResourceBitmapPainter
+import com.moman.presentation.components.AppBar
+import com.moman.presentation.components.AppBarActions
+import com.moman.presentation.manga.components.MangaCover
+import com.moman.presentation.util.formatChapterNumber
+import com.moman.presentation.util.rememberResourceBitmapPainter
 import eu.kanade.tachiyomi.R
 import com.moman.feature.migration.list.models.MigratingManga
 import com.moman.icons.materialsymbols.MaterialSymbols

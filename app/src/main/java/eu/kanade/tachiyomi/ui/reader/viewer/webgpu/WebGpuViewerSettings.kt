@@ -32,9 +32,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import dev.icerock.moko.resources.StringResource
-import eu.kanade.domain.manga.model.readerOrientation
-import eu.kanade.domain.manga.model.readingMode
-import eu.kanade.presentation.reader.settings.TapZonesItems
+import com.moman.domain.manga.model.readerOrientation
+import com.moman.domain.manga.model.readingMode
+import com.moman.presentation.reader.settings.TapZonesItems
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel

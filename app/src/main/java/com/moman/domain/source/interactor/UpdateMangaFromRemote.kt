@@ -1,10 +1,10 @@
 package com.moman.domain.source.interactor
 
 import dev.zacsweers.metro.Inject
-import eu.kanade.domain.chapter.interactor.SyncChaptersWithSource
-import eu.kanade.domain.chapter.model.toSChapter
-import eu.kanade.domain.manga.model.hasCustomCover
-import eu.kanade.domain.manga.model.toSManga
+import com.moman.domain.chapter.interactor.SyncChaptersWithSource
+import com.moman.domain.chapter.model.toSChapter
+import com.moman.domain.manga.model.hasCustomCover
+import com.moman.domain.manga.model.toSManga
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source

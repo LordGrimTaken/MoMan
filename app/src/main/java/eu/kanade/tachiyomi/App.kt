@@ -23,9 +23,9 @@ import coil3.request.crossfade
 import coil3.util.DebugLogger
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.createGraphFactory
-import eu.kanade.domain.base.BasePreferences
-import eu.kanade.domain.ui.UiPreferences
-import eu.kanade.domain.ui.model.setAppCompatDelegateThemeMode
+import com.moman.domain.base.BasePreferences
+import com.moman.domain.ui.UiPreferences
+import com.moman.domain.ui.model.setAppCompatDelegateThemeMode
 import eu.kanade.tachiyomi.core.security.PrivacyPreferences
 import eu.kanade.tachiyomi.crash.CrashActivity
 import eu.kanade.tachiyomi.crash.GlobalExceptionHandler

@@ -7,8 +7,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
-import eu.kanade.presentation.browse.ExtensionDetailsScreen
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.browse.ExtensionDetailsScreen
+import com.moman.presentation.util.Screen
 import com.moman.i18n.MR
 import com.moman.presentation.core.screens.EmptyScreen
 import com.moman.presentation.core.screens.LoadingScreen

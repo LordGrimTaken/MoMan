@@ -18,11 +18,11 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.core.preference.asState
-import eu.kanade.domain.base.BasePreferences
-import eu.kanade.presentation.more.MoreScreen
-import eu.kanade.presentation.util.Tab
-import eu.kanade.presentation.util.rememberAnimatedVectorPainter
+import com.moman.core.preference.asState
+import com.moman.domain.base.BasePreferences
+import com.moman.presentation.more.MoreScreen
+import com.moman.presentation.util.Tab
+import com.moman.presentation.util.rememberAnimatedVectorPainter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.ui.category.CategoryScreen

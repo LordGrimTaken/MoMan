@@ -31,8 +31,8 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import eu.kanade.presentation.util.Screen
-import eu.kanade.presentation.util.isTabletUi
+import com.moman.presentation.util.Screen
+import com.moman.presentation.util.isTabletUi
 import eu.kanade.tachiyomi.ui.browse.BrowseTab
 import eu.kanade.tachiyomi.ui.download.DownloadQueueScreen
 import eu.kanade.tachiyomi.ui.history.HistoryTab
@@ -167,7 +167,7 @@ object HomeScreen : Screen() {
 
     @Composable
     private fun NavigationSuiteItem(
-        tab: eu.kanade.presentation.util.Tab,
+        tab: com.moman.presentation.util.Tab,
         navigationSuiteType: NavigationSuiteType,
     ) {
         val tabNavigator = LocalTabNavigator.current
@@ -203,7 +203,7 @@ object HomeScreen : Screen() {
     }
 
     @Composable
-    private fun tabBadge(tab: eu.kanade.presentation.util.Tab): (@Composable () -> Unit)? {
+    private fun tabBadge(tab: com.moman.presentation.util.Tab): (@Composable () -> Unit)? {
         val context = LocalContext.current
         val count by produceState(initialValue = 0, tab) {
             val graph = context.appGraph

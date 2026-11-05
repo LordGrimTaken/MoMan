@@ -8,10 +8,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.presentation.browse.SourceOptionsDialog
-import eu.kanade.presentation.browse.SourcesScreen
-import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.components.TabContent
+import com.moman.presentation.browse.SourceOptionsDialog
+import com.moman.presentation.browse.SourcesScreen
+import com.moman.presentation.components.AppBar
+import com.moman.presentation.components.TabContent
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceScreen
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchScreen
 import kotlinx.coroutines.flow.collectLatest

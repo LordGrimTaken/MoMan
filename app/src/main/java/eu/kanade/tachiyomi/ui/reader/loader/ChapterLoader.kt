@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.loader
 
 import android.content.Context
-import eu.kanade.domain.chapter.model.toSChapter
+import com.moman.domain.chapter.model.toSChapter
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.DownloadProvider

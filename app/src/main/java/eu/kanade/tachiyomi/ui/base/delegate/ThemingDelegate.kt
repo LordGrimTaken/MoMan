@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.base.delegate
 
 import android.app.Activity
-import eu.kanade.domain.ui.model.AppTheme
+import com.moman.domain.ui.model.AppTheme
 import eu.kanade.tachiyomi.R
 import com.moman.app.di.appGraph
 

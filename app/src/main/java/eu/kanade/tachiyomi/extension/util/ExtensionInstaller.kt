@@ -6,7 +6,7 @@ import android.content.pm.PackageInfo
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import dev.zacsweers.metro.Inject
-import eu.kanade.domain.base.BasePreferences
+import com.moman.domain.base.BasePreferences
 import eu.kanade.tachiyomi.extension.installer.Installer
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep

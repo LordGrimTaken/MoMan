@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.R
 import androidx.core.view.inputmethod.EditorInfoCompat
 import com.google.android.material.textfield.TextInputEditText
-import eu.kanade.domain.base.BasePreferences
+import com.moman.domain.base.BasePreferences
 import eu.kanade.tachiyomi.widget.TachiyomiTextInputEditText.Companion.setIncognito
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

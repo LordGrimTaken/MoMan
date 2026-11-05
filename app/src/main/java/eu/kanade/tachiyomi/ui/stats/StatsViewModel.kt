@@ -9,9 +9,9 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import eu.kanade.core.util.fastCountNot
-import eu.kanade.presentation.more.stats.StatsScreenState
-import eu.kanade.presentation.more.stats.data.StatsData
+import com.moman.core.util.fastCountNot
+import com.moman.presentation.more.stats.StatsScreenState
+import com.moman.presentation.more.stats.data.StatsData
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.track.TrackerManager
 import eu.kanade.tachiyomi.source.model.SManga

@@ -27,9 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.util.fastForEach
-import eu.kanade.core.util.fastFilterNot
-import eu.kanade.domain.source.service.SourcePreferences
-import eu.kanade.presentation.components.AdaptiveSheet
+import com.moman.core.util.fastFilterNot
+import com.moman.domain.source.service.SourcePreferences
+import com.moman.presentation.components.AdaptiveSheet
 import com.moman.domain.migration.models.MigrationFlag
 import com.moman.feature.common.utils.getLabel
 import com.moman.icons.materialsymbols.MaterialSymbols

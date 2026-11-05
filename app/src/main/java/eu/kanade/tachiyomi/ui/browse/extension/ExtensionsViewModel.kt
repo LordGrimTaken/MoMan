@@ -10,9 +10,9 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import eu.kanade.domain.base.BasePreferences
-import eu.kanade.domain.extension.interactor.GetExtensionsByType
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.base.BasePreferences
+import com.moman.domain.extension.interactor.GetExtensionsByType
+import com.moman.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep

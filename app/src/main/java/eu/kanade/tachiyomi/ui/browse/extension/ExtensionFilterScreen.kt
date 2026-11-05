@@ -8,8 +8,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.metroViewModel
-import eu.kanade.presentation.browse.ExtensionFilterScreen
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.browse.ExtensionFilterScreen
+import com.moman.presentation.util.Screen
 import kotlinx.coroutines.flow.collectLatest
 import com.moman.core.common.i18n.stringResource
 import com.moman.i18n.MR

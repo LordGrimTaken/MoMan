@@ -8,9 +8,9 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import eu.kanade.domain.extension.interactor.GetExtensionLanguages
-import eu.kanade.domain.source.interactor.ToggleLanguage
-import eu.kanade.domain.source.service.SourcePreferences
+import com.moman.domain.extension.interactor.GetExtensionLanguages
+import com.moman.domain.source.interactor.ToggleLanguage
+import com.moman.domain.source.service.SourcePreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

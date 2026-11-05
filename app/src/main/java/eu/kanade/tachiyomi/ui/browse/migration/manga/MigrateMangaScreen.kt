@@ -20,9 +20,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
-import eu.kanade.presentation.components.AppBar
-import eu.kanade.presentation.manga.components.BaseMangaListItem
-import eu.kanade.presentation.util.Screen
+import com.moman.presentation.components.AppBar
+import com.moman.presentation.manga.components.BaseMangaListItem
+import com.moman.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.collectLatest
