@@ -60,3 +60,20 @@ release APK ──────────┘                        │
   `Config.enableUpdater` is false for local builds and true for distributed ones.
 - **i18n** is moko-resources; strings live in `i18n/src/commonMain/moko-resources/base/strings.xml` with ~70 locale
   overrides.
+
+## Package namespaces
+
+MoMan's own code lives under `com.moman.*`. The one deliberate exception is
+**`eu.kanade.tachiyomi.*`**, which stays because it is the extension-facing ABI: extensions are separate APKs that
+link against `eu.kanade.tachiyomi.source.*`, the network helpers and the util classes at runtime. Renaming that
+namespace would make every installed extension fail with `NoClassDefFoundError`.
+
+Generator packages follow their own config and must be kept in sync when a module moves:
+
+| Generator | Setting |
+|---|---|
+| moko-resources (`MR`) | `resourcesPackage` in `i18n/build.gradle.kts` |
+| SQLDelight | `packageName` in `data/build.gradle.kts`, plus the `.sq` directory path (table packages derive from it) |
+| Apollo GraphQL | `packageName.set(...)` per service in `app/build.gradle.kts` |
+| Valkyrie icons | `packageName` in each `icons/*/build.gradle.kts` |
+
