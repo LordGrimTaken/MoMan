@@ -5,9 +5,10 @@ around long-strip reading, a library you own, and no ads or trackers.
 
 **[Download from momanreader.com](https://momanreader.com)** · Android 8.0+ · arm64-v8a
 
-MoMan is a fork of [Mihon](https://github.com/mihonapp/mihon), which continues the work of
-[Tachiyomi](https://en.wikipedia.org/wiki/Tachiyomi). It ships with **no content of its own**: sources are supplied
-by third-party extensions that you install yourself.
+MoMan is an independent Android reader, built and maintained by its own contributors. It ships with **no content of
+its own**: sources are supplied by third-party extensions that you install yourself. It stands on the open-source
+Mihon/Tachiyomi lineage — that history and its licence are recorded in [NOTICE](NOTICE) and
+[LICENSE-APACHE](LICENSE-APACHE).
 
 > **MoMan hosts nothing.** It is a reader. What you read through it comes from extensions you choose to add.
 
