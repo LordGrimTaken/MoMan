@@ -11,13 +11,13 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.CheckboxItem
-import tachiyomi.presentation.core.components.SettingsChipRow
-import tachiyomi.presentation.core.components.SliderItem
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.CheckboxItem
+import com.moman.presentation.core.components.SettingsChipRow
+import com.moman.presentation.core.components.SliderItem
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 
 private val themes = listOf(
     MR.strings.black_background to 1,

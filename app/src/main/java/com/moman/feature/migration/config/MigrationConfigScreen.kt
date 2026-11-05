@@ -64,16 +64,16 @@ import sh.calvin.reorderable.ReorderableCollectionItemScope
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.ReorderableLazyListState
 import sh.calvin.reorderable.rememberReorderableLazyListState
-import tachiyomi.domain.source.model.Source
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.Pill
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.util.shouldExpandFAB
+import com.moman.domain.source.model.Source
+import com.moman.domain.source.service.SourceManager
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.Pill
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.util.shouldExpandFAB
 
 class MigrationConfigScreen(private val mangaIds: Collection<Long>) : Screen() {
 

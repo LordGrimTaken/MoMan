@@ -14,13 +14,13 @@ import eu.kanade.presentation.more.settings.screen.browse.ExtensionStoreScreenSt
 import com.moman.domain.extension.model.ExtensionStore
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Refresh
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.components.material.topSmallPaddingValues
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.util.plus
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.topSmallPaddingValues
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.util.plus
 
 @Composable
 fun ExtensionStoresScreen(

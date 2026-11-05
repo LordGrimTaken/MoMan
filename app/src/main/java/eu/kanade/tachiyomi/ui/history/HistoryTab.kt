@@ -31,10 +31,10 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import com.moman.feature.migration.dialog.MigrateMangaDialog
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.i18n.stringResource
+import com.moman.domain.chapter.model.Chapter
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 data object HistoryTab : Tab {
 

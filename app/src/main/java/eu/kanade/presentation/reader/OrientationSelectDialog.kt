@@ -19,10 +19,10 @@ import eu.kanade.presentation.reader.components.ModeSelectionDialog
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.SettingsIconGrid
-import tachiyomi.presentation.core.components.material.IconToggleButton
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.SettingsIconGrid
+import com.moman.presentation.core.components.material.IconToggleButton
+import com.moman.presentation.core.i18n.stringResource
 
 private val ReaderOrientationsWithoutDefault = ReaderOrientation.entries - ReaderOrientation.DEFAULT
 

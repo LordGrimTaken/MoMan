@@ -21,15 +21,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import com.moman.app.di.appGraph
 import com.moman.core.metro.AppCoroutineScope
-import tachiyomi.core.common.Constants
-import tachiyomi.domain.chapter.interactor.GetChapter
-import tachiyomi.domain.chapter.interactor.UpdateChapter
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.chapter.model.ChapterUpdate
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.Constants
+import com.moman.domain.chapter.interactor.GetChapter
+import com.moman.domain.chapter.interactor.UpdateChapter
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.chapter.model.ChapterUpdate
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
 /**

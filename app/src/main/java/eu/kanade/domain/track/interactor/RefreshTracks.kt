@@ -9,8 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
-import tachiyomi.domain.track.interactor.GetTracks
-import tachiyomi.domain.track.interactor.UpsertTrack
+import com.moman.domain.track.interactor.GetTracks
+import com.moman.domain.track.interactor.UpsertTrack
 
 @Inject
 class RefreshTracks(

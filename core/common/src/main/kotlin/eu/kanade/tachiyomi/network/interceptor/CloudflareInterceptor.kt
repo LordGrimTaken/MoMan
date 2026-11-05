@@ -23,9 +23,9 @@ import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CountDownLatch

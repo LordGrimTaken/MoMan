@@ -7,8 +7,8 @@ import androidx.compose.material3.Tab
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.category.visualName
-import tachiyomi.domain.category.model.Category
-import tachiyomi.presentation.core.components.material.TabText
+import com.moman.domain.category.model.Category
+import com.moman.presentation.core.components.material.TabText
 
 @Composable
 internal fun LibraryTabs(

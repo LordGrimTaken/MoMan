@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import okhttp3.OkHttpClient
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 interface Tracker {
 

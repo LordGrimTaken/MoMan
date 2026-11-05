@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Preview
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun TextPreferenceWidget(

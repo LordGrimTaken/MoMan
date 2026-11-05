@@ -15,8 +15,8 @@ import androidx.compose.ui.window.DialogWindowProvider
 import eu.kanade.presentation.components.TabbedDialog
 import eu.kanade.presentation.components.TabbedDialogPaddings
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderSettingsViewModel
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun ReaderSettingsDialog(

@@ -7,8 +7,8 @@ import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_LOW
 import eu.kanade.tachiyomi.util.system.buildNotificationChannel
 import eu.kanade.tachiyomi.util.system.buildNotificationChannelGroup
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
 
 /**
  * Class to manage the basic information of all the notifications used in the app.

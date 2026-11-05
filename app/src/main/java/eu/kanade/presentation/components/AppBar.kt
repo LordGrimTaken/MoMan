@@ -57,12 +57,12 @@ import com.moman.icons.materialsymbols.automirroredrounded.ArrowBack
 import com.moman.icons.materialsymbols.rounded.Close
 import com.moman.icons.materialsymbols.rounded.MoreVert
 import com.moman.icons.materialsymbols.rounded.Search
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.clearFocusOnSoftKeyboardHide
-import tachiyomi.presentation.core.util.runOnEnterKeyPressed
-import tachiyomi.presentation.core.util.secondaryItemAlpha
-import tachiyomi.presentation.core.util.showSoftKeyboard
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.clearFocusOnSoftKeyboardHide
+import com.moman.presentation.core.util.runOnEnterKeyPressed
+import com.moman.presentation.core.util.secondaryItemAlpha
+import com.moman.presentation.core.util.showSoftKeyboard
 
 @Composable
 fun AppBar(

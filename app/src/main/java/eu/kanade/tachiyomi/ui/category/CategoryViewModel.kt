@@ -22,13 +22,13 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import com.moman.core.metro.AppCoroutineScope
-import tachiyomi.domain.category.interactor.CreateCategoryWithName
-import tachiyomi.domain.category.interactor.DeleteCategory
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.category.interactor.RenameCategory
-import tachiyomi.domain.category.interactor.ReorderCategory
-import tachiyomi.domain.category.model.Category
-import tachiyomi.i18n.MR
+import com.moman.domain.category.interactor.CreateCategoryWithName
+import com.moman.domain.category.interactor.DeleteCategory
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.category.interactor.RenameCategory
+import com.moman.domain.category.interactor.ReorderCategory
+import com.moman.domain.category.model.Category
+import com.moman.i18n.MR
 import kotlin.time.Duration.Companion.seconds
 
 @Inject

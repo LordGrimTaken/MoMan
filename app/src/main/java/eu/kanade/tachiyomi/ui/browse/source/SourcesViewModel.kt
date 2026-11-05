@@ -26,9 +26,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.source.model.Pin
-import tachiyomi.domain.source.model.Source
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.source.model.Pin
+import com.moman.domain.source.model.Source
 import java.util.TreeMap
 import kotlin.time.Duration.Companion.seconds
 

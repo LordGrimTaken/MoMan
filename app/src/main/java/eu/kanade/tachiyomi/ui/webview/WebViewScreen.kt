@@ -10,7 +10,7 @@ import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import eu.kanade.presentation.util.AssistContentScreen
 import eu.kanade.presentation.util.Screen
 import eu.kanade.presentation.webview.WebViewScreenContent
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.screens.LoadingScreen
 
 class WebViewScreen(
     private val url: String,

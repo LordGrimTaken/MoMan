@@ -38,7 +38,7 @@ import java.math.RoundingMode
 import java.security.SecureRandom
 import java.util.Base64
 import java.util.Locale
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class MangaBakaApi(
     private val trackerId: Long,

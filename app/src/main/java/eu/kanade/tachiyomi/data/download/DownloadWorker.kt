@@ -23,8 +23,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import com.moman.app.di.AppGraph
 import com.moman.core.metro.metroGraph
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.i18n.R
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.i18n.R
 import kotlin.time.Duration.Companion.seconds
 
 /**

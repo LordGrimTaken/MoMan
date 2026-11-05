@@ -13,15 +13,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.domain.source.models.RemoteMangaUpdate
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.chapter.repository.ChapterRepository
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.model.MangaRemoteUpdate
-import tachiyomi.domain.manga.repository.MangaRepository
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.source.local.isLocal
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.chapter.repository.ChapterRepository
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.model.MangaRemoteUpdate
+import com.moman.domain.manga.repository.MangaRepository
+import com.moman.domain.source.service.SourceManager
+import com.moman.source.local.isLocal
 import kotlin.time.Clock
 import kotlin.time.Instant
 

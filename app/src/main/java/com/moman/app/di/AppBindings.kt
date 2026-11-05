@@ -17,7 +17,7 @@ import com.moman.telemetry.TelemetryConfig
 import nl.adaptivity.xmlutil.XmlDeclMode
 import nl.adaptivity.xmlutil.core.XmlVersion
 import nl.adaptivity.xmlutil.serialization.XML
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 
 @BindingContainer
 object AppBindings {

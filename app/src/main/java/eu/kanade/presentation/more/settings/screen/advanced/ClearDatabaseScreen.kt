@@ -53,19 +53,19 @@ import com.moman.core.metro.AppCoroutineScope
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.FlipToBack
 import com.moman.icons.materialsymbols.rounded.SelectAll
-import tachiyomi.domain.history.repository.HistoryRepository
-import tachiyomi.domain.manga.repository.MangaRepository
-import tachiyomi.domain.source.interactor.GetSourcesWithNonLibraryManga
-import tachiyomi.domain.source.model.Source
-import tachiyomi.domain.source.model.SourceWithCount
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.LazyColumnWithAction
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.util.selectedBackground
+import com.moman.domain.history.repository.HistoryRepository
+import com.moman.domain.manga.repository.MangaRepository
+import com.moman.domain.source.interactor.GetSourcesWithNonLibraryManga
+import com.moman.domain.source.model.Source
+import com.moman.domain.source.model.SourceWithCount
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.LazyColumnWithAction
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.util.selectedBackground
 
 class ClearDatabaseScreen : Screen() {
 

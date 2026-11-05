@@ -13,11 +13,11 @@ import eu.kanade.tachiyomi.util.system.AuthenticatorUtil.authenticate
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil.isAuthenticationSupported
 import eu.kanade.tachiyomi.util.system.telemetryIncluded
 import com.moman.app.di.appGraph
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 
 object SettingsSecurityScreen : SearchableSettings {
 

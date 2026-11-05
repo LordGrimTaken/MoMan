@@ -6,7 +6,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 
 @Inject
 @SingleIn(AppScope::class)

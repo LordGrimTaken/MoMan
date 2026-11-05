@@ -33,12 +33,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import logcat.LogPriority
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.source.local.image.LocalCoverManager
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.source.local.image.LocalCoverManager
 import kotlin.time.Duration.Companion.seconds
 
 @AssistedInject

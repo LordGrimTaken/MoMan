@@ -15,7 +15,7 @@ import com.moman.graphql.anilist.AniListSearchMangaQuery
 import com.moman.graphql.anilist.fragment.MangaFragment
 import com.moman.graphql.anilist.type.MediaListStatus
 import com.moman.graphql.anilist.type.ScoreFormat
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 internal fun AniListGetCurrentUserQuery.Viewer.toALUser(): ALUser {
     return ALUser(

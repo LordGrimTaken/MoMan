@@ -28,7 +28,7 @@ import logcat.LogPriority
 import com.moman.core.metro.AppCoroutineScope
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 

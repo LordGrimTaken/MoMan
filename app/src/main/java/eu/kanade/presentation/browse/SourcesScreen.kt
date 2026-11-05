@@ -24,19 +24,19 @@ import eu.kanade.tachiyomi.util.system.LocaleHelper
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Keep
 import com.moman.icons.materialsymbols.roundedfilled.Keep
-import tachiyomi.domain.source.model.Pin
-import tachiyomi.domain.source.model.Source
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ScrollbarLazyColumn
-import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.components.material.topSmallPaddingValues
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.theme.header
-import tachiyomi.presentation.core.util.plus
-import tachiyomi.source.local.isLocal
+import com.moman.domain.source.model.Pin
+import com.moman.domain.source.model.Source
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.ScrollbarLazyColumn
+import com.moman.presentation.core.components.material.SECONDARY_ALPHA
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.topSmallPaddingValues
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.theme.header
+import com.moman.presentation.core.util.plus
+import com.moman.source.local.isLocal
 
 @Composable
 fun SourcesScreen(

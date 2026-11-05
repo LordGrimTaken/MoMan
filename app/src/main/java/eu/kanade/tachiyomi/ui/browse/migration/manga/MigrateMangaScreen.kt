@@ -29,15 +29,15 @@ import kotlinx.coroutines.flow.collectLatest
 import com.moman.feature.migration.config.MigrationConfigScreen
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.ArrowForward
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.util.selectedBackground
-import tachiyomi.presentation.core.util.shouldExpandFAB
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.util.selectedBackground
+import com.moman.presentation.core.util.shouldExpandFAB
 
 data class MigrateMangaScreen(
     private val sourceId: Long,

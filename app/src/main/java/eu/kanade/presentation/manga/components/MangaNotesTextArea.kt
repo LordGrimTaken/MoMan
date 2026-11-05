@@ -50,9 +50,9 @@ import com.moman.icons.materialsymbols.rounded.FormatBold
 import com.moman.icons.materialsymbols.rounded.FormatItalic
 import com.moman.icons.materialsymbols.rounded.FormatListNumbered
 import com.moman.icons.materialsymbols.rounded.FormatUnderlined
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 import kotlin.time.Duration.Companion.seconds
 
 @Composable

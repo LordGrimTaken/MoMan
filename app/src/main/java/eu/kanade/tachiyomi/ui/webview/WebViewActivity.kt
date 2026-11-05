@@ -26,10 +26,10 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.app.di.appGraph
 import okhttp3.HttpUrl.Companion.toHttpUrl
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.source.service.SourceManager
+import com.moman.i18n.MR
+import com.moman.presentation.core.screens.LoadingScreen
 
 class WebViewActivity : BaseActivity() {
 

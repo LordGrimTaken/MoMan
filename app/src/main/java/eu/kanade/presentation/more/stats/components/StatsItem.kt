@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
-import tachiyomi.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.SECONDARY_ALPHA
+import com.moman.presentation.core.components.material.padding
 
 @Composable
 fun RowScope.StatsOverviewItem(

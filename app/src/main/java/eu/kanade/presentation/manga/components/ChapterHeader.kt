@@ -11,11 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.SECONDARY_ALPHA
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun ChapterHeader(

@@ -27,15 +27,15 @@ import kotlinx.datetime.LocalDate
 import com.moman.app.di.appGraph
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.DeleteSweep
-import tachiyomi.domain.history.model.HistoryWithRelations
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.ListGroupHeader
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.domain.history.model.HistoryWithRelations
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.ListGroupHeader
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.util.collectAsState
 
 @Composable
 fun HistoryScreen(

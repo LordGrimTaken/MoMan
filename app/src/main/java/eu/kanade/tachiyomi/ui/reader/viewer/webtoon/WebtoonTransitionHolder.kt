@@ -17,8 +17,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
 
 /**
  * Holder of the webtoon viewer that contains a chapter transition.

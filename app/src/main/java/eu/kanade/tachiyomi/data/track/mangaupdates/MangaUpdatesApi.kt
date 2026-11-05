@@ -30,7 +30,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
 import uy.kohesive.injekt.injectLazy
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class MangaUpdatesApi(
     private val client: OkHttpClient,

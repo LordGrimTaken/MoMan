@@ -17,10 +17,10 @@ import com.moman.icons.materialsymbols.rounded.Delete
 import com.moman.icons.materialsymbols.rounded.DragHandle
 import com.moman.icons.materialsymbols.rounded.Edit
 import sh.calvin.reorderable.ReorderableCollectionItemScope
-import tachiyomi.domain.category.model.Category
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.domain.category.model.Category
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun ReorderableCollectionItemScope.CategoryListItem(

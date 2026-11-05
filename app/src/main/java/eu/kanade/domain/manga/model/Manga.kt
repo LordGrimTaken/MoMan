@@ -9,11 +9,11 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
 import com.moman.app.di.appGraph
-import tachiyomi.core.common.preference.TriState
-import tachiyomi.core.metadata.comicinfo.ComicInfo
-import tachiyomi.core.metadata.comicinfo.ComicInfoPublishingStatus
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.model.Manga
+import com.moman.core.common.preference.TriState
+import com.moman.core.metadata.comicinfo.ComicInfo
+import com.moman.core.metadata.comicinfo.ComicInfoPublishingStatus
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.model.Manga
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 

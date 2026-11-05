@@ -15,7 +15,7 @@ import kotlin.time.Clock
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Instant
 
-private val logger = Logging.getLogger("mihon.gradle.BuildInfo")
+private val logger = Logging.getLogger("com.moman.gradle.BuildInfo")
 
 fun Project.getLatestCommitCount(): Provider<String> {
     return git("rev-list", "--count", "HEAD", default = provider { "0" }).map { it.first }

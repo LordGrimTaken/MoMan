@@ -36,10 +36,10 @@ import com.moman.icons.custommaterialsymbols.rounded.DownloadCircle
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Error
 import com.moman.icons.materialsymbols.roundedfilled.CheckCircle
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.IconButtonTokens
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.IconButtonTokens
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 enum class ChapterDownloadAction {
     START,

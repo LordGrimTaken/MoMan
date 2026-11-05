@@ -62,9 +62,9 @@ import com.moman.icons.materialsymbols.automirroredrounded.Help
 import com.moman.icons.materialsymbols.rounded.Close
 import com.moman.icons.materialsymbols.roundedfilled.Visibility
 import com.moman.icons.materialsymbols.roundedfilled.VisibilityOff
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 object SettingsTrackingScreen : SearchableSettings {
 

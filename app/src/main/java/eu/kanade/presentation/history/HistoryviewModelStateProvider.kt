@@ -4,8 +4,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import eu.kanade.tachiyomi.ui.history.HistoryViewModel
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import tachiyomi.domain.history.model.HistoryWithRelations
-import tachiyomi.domain.manga.model.MangaCover
+import com.moman.domain.history.model.HistoryWithRelations
+import com.moman.domain.manga.model.MangaCover
 import kotlin.random.Random
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days

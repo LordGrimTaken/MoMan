@@ -76,16 +76,16 @@ import com.moman.icons.materialsymbols.automirroredrounded.ArrowBack
 import com.moman.icons.materialsymbols.rounded.Close
 import com.moman.icons.materialsymbols.roundedfilled.CheckCircle
 import com.moman.icons.materialsymbols.roundedfilled.VisibilityOff
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ScrollbarLazyColumn
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.util.plus
-import tachiyomi.presentation.core.util.runOnEnterKeyPressed
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.ScrollbarLazyColumn
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.util.plus
+import com.moman.presentation.core.util.runOnEnterKeyPressed
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun TrackerSearch(

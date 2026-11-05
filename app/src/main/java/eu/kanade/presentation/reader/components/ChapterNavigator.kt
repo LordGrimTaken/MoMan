@@ -48,8 +48,8 @@ import eu.kanade.presentation.util.isTabletUi
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.SkipNext
 import com.moman.icons.materialsymbols.rounded.SkipPrevious
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 import kotlin.math.roundToInt
 
 enum class ChapterNavigatorType {

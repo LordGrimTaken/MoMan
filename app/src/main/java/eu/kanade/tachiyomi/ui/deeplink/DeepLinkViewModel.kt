@@ -21,11 +21,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import com.moman.domain.manga.model.toDomainManga
 import com.moman.domain.source.interactor.UpdateMangaFromRemote
-import tachiyomi.domain.chapter.interactor.GetChapterByUrlAndMangaId
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.interactor.NetworkToLocalManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.domain.chapter.interactor.GetChapterByUrlAndMangaId
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.interactor.NetworkToLocalManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 
 @AssistedInject
 class DeepLinkViewModel(

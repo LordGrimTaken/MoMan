@@ -21,12 +21,12 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.moman.domain.manga.model.toDomainManga
-import tachiyomi.core.common.preference.toggle
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.interactor.NetworkToLocalManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.source.local.isLocal
+import com.moman.core.common.preference.toggle
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.interactor.NetworkToLocalManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
+import com.moman.source.local.isLocal
 
 abstract class SearchViewModel(
     initialState: State = State(),

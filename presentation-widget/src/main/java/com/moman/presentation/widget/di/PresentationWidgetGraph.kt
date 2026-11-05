@@ -2,7 +2,7 @@ package com.moman.presentation.widget.di
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesTo
-import tachiyomi.presentation.widget.BaseUpdatesGridGlanceWidget
+import com.moman.presentation.widget.BaseUpdatesGridGlanceWidget
 
 @ContributesTo(AppScope::class)
 interface PresentationWidgetGraph {

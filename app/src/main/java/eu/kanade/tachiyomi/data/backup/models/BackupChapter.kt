@@ -7,7 +7,7 @@ import com.moman.core.common.extensions.toByteArray
 import com.moman.core.common.extensions.toEpochMillisOrZero
 import com.moman.core.common.extensions.toInstantOrNull
 import com.moman.core.common.extensions.toJsonObject
-import tachiyomi.domain.chapter.model.Chapter
+import com.moman.domain.chapter.model.Chapter
 import kotlin.time.Instant
 
 @Serializable

@@ -30,12 +30,12 @@ import kotlinx.datetime.YearMonth
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.yearMonth
 import com.moman.domain.upcoming.interactor.GetUpcomingManga
-import tachiyomi.core.common.preference.getAndSet
-import tachiyomi.core.common.util.lang.SubscriberGate
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.upcoming.service.UpcomingPreferences
+import com.moman.core.common.preference.getAndSet
+import com.moman.core.common.util.lang.SubscriberGate
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.category.model.Category
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.upcoming.service.UpcomingPreferences
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 

@@ -10,8 +10,8 @@ import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.util.system.cancelNotification
 import eu.kanade.tachiyomi.util.system.notify
-import tachiyomi.core.common.i18n.pluralStringResource
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.pluralStringResource
+import com.moman.i18n.MR
 import com.moman.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject

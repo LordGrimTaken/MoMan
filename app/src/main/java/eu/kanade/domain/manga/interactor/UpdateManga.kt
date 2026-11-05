@@ -4,10 +4,10 @@ import dev.zacsweers.metro.Inject
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import tachiyomi.domain.manga.interactor.FetchInterval
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.model.MangaUpdate
-import tachiyomi.domain.manga.repository.MangaRepository
+import com.moman.domain.manga.interactor.FetchInterval
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.model.MangaUpdate
+import com.moman.domain.manga.repository.MangaRepository
 import kotlin.time.Clock
 import kotlin.time.Instant
 

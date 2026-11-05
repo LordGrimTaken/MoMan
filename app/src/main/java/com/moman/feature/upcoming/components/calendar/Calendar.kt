@@ -26,7 +26,7 @@ import kotlinx.datetime.plusMonth
 import kotlinx.datetime.toJavaDayOfWeek
 import com.moman.core.designsystem.utils.isExpandedWidthWindow
 import com.moman.core.designsystem.utils.isMediumWidthWindow
-import tachiyomi.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.padding
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.time.temporal.WeekFields

@@ -12,8 +12,8 @@ import okio.BufferedSource
 import okio.buffer
 import okio.gzip
 import okio.source
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
 import java.io.IOException
 
 @Inject

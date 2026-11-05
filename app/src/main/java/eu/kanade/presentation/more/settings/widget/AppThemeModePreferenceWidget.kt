@@ -9,8 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import eu.kanade.domain.ui.model.ThemeMode
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 private val options = mapOf(
     ThemeMode.SYSTEM to MR.strings.theme_system,

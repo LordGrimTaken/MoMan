@@ -25,8 +25,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import com.moman.core.metro.AppCoroutineScope
-import tachiyomi.domain.manga.interactor.UpdateMangaNotes
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.manga.interactor.UpdateMangaNotes
+import com.moman.domain.manga.model.Manga
 
 class MangaNotesScreen(
     private val manga: Manga,

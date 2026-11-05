@@ -19,7 +19,7 @@ import com.moman.icons.custommaterialsymbols.rounded.ReaderRightToLeft
 import com.moman.icons.custommaterialsymbols.rounded.ReaderVertical
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.MobileGear
-import tachiyomi.i18n.MR
+import com.moman.i18n.MR
 
 enum class ReadingMode(
     val stringRes: StringResource,

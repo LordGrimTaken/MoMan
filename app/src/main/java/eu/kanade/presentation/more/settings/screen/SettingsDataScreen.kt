@@ -62,16 +62,16 @@ import logcat.LogPriority
 import com.moman.app.di.appGraph
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Help
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.storage.displayablePath
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.backup.service.BackupPreferences
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.storage.service.StoragePreferences
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.TextButton
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.storage.displayablePath
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.backup.service.BackupPreferences
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.storage.service.StoragePreferences
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.TextButton
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 
 object SettingsDataScreen : SearchableSettings {
 
@@ -111,7 +111,7 @@ object SettingsDataScreen : SearchableSettings {
 
     @Composable
     fun storageLocationPicker(
-        storageDirPref: tachiyomi.core.common.preference.Preference<String>,
+        storageDirPref: com.moman.core.common.preference.Preference<String>,
     ): ManagedActivityResultLauncher<Uri?, Uri?> {
         val context = LocalContext.current
 
@@ -143,7 +143,7 @@ object SettingsDataScreen : SearchableSettings {
 
     @Composable
     fun storageLocationText(
-        storageDirPref: tachiyomi.core.common.preference.Preference<String>,
+        storageDirPref: com.moman.core.common.preference.Preference<String>,
     ): String {
         val context = LocalContext.current
         val storageDir by storageDirPref.collectAsState()

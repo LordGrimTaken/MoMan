@@ -15,13 +15,13 @@ import eu.kanade.tachiyomi.data.backup.models.StringPreferenceValue
 import eu.kanade.tachiyomi.data.backup.models.StringSetPreferenceValue
 import eu.kanade.tachiyomi.data.library.LibraryUpdateWorker
 import eu.kanade.tachiyomi.source.sourcePreferences
-import tachiyomi.core.common.preference.AndroidPreferenceStore
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.core.common.preference.plusAssign
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.library.service.LibraryPreferences
+import com.moman.core.common.preference.AndroidPreferenceStore
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.plusAssign
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.category.model.Category
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.library.service.LibraryPreferences
 
 @Inject
 class PreferenceRestorer(

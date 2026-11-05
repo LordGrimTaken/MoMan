@@ -23,17 +23,17 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Help
 import com.moman.icons.materialsymbols.rounded.Public
 import com.moman.icons.materialsymbols.rounded.Refresh
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.domain.library.model.LibraryDisplayMode
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.EmptyScreenAction
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.source.local.LocalSource
+import com.moman.core.common.i18n.stringResource
+import com.moman.domain.library.model.LibraryDisplayMode
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.model.StubSource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.EmptyScreenAction
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.source.local.LocalSource
 
 @Composable
 fun BrowseSourceContent(

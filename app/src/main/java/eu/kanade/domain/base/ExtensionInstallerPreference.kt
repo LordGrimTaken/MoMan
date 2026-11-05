@@ -5,9 +5,9 @@ import eu.kanade.domain.base.BasePreferences.ExtensionInstaller
 import eu.kanade.tachiyomi.util.system.hasMiuiPackageInstaller
 import eu.kanade.tachiyomi.util.system.isShizukuInstalled
 import kotlinx.coroutines.CoroutineScope
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.core.common.preference.getEnum
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.getEnum
 
 class ExtensionInstallerPreference(
     private val context: Context,

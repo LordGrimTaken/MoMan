@@ -57,11 +57,11 @@ import eu.kanade.tachiyomi.util.system.copyToClipboard
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Eyeglasses2
 import com.moman.icons.materialsymbols.rounded.Settings
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ScrollbarLazyColumn
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.ScrollbarLazyColumn
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun ExtensionDetailsScreen(

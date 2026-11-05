@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Add
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.shouldExpandFAB
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.shouldExpandFAB
 
 @Composable
 fun CategoryFloatingActionButton(

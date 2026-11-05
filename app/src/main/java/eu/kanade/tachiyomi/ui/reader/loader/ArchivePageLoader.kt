@@ -4,7 +4,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.util.lang.compareToCaseInsensitiveNaturalOrder
 import com.moman.core.archive.ArchiveReader
-import tachiyomi.core.common.util.system.ImageUtil
+import com.moman.core.common.util.system.ImageUtil
 
 /**
  * Loader used to load a chapter from an archive file.

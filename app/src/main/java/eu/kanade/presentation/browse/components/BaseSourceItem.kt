@@ -12,9 +12,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import tachiyomi.domain.source.model.Source
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.domain.source.model.Source
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun BaseSourceItem(

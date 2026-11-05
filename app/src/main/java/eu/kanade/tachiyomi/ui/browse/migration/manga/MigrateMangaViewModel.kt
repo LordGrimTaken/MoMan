@@ -28,10 +28,10 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import logcat.LogPriority
 import com.moman.core.common.utils.mutate
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.manga.interactor.GetFavorites
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.manga.interactor.GetFavorites
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 import kotlin.time.Duration.Companion.seconds
 
 @AssistedInject

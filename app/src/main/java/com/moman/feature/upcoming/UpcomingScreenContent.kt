@@ -31,15 +31,15 @@ import com.moman.feature.upcoming.components.calendar.Calendar
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Help
 import com.moman.icons.materialsymbols.rounded.FilterList
-import tachiyomi.core.common.Constants
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.TwoPanelBox
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.theme.active
+import com.moman.core.common.Constants
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.TwoPanelBox
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.theme.active
 
 @Composable
 fun UpcomingScreenContent(

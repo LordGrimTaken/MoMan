@@ -14,12 +14,12 @@ import eu.kanade.presentation.category.visualName
 import eu.kanade.presentation.more.settings.Preference
 import eu.kanade.presentation.more.settings.widget.TriStateListDialog
 import com.moman.app.di.appGraph
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.domain.category.model.Category
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 
 object SettingsDownloadScreen : SearchableSettings {
 

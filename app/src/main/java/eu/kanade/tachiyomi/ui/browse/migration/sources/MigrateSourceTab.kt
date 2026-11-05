@@ -14,8 +14,8 @@ import eu.kanade.presentation.components.TabContent
 import eu.kanade.tachiyomi.ui.browse.migration.manga.MigrateMangaScreen
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Help
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun Screen.migrateSourceTab(): TabContent {

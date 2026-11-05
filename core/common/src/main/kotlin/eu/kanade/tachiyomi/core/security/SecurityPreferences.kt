@@ -4,10 +4,10 @@ import dev.icerock.moko.resources.StringResource
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.core.common.preference.getEnum
-import tachiyomi.i18n.MR
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.getEnum
+import com.moman.i18n.MR
 
 @Inject
 @SingleIn(AppScope::class)

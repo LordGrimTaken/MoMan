@@ -1,11 +1,11 @@
 package com.moman.domain.chapter.interactor
 
 import dev.zacsweers.metro.Inject
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.chapter.interactor.GetChaptersByMangaId
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.chapter.interactor.GetChaptersByMangaId
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.manga.model.Manga
 
 /**
  * Interactor responsible for determining which chapters of a manga should be downloaded.

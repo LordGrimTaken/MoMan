@@ -56,14 +56,14 @@ import com.moman.icons.materialsymbols.rounded.FilterList
 import com.moman.icons.materialsymbols.rounded.Verified
 import com.moman.icons.materialsymbols.roundedfilled.Favorite
 import com.moman.presentation.core.util.collectAsLazyPagingItems
-import tachiyomi.core.common.Constants
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.source.local.LocalSource
+import com.moman.core.common.Constants
+import com.moman.domain.source.model.StubSource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.source.local.LocalSource
 
 data class BrowseSourceScreen(
     val sourceId: Long,

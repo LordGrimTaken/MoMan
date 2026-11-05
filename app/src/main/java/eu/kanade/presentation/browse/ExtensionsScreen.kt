@@ -61,18 +61,18 @@ import com.moman.icons.materialsymbols.rounded.Public
 import com.moman.icons.materialsymbols.rounded.Refresh
 import com.moman.icons.materialsymbols.rounded.Settings
 import com.moman.icons.materialsymbols.rounded.VerifiedUser
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.material.PullRefresh
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.components.material.topSmallPaddingValues
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.EmptyScreenAction
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.theme.header
-import tachiyomi.presentation.core.util.plus
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.material.PullRefresh
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.topSmallPaddingValues
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.EmptyScreenAction
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.theme.header
+import com.moman.presentation.core.util.plus
 
 @Composable
 fun ExtensionScreen(

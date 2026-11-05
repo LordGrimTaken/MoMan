@@ -17,13 +17,13 @@ import eu.kanade.tachiyomi.ui.reader.setting.ReadingMode
 import eu.kanade.tachiyomi.ui.reader.viewer.webgpu.WebGpuViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webgpu.WebGpuViewerSettings
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.CheckboxItem
-import tachiyomi.presentation.core.components.HeadingItem
-import tachiyomi.presentation.core.components.SettingsChipRow
-import tachiyomi.presentation.core.components.SliderItem
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.CheckboxItem
+import com.moman.presentation.core.components.HeadingItem
+import com.moman.presentation.core.components.SettingsChipRow
+import com.moman.presentation.core.components.SliderItem
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 import java.text.NumberFormat
 
 @Composable

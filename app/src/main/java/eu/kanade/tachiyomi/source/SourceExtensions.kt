@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.source
 
 import android.content.Context
 import com.moman.app.di.appGraph
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.source.local.isLocal
+import com.moman.domain.source.model.StubSource
+import com.moman.source.local.isLocal
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 

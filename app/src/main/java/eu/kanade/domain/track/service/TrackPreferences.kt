@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.data.track.Tracker
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.data.track.kitsu.Kitsu
 import eu.kanade.tachiyomi.data.track.mangabaka.MangaBaka
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.core.common.preference.getEnum
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.getEnum
 
 @Inject
 @SingleIn(AppScope::class)

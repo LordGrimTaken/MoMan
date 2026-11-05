@@ -53,11 +53,11 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.app.di.appGraph
 import okhttp3.Headers
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 import java.io.File
 
 object SettingsAdvancedScreen : SearchableSettings {

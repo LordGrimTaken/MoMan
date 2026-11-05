@@ -6,7 +6,7 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import dev.icerock.moko.resources.StringResource
 import com.moman.domain.extension.model.ContentWarning
-import tachiyomi.i18n.MR
+import com.moman.i18n.MR
 
 internal data class ContentWarningLabel(
     val title: StringResource,

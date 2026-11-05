@@ -9,7 +9,7 @@ import eu.kanade.domain.ui.model.setAppCompatDelegateThemeMode
 import eu.kanade.presentation.more.settings.widget.AppThemeModePreferenceWidget
 import eu.kanade.presentation.more.settings.widget.AppThemePreferenceWidget
 import com.moman.app.di.appGraph
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.presentation.core.util.collectAsState
 
 internal class ThemeStep : OnboardingStep {
 

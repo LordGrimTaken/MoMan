@@ -20,10 +20,10 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Check
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.SettingsItemsPaddings
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.SettingsItemsPaddings
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun ModeSelectionDialog(

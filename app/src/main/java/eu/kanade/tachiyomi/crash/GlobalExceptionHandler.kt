@@ -10,7 +10,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.Json
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 
 class GlobalExceptionHandler private constructor(
     private val applicationContext: Context,

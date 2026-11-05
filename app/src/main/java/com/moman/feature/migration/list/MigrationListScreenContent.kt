@@ -55,16 +55,16 @@ import com.moman.icons.materialsymbols.rounded.ContentCopy
 import com.moman.icons.materialsymbols.rounded.CopyAll
 import com.moman.icons.materialsymbols.rounded.DoneAll
 import com.moman.icons.materialsymbols.rounded.MoreVert
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.Badge
-import tachiyomi.presentation.core.components.BadgeGroup
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.components.material.topSmallPaddingValues
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.plus
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.Badge
+import com.moman.presentation.core.components.BadgeGroup
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.topSmallPaddingValues
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.plus
 
 @Composable
 fun MigrationListScreenContent(

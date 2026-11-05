@@ -15,14 +15,14 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import logcat.LogPriority
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.storage.displayablePath
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.storage.service.StorageManager
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.storage.displayablePath
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.storage.service.StorageManager
+import com.moman.i18n.MR
 import java.io.IOException
 
 /**

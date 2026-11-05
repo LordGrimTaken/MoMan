@@ -30,14 +30,14 @@ import eu.kanade.tachiyomi.util.system.cancelNotification
 import eu.kanade.tachiyomi.util.system.getBitmapOrNull
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notify
-import tachiyomi.core.common.Constants
-import tachiyomi.core.common.i18n.pluralStringResource
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.library.model.LibraryManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.i18n.MR
+import com.moman.core.common.Constants
+import com.moman.core.common.i18n.pluralStringResource
+import com.moman.core.common.i18n.stringResource
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.library.model.LibraryManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
+import com.moman.i18n.MR
 import java.math.RoundingMode
 import java.text.NumberFormat
 import com.moman.icons.materialsymbols.R as MaterialSymbolsR

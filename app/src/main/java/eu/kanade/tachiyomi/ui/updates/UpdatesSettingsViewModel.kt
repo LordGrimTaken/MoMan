@@ -5,12 +5,12 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metrox.viewmodel.ViewModelKey
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.TriState
-import tachiyomi.core.common.preference.getAndSet
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.updates.service.UpdatesPreferences
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.TriState
+import com.moman.core.common.preference.getAndSet
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.category.model.Category
+import com.moman.domain.updates.service.UpdatesPreferences
 
 @Inject
 @ViewModelKey

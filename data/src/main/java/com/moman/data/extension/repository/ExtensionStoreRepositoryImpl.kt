@@ -22,10 +22,10 @@ import com.moman.core.metro.AppCoroutineScope
 import com.moman.data.extension.service.ExtensionStoreService
 import com.moman.domain.extension.model.ExtensionStore
 import com.moman.domain.extension.repository.ExtensionStoreRepository
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.data.Database
-import tachiyomi.data.subscribeToList
-import tachiyomi.data.subscribeToOne
+import com.moman.core.common.util.system.logcat
+import com.moman.data.Database
+import com.moman.data.subscribeToList
+import com.moman.data.subscribeToOne
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 

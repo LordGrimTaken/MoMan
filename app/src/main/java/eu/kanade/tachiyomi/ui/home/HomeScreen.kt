@@ -48,8 +48,8 @@ import kotlinx.coroutines.launch
 import com.moman.app.di.appGraph
 import soup.compose.material.motion.animation.materialFadeThroughIn
 import soup.compose.material.motion.animation.materialFadeThroughOut
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.pluralStringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.pluralStringResource
 
 object HomeScreen : Screen() {
 

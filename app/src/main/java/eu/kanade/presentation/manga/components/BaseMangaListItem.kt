@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.presentation.core.components.material.padding
+import com.moman.domain.manga.model.Manga
+import com.moman.presentation.core.components.material.padding
 
 @Composable
 fun BaseMangaListItem(

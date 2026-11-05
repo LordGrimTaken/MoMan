@@ -19,12 +19,12 @@ import com.moman.icons.materialsymbols.rounded.QueryStats
 import com.moman.icons.materialsymbols.rounded.Settings
 import com.moman.icons.materialsymbols.rounded.Storage
 import com.moman.icons.materialsymbols.roundedfilled.VolunteerActivism
-import tachiyomi.core.common.Constants
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ScrollbarLazyColumn
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.Constants
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.ScrollbarLazyColumn
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun MoreScreen(

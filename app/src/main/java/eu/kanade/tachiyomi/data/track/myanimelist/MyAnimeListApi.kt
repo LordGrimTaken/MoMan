@@ -29,7 +29,7 @@ import okhttp3.RequestBody
 import uy.kohesive.injekt.injectLazy
 import java.text.SimpleDateFormat
 import java.util.Locale
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class MyAnimeListApi(
     private val trackerId: Long,

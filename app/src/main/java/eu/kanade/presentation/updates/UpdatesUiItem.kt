@@ -40,13 +40,13 @@ import eu.kanade.tachiyomi.ui.updates.UpdatesItem
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.roundedfilled.Bookmark
 import com.moman.icons.materialsymbols.roundedfilled.Circle
-import tachiyomi.domain.updates.model.UpdatesWithRelations
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ListGroupHeader
-import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.selectedBackground
+import com.moman.domain.updates.model.UpdatesWithRelations
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.ListGroupHeader
+import com.moman.presentation.core.components.material.DISABLED_ALPHA
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.selectedBackground
 
 internal fun LazyListScope.updatesLastUpdatedItem(
     lastUpdated: Long,

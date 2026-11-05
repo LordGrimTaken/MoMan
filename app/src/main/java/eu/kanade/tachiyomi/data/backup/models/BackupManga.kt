@@ -6,7 +6,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
 import com.moman.core.common.extensions.JsonObjectEmptyBytes
 import com.moman.core.common.extensions.toInstantOrNull
 import com.moman.core.common.extensions.toJsonObject
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.manga.model.Manga
 import kotlin.time.Instant
 
 @Suppress("DEPRECATION")

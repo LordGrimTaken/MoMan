@@ -32,15 +32,15 @@ import eu.kanade.presentation.components.TabbedDialogPaddings
 import com.moman.app.di.appGraph
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Group
-import tachiyomi.core.common.preference.TriState
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.LabeledCheckbox
-import tachiyomi.presentation.core.components.RadioItem
-import tachiyomi.presentation.core.components.SortItem
-import tachiyomi.presentation.core.components.TriStateItem
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.theme.active
+import com.moman.core.common.preference.TriState
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.LabeledCheckbox
+import com.moman.presentation.core.components.RadioItem
+import com.moman.presentation.core.components.SortItem
+import com.moman.presentation.core.components.TriStateItem
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.theme.active
 
 @Composable
 fun ChapterSettingsDialog(

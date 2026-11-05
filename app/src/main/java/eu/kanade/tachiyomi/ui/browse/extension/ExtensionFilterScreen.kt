@@ -11,9 +11,9 @@ import dev.zacsweers.metrox.viewmodel.metroViewModel
 import eu.kanade.presentation.browse.ExtensionFilterScreen
 import eu.kanade.presentation.util.Screen
 import kotlinx.coroutines.flow.collectLatest
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.screens.LoadingScreen
 
 class ExtensionFilterScreen : Screen() {
 

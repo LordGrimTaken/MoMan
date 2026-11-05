@@ -22,10 +22,10 @@ import eu.kanade.presentation.more.settings.screen.SettingsDataScreen
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.collectLatest
 import com.moman.app.di.appGraph
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Button
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Button
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 internal class StorageStep : OnboardingStep {
 

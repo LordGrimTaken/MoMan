@@ -7,9 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.moman.core.migration.Migration
 import com.moman.core.migration.MigrationContext
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.library.service.LibraryPreferences
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.library.service.LibraryPreferences
 
 @Inject
 @ContributesIntoSet(AppScope::class)

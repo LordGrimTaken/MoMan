@@ -26,11 +26,11 @@ import logcat.LogPriority
 import com.moman.app.di.AppGraph
 import com.moman.core.metro.metroGraph
 import com.moman.domain.source.interactor.UpdateMangaFromRemote
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.library.model.LibraryManga
-import tachiyomi.domain.manga.interactor.GetLibraryManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.library.model.LibraryManga
+import com.moman.domain.manga.interactor.GetLibraryManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.concurrent.atomics.AtomicInt
 import kotlin.concurrent.atomics.ExperimentalAtomicApi

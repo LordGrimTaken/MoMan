@@ -24,9 +24,9 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.app.di.AppGraph
 import com.moman.core.metro.metroGraph
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 
 class BackupRestoreWorker(private val context: Context, workerParams: WorkerParameters) :
     CoroutineWorker(context, workerParams) {

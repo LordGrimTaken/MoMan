@@ -5,7 +5,7 @@ import com.apollographql.apollo.api.Operation
 import com.apollographql.apollo.exception.ApolloHttpException
 import com.apollographql.apollo.exception.ApolloNetworkException
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 
 /**
  * Returns the result of calling [transform] with [data] if the GraphQL response had data present without errors,

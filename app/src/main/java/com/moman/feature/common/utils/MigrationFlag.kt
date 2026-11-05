@@ -2,7 +2,7 @@ package com.moman.feature.common.utils
 
 import dev.icerock.moko.resources.StringResource
 import com.moman.domain.migration.models.MigrationFlag
-import tachiyomi.i18n.MR
+import com.moman.i18n.MR
 
 fun MigrationFlag.getLabel(): StringResource {
     return when (this) {

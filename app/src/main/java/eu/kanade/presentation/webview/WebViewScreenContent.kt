@@ -56,10 +56,10 @@ import com.moman.icons.materialsymbols.automirroredrounded.ArrowBack
 import com.moman.icons.materialsymbols.automirroredrounded.ArrowForward
 import com.moman.icons.materialsymbols.rounded.Close
 import com.moman.icons.materialsymbols.rounded.TabClose
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
 
 class WebViewWindow(webContent: WebContent, val navigator: WebViewNavigator) {
     var state by mutableStateOf(WebViewState(webContent))

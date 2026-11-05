@@ -36,12 +36,12 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Info
 import com.moman.icons.materialsymbols.roundedfilled.CheckCircle
 import com.moman.icons.materialsymbols.roundedfilled.Warning
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.chapter.service.calculateChapterGap
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.chapter.service.calculateChapterGap
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun ChapterTransition(

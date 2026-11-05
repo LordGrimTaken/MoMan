@@ -22,7 +22,7 @@ import com.moman.domain.extension.model.ExtensionStore
 import okio.BufferedSource
 import okio.buffer
 import okio.gzip
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import kotlin.coroutines.cancellation.CancellationException
 
 @Inject

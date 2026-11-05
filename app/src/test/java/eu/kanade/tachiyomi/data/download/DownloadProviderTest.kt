@@ -8,8 +8,8 @@ import io.mockk.mockk
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import tachiyomi.core.common.preference.InMemoryPreferenceStore
-import tachiyomi.domain.library.service.LibraryPreferences
+import com.moman.core.common.preference.InMemoryPreferenceStore
+import com.moman.domain.library.service.LibraryPreferences
 
 class DownloadProviderTest {
 

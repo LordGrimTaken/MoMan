@@ -37,10 +37,10 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.CombinedCircularProgressIndicator
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.source.local.isLocal
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.CombinedCircularProgressIndicator
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.source.local.isLocal
 
 /** The side padding `PagerTransitionHolder` gave the same transition view. */
 private const val TRANSITION_SIDE_PADDING = 64

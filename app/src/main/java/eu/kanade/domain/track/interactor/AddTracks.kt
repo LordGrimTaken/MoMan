@@ -11,11 +11,11 @@ import eu.kanade.tachiyomi.source.Source
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.interactor.GetChaptersByMangaId
-import tachiyomi.domain.history.interactor.GetHistory
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.track.interactor.UpsertTrack
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.interactor.GetChaptersByMangaId
+import com.moman.domain.history.interactor.GetHistory
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.track.interactor.UpsertTrack
 import kotlin.time.Instant
 
 @Inject

@@ -22,9 +22,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import logcat.LogPriority
-import tachiyomi.core.common.preference.getAndSet
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.source.model.Source
+import com.moman.core.common.preference.getAndSet
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.source.model.Source
 import kotlin.time.Duration.Companion.seconds
 
 @Inject

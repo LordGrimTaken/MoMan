@@ -9,9 +9,9 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toJavaLocalDate
 import kotlinx.datetime.toJavaLocalDateTime
 import kotlinx.datetime.toLocalDateTime
-import tachiyomi.core.common.i18n.pluralStringResource
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.pluralStringResource
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
 import java.time.format.DateTimeFormatter
 import kotlin.math.absoluteValue
 import kotlin.time.Clock

@@ -9,7 +9,7 @@ import com.moman.icons.materialsymbols.rounded.MobileLandscape
 import com.moman.icons.materialsymbols.rounded.MobileLockLandscape
 import com.moman.icons.materialsymbols.rounded.MobileLockPortrait
 import com.moman.icons.materialsymbols.rounded.MobileRotate
-import tachiyomi.i18n.MR
+import com.moman.i18n.MR
 
 enum class ReaderOrientation(
     val flag: Int,

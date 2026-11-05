@@ -3,10 +3,10 @@ package eu.kanade.presentation.util
 import android.content.Context
 import eu.kanade.tachiyomi.network.HttpException
 import eu.kanade.tachiyomi.util.system.isOnline
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.data.source.NoResultsException
-import tachiyomi.domain.source.model.SourceNotInstalledException
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.data.source.NoResultsException
+import com.moman.domain.source.model.SourceNotInstalledException
+import com.moman.i18n.MR
 import java.net.UnknownHostException
 
 context(context: Context)

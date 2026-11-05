@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.ui.base.delegate.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil
 import eu.kanade.tachiyomi.util.system.AuthenticatorUtil.startAuthentication
 import logcat.LogPriority
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 
 /**
  * Blank activity with a BiometricPrompt.

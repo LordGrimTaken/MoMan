@@ -33,12 +33,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.LabeledCheckbox
-import tachiyomi.presentation.core.components.LazyColumnWithAction
-import tachiyomi.presentation.core.components.SectionCard
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.LabeledCheckbox
+import com.moman.presentation.core.components.LazyColumnWithAction
+import com.moman.presentation.core.components.SectionCard
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
 
 class CreateBackupScreen : Screen() {
 

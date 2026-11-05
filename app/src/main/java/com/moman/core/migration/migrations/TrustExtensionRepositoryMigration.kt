@@ -10,7 +10,7 @@ import logcat.LogPriority
 import com.moman.core.migration.Migration
 import com.moman.core.migration.MigrationContext
 import com.moman.domain.extension.repository.ExtensionStoreRepository
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 
 @Inject
 @ContributesIntoSet(AppScope::class)

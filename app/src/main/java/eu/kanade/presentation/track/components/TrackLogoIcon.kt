@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import eu.kanade.tachiyomi.data.track.Tracker
-import tachiyomi.presentation.core.util.clickableNoIndication
+import com.moman.presentation.core.util.clickableNoIndication
 
 @Composable
 fun TrackLogoIcon(

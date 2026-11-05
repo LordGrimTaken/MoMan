@@ -50,17 +50,17 @@ import kotlinx.coroutines.launch
 import com.moman.feature.migration.config.MigrationConfigScreen
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Help
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.library.model.LibraryManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.EmptyScreenAction
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.source.local.isLocal
+import com.moman.core.common.i18n.stringResource
+import com.moman.domain.category.model.Category
+import com.moman.domain.library.model.LibraryManga
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.EmptyScreenAction
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.source.local.isLocal
 
 data object LibraryTab : Tab {
 

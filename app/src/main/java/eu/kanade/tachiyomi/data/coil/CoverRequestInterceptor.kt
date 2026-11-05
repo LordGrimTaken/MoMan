@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.data.coil
 import coil3.intercept.Interceptor
 import coil3.request.ImageResult
 import coil3.request.SuccessResult
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.model.MangaCover
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.model.MangaCover
 
 /**
  * De-duplicates concurrent requests for the same cover at the same size. Lists like updates show an entry's cover on

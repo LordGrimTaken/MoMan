@@ -66,16 +66,16 @@ import com.moman.icons.materialsymbols.rounded.Schedule
 import com.moman.icons.materialsymbols.roundedfilled.Brush
 import com.moman.icons.materialsymbols.roundedfilled.Pause
 import com.moman.icons.materialsymbols.roundedfilled.Warning
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.model.MangaWithChapterCount
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.Badge
-import tachiyomi.presentation.core.components.BadgeGroup
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.model.MangaWithChapterCount
+import com.moman.domain.source.model.StubSource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.Badge
+import com.moman.presentation.core.components.BadgeGroup
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun DuplicateMangaDialog(

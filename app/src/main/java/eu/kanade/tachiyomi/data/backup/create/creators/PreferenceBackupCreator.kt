@@ -12,9 +12,9 @@ import eu.kanade.tachiyomi.data.backup.models.StringSetPreferenceValue
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.preferenceKey
 import eu.kanade.tachiyomi.source.sourcePreferences
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.domain.source.service.SourceManager
 
 @Inject
 class PreferenceBackupCreator(

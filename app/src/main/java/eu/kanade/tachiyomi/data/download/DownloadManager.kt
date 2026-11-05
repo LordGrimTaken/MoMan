@@ -20,18 +20,18 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import logcat.LogPriority
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.storage.extension
-import tachiyomi.core.common.util.system.ImageUtil
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.chapter.interactor.GetChapter
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.storage.extension
+import com.moman.core.common.util.system.ImageUtil
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.chapter.interactor.GetChapter
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
+import com.moman.i18n.MR
 
 /**
  * This class is used to manage chapter downloads in the application. It must be instantiated once

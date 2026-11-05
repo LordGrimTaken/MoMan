@@ -9,11 +9,11 @@ import eu.kanade.tachiyomi.data.track.kitsu.dto.KitsuOAuth
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import kotlinx.serialization.json.Json
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class Kitsu(id: Long) : BaseTracker(id, "Kitsu"), DeletableTracker {
 

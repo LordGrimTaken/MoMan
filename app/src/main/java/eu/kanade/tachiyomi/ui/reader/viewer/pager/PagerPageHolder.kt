@@ -23,10 +23,10 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import okio.Buffer
 import okio.BufferedSource
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.ImageUtil
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.ImageUtil
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 
 /**
  * View of the ViewPager that contains a page of a chapter.

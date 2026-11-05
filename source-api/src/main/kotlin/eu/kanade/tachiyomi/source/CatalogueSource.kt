@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.source.model.SMangaUpdate
 import kotlinx.coroutines.async
 import kotlinx.coroutines.supervisorScope
 import rx.Observable
-import tachiyomi.core.common.util.lang.awaitSingle
+import com.moman.core.common.util.lang.awaitSingle
 
 interface CatalogueSource : Source {
 

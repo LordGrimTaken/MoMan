@@ -94,11 +94,11 @@ import kotlinx.coroutines.launch
 import logcat.LogPriority
 import com.moman.app.di.AppGraph
 import com.moman.core.metro.metroGraph
-import tachiyomi.core.common.Constants
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.Constants
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
+import com.moman.presentation.core.util.collectAsState
 import kotlin.time.Duration.Companion.seconds
 
 class ReaderActivity : BaseActivity() {

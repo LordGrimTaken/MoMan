@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "tachiyomi.source.local"
+    namespace = "com.moman.source.local"
 }
 
 kotlin {

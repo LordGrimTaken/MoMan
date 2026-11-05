@@ -23,8 +23,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import logcat.LogPriority
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.source.service.SourceManager
 
 @AssistedInject
 class WebViewViewModel(

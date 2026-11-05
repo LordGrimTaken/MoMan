@@ -3,7 +3,7 @@ package eu.kanade.presentation.browse.components
 import androidx.compose.runtime.Composable
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.CollectionsBookmark
-import tachiyomi.presentation.core.components.Badge
+import com.moman.presentation.core.components.Badge
 
 @Composable
 internal fun InLibraryBadge(enabled: Boolean) {

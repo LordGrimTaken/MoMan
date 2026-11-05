@@ -2,9 +2,9 @@ package eu.kanade.domain.download.interactor
 
 import dev.zacsweers.metro.Inject
 import eu.kanade.tachiyomi.data.download.DownloadManager
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 
 @Inject
 class DeleteDownload(

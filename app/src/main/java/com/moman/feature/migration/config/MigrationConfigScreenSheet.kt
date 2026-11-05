@@ -35,16 +35,16 @@ import com.moman.feature.common.utils.getLabel
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Check
 import com.moman.icons.materialsymbols.roundedfilled.Warning
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.getAndSet
-import tachiyomi.core.common.preference.toggle
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Button
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.theme.active
-import tachiyomi.presentation.core.theme.header
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.getAndSet
+import com.moman.core.common.preference.toggle
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Button
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.theme.active
+import com.moman.presentation.core.theme.header
+import com.moman.presentation.core.util.collectAsState
 
 @Composable
 fun MigrationConfigScreenSheet(

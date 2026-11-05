@@ -28,8 +28,8 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.CheckBoxOutlineBlank
 import com.moman.icons.materialsymbols.roundedfilled.CheckBox
 import com.moman.icons.materialsymbols.roundedfilled.DisabledByDefault
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 private enum class State {
     CHECKED,

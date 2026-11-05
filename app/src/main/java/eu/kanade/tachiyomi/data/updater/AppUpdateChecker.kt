@@ -6,7 +6,7 @@ import eu.kanade.tachiyomi.util.system.isFossBuildType
 import eu.kanade.tachiyomi.util.system.isNightlyBuildType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import tachiyomi.domain.release.interactor.GetApplicationRelease
+import com.moman.domain.release.interactor.GetApplicationRelease
 
 @Inject
 class AppUpdateChecker(

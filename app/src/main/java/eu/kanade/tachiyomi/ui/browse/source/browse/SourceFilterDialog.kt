@@ -18,17 +18,17 @@ import androidx.compose.ui.unit.dp
 import eu.kanade.presentation.components.AdaptiveSheet
 import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
-import tachiyomi.core.common.preference.TriState
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.CheckboxItem
-import tachiyomi.presentation.core.components.CollapsibleBox
-import tachiyomi.presentation.core.components.HeadingItem
-import tachiyomi.presentation.core.components.SelectItem
-import tachiyomi.presentation.core.components.SortItem
-import tachiyomi.presentation.core.components.TextItem
-import tachiyomi.presentation.core.components.TriStateItem
-import tachiyomi.presentation.core.components.material.Button
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.preference.TriState
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.CheckboxItem
+import com.moman.presentation.core.components.CollapsibleBox
+import com.moman.presentation.core.components.HeadingItem
+import com.moman.presentation.core.components.SelectItem
+import com.moman.presentation.core.components.SortItem
+import com.moman.presentation.core.components.TextItem
+import com.moman.presentation.core.components.TriStateItem
+import com.moman.presentation.core.components.material.Button
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun SourceFilterDialog(

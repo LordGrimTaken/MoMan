@@ -8,10 +8,10 @@ import eu.kanade.tachiyomi.data.track.DeletableTracker
 import eu.kanade.tachiyomi.data.track.comick.dto.ComickOAuth
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import kotlinx.serialization.json.Json
-import tachiyomi.i18n.MR
+import com.moman.i18n.MR
 import uy.kohesive.injekt.injectLazy
 import kotlin.time.Clock
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class Comick(id: Long) : BaseTracker(id, "Comick"), DeletableTracker {
 

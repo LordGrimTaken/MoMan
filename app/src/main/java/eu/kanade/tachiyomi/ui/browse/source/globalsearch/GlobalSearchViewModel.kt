@@ -10,9 +10,9 @@ import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import eu.kanade.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.Source
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.interactor.NetworkToLocalManga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.interactor.NetworkToLocalManga
+import com.moman.domain.source.service.SourceManager
 
 @AssistedInject
 class GlobalSearchViewModel(

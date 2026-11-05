@@ -12,10 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun MissingChapterCountListItem(

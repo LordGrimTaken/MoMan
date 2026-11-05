@@ -5,12 +5,12 @@ import eu.kanade.domain.track.model.toDbTrack
 import eu.kanade.tachiyomi.data.track.EnhancedTracker
 import eu.kanade.tachiyomi.data.track.Tracker
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.interactor.GetChaptersByMangaId
-import tachiyomi.domain.chapter.interactor.UpdateChapter
-import tachiyomi.domain.chapter.model.ChapterUpdate
-import tachiyomi.domain.track.interactor.UpsertTrack
-import tachiyomi.domain.track.model.Track
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.interactor.GetChaptersByMangaId
+import com.moman.domain.chapter.interactor.UpdateChapter
+import com.moman.domain.chapter.model.ChapterUpdate
+import com.moman.domain.track.interactor.UpsertTrack
+import com.moman.domain.track.model.Track
 import kotlin.math.max
 
 @Inject

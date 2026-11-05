@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.util.storage.DiskUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import com.moman.core.metro.AppCoroutineScope
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.manga.model.Manga
 import java.io.File
 import java.io.IOException
 import java.io.InputStream

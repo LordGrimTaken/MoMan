@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import eu.kanade.tachiyomi.ui.library.LibraryItem
-import tachiyomi.domain.library.model.LibraryManga
-import tachiyomi.domain.manga.model.MangaCover
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.util.plus
+import com.moman.domain.library.model.LibraryManga
+import com.moman.domain.manga.model.MangaCover
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.util.plus
 
 @Composable
 internal fun LibraryList(

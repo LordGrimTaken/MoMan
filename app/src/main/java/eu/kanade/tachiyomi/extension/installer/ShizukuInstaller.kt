@@ -24,8 +24,8 @@ import logcat.LogPriority
 import com.moman.app.shizuku.IShellInterface
 import com.moman.app.shizuku.ShellInterface
 import rikka.shizuku.Shizuku
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 
 class ShizukuInstaller(private val service: Service) : Installer(service) {
 

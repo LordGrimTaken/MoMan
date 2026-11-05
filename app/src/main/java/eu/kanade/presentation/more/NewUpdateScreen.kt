@@ -26,10 +26,10 @@ import com.moman.icons.materialsymbols.automirroredrounded.OpenInNew
 import com.moman.icons.materialsymbols.rounded.UpdateDisabled
 import com.moman.icons.materialsymbols.rounded.Verified
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.InfoScreen
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.InfoScreen
 
 @Composable
 fun NewUpdateScreen(

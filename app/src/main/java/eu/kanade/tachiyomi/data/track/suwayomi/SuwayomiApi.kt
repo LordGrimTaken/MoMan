@@ -15,7 +15,7 @@ import com.moman.graphql.suwayomi.SuwayomiGetMangaUnreadChaptersQuery
 import com.moman.graphql.suwayomi.SuwayomiMarkAndDeleteChaptersMutation
 import com.moman.graphql.suwayomi.SuwayomiMarkChaptersReadMutation
 import com.moman.graphql.suwayomi.SuwayomiUpdateMangaProgressMutation
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.domain.source.service.SourceManager
 import java.security.MessageDigest
 
 class SuwayomiApi(

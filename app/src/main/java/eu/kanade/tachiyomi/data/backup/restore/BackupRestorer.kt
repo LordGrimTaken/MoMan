@@ -30,11 +30,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.withIndex
 import kotlinx.coroutines.launch
 import logcat.LogPriority
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.source.repository.StubSourceRepository
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.source.repository.StubSourceRepository
+import com.moman.domain.source.service.SourceManager
+import com.moman.i18n.MR
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.BitSet

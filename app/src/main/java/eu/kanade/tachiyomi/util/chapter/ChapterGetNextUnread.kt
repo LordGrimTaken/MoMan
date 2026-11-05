@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.util.chapter
 import eu.kanade.domain.chapter.model.applyFilters
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.ui.manga.ChapterList
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.model.Manga
 
 /**
  * Gets next unread chapter with filters and sorting applied

@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
+import com.moman.presentation.core.components.material.DISABLED_ALPHA
 import kotlin.time.Clock
 
 private const val MAX_EVENTS = 3

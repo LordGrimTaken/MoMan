@@ -22,8 +22,8 @@ import kotlinx.coroutines.launch
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.roundedfilled.Cancel
 import com.moman.icons.materialsymbols.roundedfilled.Error
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun EditTextPreferenceWidget(

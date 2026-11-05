@@ -48,17 +48,17 @@ import com.moman.icons.materialsymbols.rounded.Add
 import com.moman.icons.materialsymbols.rounded.Delete
 import com.moman.icons.materialsymbols.rounded.DragHandle
 import sh.calvin.reorderable.ReorderableColumn
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.CheckboxItem
-import tachiyomi.presentation.core.components.HeadingItem
-import tachiyomi.presentation.core.components.SettingsChipRow
-import tachiyomi.presentation.core.components.SettingsItemsPaddings
-import tachiyomi.presentation.core.components.SliderItem
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.CheckboxItem
+import com.moman.presentation.core.components.HeadingItem
+import com.moman.presentation.core.components.SettingsChipRow
+import com.moman.presentation.core.components.SettingsItemsPaddings
+import com.moman.presentation.core.components.SliderItem
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 import java.text.NumberFormat
 
 @Composable

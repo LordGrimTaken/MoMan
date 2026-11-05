@@ -42,11 +42,11 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Sort
 import com.moman.icons.materialsymbols.roundedfilled.Pause
 import com.moman.icons.materialsymbols.roundedfilled.PlayArrow
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.Pill
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.Pill
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
 
 object DownloadQueueScreen : Screen() {
 

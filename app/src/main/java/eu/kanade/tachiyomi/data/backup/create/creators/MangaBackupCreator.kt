@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import com.moman.core.common.extensions.toByteArray
 import com.moman.core.common.extensions.toEpochMillisOrZero
-import tachiyomi.domain.category.repository.CategoryRepository
-import tachiyomi.domain.chapter.repository.ChapterRepository
-import tachiyomi.domain.history.repository.HistoryRepository
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.repository.MangaRepository
-import tachiyomi.domain.track.repository.TrackRepository
+import com.moman.domain.category.repository.CategoryRepository
+import com.moman.domain.chapter.repository.ChapterRepository
+import com.moman.domain.history.repository.HistoryRepository
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.repository.MangaRepository
+import com.moman.domain.track.repository.TrackRepository
 
 @Inject
 class MangaBackupCreator(

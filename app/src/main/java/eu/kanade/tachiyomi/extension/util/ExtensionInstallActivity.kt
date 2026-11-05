@@ -10,7 +10,7 @@ import eu.kanade.tachiyomi.util.system.hasMiuiPackageInstaller
 import eu.kanade.tachiyomi.util.system.toast
 import logcat.LogPriority
 import com.moman.app.di.appGraph
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import kotlin.time.Duration.Companion.seconds
 
 /**

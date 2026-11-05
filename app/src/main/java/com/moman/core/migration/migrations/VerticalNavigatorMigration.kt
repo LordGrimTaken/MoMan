@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.moman.core.migration.Migration
 import com.moman.core.migration.MigrationContext
-import tachiyomi.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.PreferenceStore
 
 @Inject
 @ContributesIntoSet(AppScope::class)

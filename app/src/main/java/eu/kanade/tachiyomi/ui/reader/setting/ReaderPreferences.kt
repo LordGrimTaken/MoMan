@@ -8,11 +8,11 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import eu.kanade.tachiyomi.ui.reader.viewer.webgpu.WebGpuShader
 import eu.kanade.tachiyomi.ui.reader.viewer.webgpu.WebGpuShaders
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.core.common.preference.getEnum
-import tachiyomi.core.common.preference.getEnumSet
-import tachiyomi.i18n.MR
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.getEnum
+import com.moman.core.common.preference.getEnumSet
+import com.moman.i18n.MR
 
 @Inject
 @SingleIn(AppScope::class)

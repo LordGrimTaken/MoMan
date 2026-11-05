@@ -40,10 +40,10 @@ import eu.kanade.tachiyomi.util.system.telemetryIncluded
 import com.moman.app.di.appGraph
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Check
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 internal class PermissionStep : OnboardingStep {
 

@@ -63,18 +63,18 @@ import eu.kanade.tachiyomi.ui.manga.MangaViewModel
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.roundedfilled.PlayArrow
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.TwoPanelBox
-import tachiyomi.presentation.core.components.VerticalFastScroller
-import tachiyomi.presentation.core.components.material.PullRefresh
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.shouldExpandFAB
-import tachiyomi.source.local.isLocal
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.model.StubSource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.TwoPanelBox
+import com.moman.presentation.core.components.VerticalFastScroller
+import com.moman.presentation.core.components.material.PullRefresh
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.shouldExpandFAB
+import com.moman.source.local.isLocal
 import kotlin.time.Instant
 
 @Composable

@@ -33,13 +33,13 @@ import com.moman.feature.migration.list.MigrationListScreen
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.FilterList
 import com.moman.presentation.core.util.collectAsLazyPagingItems
-import tachiyomi.core.common.Constants
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.source.local.LocalSource
+import com.moman.core.common.Constants
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.source.local.LocalSource
 
 data class MigrateSourceSearchScreen(
     private val currentManga: Manga,

@@ -58,10 +58,10 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.feature.migration.config.MigrationConfigScreen
 import com.moman.feature.migration.dialog.MigrateMangaDialog
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.model.Manga
+import com.moman.presentation.core.screens.LoadingScreen
 
 class MangaScreen(
     private val mangaId: Long,

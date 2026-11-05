@@ -27,11 +27,11 @@ import eu.kanade.tachiyomi.util.system.LocaleHelper
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Check
 import org.xmlpull.v1.XmlPullParser
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
-import tachiyomi.i18n.R
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.i18n.R
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
 
 class AppLanguageScreen : Screen() {
 

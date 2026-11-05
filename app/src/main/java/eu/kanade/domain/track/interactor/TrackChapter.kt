@@ -11,9 +11,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.track.interactor.GetTracks
-import tachiyomi.domain.track.interactor.UpsertTrack
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.track.interactor.GetTracks
+import com.moman.domain.track.interactor.UpsertTrack
 
 @Inject
 class TrackChapter(

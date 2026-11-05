@@ -14,7 +14,7 @@ import logcat.LogPriority
 import okhttp3.Dns
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import uy.kohesive.injekt.injectLazy
 import java.io.IOException
 import java.net.SocketTimeoutException

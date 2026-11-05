@@ -7,8 +7,8 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.model.Manga
 
 /**
  * Class used to keep a list of chapters for future deletion.

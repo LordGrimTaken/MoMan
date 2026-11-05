@@ -11,15 +11,15 @@ import eu.kanade.tachiyomi.data.track.TrackerManager
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.TriState
-import tachiyomi.core.common.preference.getAndSet
-import tachiyomi.domain.category.interactor.SetDisplayMode
-import tachiyomi.domain.category.interactor.SetSortModeForCategory
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.library.model.LibraryDisplayMode
-import tachiyomi.domain.library.model.LibrarySort
-import tachiyomi.domain.library.service.LibraryPreferences
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.TriState
+import com.moman.core.common.preference.getAndSet
+import com.moman.domain.category.interactor.SetDisplayMode
+import com.moman.domain.category.interactor.SetSortModeForCategory
+import com.moman.domain.category.model.Category
+import com.moman.domain.library.model.LibraryDisplayMode
+import com.moman.domain.library.model.LibrarySort
+import com.moman.domain.library.service.LibraryPreferences
 import kotlin.time.Duration.Companion.seconds
 
 @Inject

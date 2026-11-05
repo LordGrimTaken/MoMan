@@ -20,16 +20,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import tachiyomi.domain.history.interactor.GetTotalReadDuration
-import tachiyomi.domain.library.model.LibraryManga
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_HAS_UNREAD
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_NON_COMPLETED
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_NON_READ
-import tachiyomi.domain.manga.interactor.GetLibraryManga
-import tachiyomi.domain.track.interactor.GetTracksPerManga
-import tachiyomi.domain.track.model.Track
-import tachiyomi.source.local.isLocal
+import com.moman.domain.history.interactor.GetTotalReadDuration
+import com.moman.domain.library.model.LibraryManga
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_HAS_UNREAD
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_NON_COMPLETED
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_NON_READ
+import com.moman.domain.manga.interactor.GetLibraryManga
+import com.moman.domain.track.interactor.GetTracksPerManga
+import com.moman.domain.track.model.Track
+import com.moman.source.local.isLocal
 
 @Inject
 @ViewModelKey

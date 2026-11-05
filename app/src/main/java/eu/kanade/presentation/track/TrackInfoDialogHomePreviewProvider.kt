@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import eu.kanade.tachiyomi.ui.manga.track.TrackItem
 import eu.kanade.test.DummyTracker
-import tachiyomi.domain.track.model.Track
+import com.moman.domain.track.model.Track
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 

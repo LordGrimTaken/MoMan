@@ -22,9 +22,9 @@ import eu.kanade.tachiyomi.util.lang.truncateCenter
 import logcat.LogPriority
 import com.moman.app.di.appGraph
 import rikka.shizuku.ShizukuProvider
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 import java.io.File
 
 /**

@@ -20,10 +20,10 @@ import com.moman.icons.materialsymbols.rounded.ContentCopy
 import com.moman.icons.materialsymbols.rounded.Photo
 import com.moman.icons.materialsymbols.rounded.Save
 import com.moman.icons.materialsymbols.rounded.Share
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.ActionButton
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.ActionButton
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun ReaderPageActionsDialog(

@@ -1,7 +1,7 @@
 package com.moman.domain.source.models
 
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.manga.model.Manga
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.manga.model.Manga
 
 data class RemoteMangaUpdate(
     val manga: Manga,

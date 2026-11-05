@@ -22,21 +22,21 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateWorker
 import eu.kanade.tachiyomi.ui.category.CategoryScreen
 import kotlinx.coroutines.launch
 import com.moman.app.di.appGraph
-import tachiyomi.domain.category.model.Category
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.DEVICE_CHARGING
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.DEVICE_NETWORK_NOT_METERED
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.DEVICE_ONLY_ON_WIFI
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_HAS_UNREAD
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_NON_COMPLETED
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_NON_READ
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MANGA_OUTSIDE_RELEASE_PERIOD
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MARK_DUPLICATE_CHAPTER_READ_EXISTING
-import tachiyomi.domain.library.service.LibraryPreferences.Companion.MARK_DUPLICATE_CHAPTER_READ_NEW
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.pluralStringResource
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.domain.category.model.Category
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.domain.library.service.LibraryPreferences.Companion.DEVICE_CHARGING
+import com.moman.domain.library.service.LibraryPreferences.Companion.DEVICE_NETWORK_NOT_METERED
+import com.moman.domain.library.service.LibraryPreferences.Companion.DEVICE_ONLY_ON_WIFI
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_HAS_UNREAD
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_NON_COMPLETED
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_NON_READ
+import com.moman.domain.library.service.LibraryPreferences.Companion.MANGA_OUTSIDE_RELEASE_PERIOD
+import com.moman.domain.library.service.LibraryPreferences.Companion.MARK_DUPLICATE_CHAPTER_READ_EXISTING
+import com.moman.domain.library.service.LibraryPreferences.Companion.MARK_DUPLICATE_CHAPTER_READ_NEW
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.pluralStringResource
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.collectAsState
 
 object SettingsLibraryScreen : SearchableSettings {
 

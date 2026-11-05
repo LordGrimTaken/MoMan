@@ -27,10 +27,10 @@ import okio.Source
 import okio.buffer
 import okio.sink
 import okio.source
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.model.MangaCover
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.model.MangaCover
+import com.moman.domain.source.service.SourceManager
 import java.io.File
 import java.io.IOException
 

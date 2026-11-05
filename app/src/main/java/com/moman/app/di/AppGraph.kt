@@ -46,16 +46,16 @@ import com.moman.core.metro.IsDebugBuild
 import com.moman.domain.extension.interactor.GetExtensionStoreCountAsFlow
 import com.moman.domain.extension.repository.ExtensionStoreRepository
 import nl.adaptivity.xmlutil.serialization.XML
-import tachiyomi.domain.backup.service.BackupPreferences
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.category.interactor.ResetCategoryFlags
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.domain.manga.interactor.GetFavorites
-import tachiyomi.domain.manga.interactor.ResetViewerFlags
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.domain.storage.service.StoragePreferences
-import tachiyomi.domain.track.interactor.UpsertTrack
+import com.moman.domain.backup.service.BackupPreferences
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.category.interactor.ResetCategoryFlags
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.domain.manga.interactor.GetFavorites
+import com.moman.domain.manga.interactor.ResetViewerFlags
+import com.moman.domain.source.service.SourceManager
+import com.moman.domain.storage.service.StoragePreferences
+import com.moman.domain.track.interactor.UpsertTrack
 
 @DependencyGraph(
     scope = AppScope::class,

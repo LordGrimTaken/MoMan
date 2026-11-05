@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import kotlinx.coroutines.delay
 import com.moman.app.di.appGraph
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.presentation.core.util.collectAsState
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import kotlin.time.Duration.Companion.milliseconds

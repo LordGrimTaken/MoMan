@@ -26,14 +26,14 @@ import eu.kanade.presentation.components.TabbedDialog
 import eu.kanade.presentation.components.TabbedDialogPaddings
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.ui.manga.MangaScreen
-import tachiyomi.core.common.preference.TriState
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.SettingsItemsPaddings
-import tachiyomi.presentation.core.components.TriStateItem
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.preference.TriState
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.SettingsItemsPaddings
+import com.moman.presentation.core.components.TriStateItem
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.util.collectAsState
 
 class UpcomingScreen : Screen() {
 

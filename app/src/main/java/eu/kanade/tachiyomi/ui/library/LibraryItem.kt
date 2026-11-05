@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.library
 
-import tachiyomi.domain.library.model.LibraryManga
+import com.moman.domain.library.model.LibraryManga
 
 data class LibraryItem(
     val libraryManga: LibraryManga,

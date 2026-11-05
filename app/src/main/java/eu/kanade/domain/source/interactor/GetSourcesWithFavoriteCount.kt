@@ -4,10 +4,10 @@ import dev.zacsweers.metro.Inject
 import eu.kanade.domain.source.service.SourcePreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import tachiyomi.core.common.util.lang.compareToWithCollator
-import tachiyomi.domain.source.model.Source
-import tachiyomi.domain.source.repository.SourceRepository
-import tachiyomi.source.local.isLocal
+import com.moman.core.common.util.lang.compareToWithCollator
+import com.moman.domain.source.model.Source
+import com.moman.domain.source.repository.SourceRepository
+import com.moman.source.local.isLocal
 import java.util.Collections
 
 @Inject

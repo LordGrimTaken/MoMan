@@ -23,9 +23,9 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.zIndex
 import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.launch
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.components.material.TabText
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.components.material.TabText
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun TabbedScreen(

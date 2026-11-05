@@ -37,12 +37,12 @@ import com.moman.domain.source.interactor.UpdateMangaFromRemote
 import com.moman.feature.migration.list.models.MigratingManga
 import com.moman.feature.migration.list.models.MigratingManga.SearchResult
 import com.moman.feature.migration.list.search.SmartSourceSearchEngine
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.interactor.GetChapterSummaryByMangaId
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.interactor.NetworkToLocalManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.interactor.GetChapterSummaryByMangaId
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.interactor.NetworkToLocalManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 
 @AssistedInject
 class MigrationListViewModel(

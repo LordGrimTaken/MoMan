@@ -7,12 +7,12 @@ import eu.kanade.domain.source.interactor.SetMigrateSorting
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import com.moman.domain.extension.model.ContentWarning
 import com.moman.domain.migration.models.MigrationFlag
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
-import tachiyomi.core.common.preference.getEnum
-import tachiyomi.core.common.preference.getEnumSet
-import tachiyomi.core.common.preference.getLongArray
-import tachiyomi.domain.library.model.LibraryDisplayMode
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.getEnum
+import com.moman.core.common.preference.getEnumSet
+import com.moman.core.common.preference.getLongArray
+import com.moman.domain.library.model.LibraryDisplayMode
 
 @Inject
 @SingleIn(AppScope::class)

@@ -43,8 +43,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.moman.app.di.appGraph
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.screens.LoadingScreen
 
 class SourcePreferencesScreen(val sourceId: Long) : Screen() {
 

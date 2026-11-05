@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import logcat.LogPriority
 import com.moman.app.di.appGraph
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import java.util.Collections
 import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.concurrent.atomics.AtomicReference

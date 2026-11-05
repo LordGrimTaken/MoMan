@@ -27,10 +27,10 @@ import eu.kanade.tachiyomi.util.lang.toTimestampString
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Delete
 import com.moman.icons.materialsymbols.rounded.Favorite
-import tachiyomi.domain.history.model.HistoryWithRelations
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.domain.history.model.HistoryWithRelations
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 

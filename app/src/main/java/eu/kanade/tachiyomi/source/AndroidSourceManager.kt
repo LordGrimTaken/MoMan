@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import com.moman.core.metro.AppCoroutineScope
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.domain.source.repository.StubSourceRepository
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.source.local.LocalSource
+import com.moman.domain.source.model.StubSource
+import com.moman.domain.source.repository.StubSourceRepository
+import com.moman.domain.source.service.SourceManager
+import com.moman.source.local.LocalSource
 import java.util.concurrent.ConcurrentHashMap
 
 @Inject

@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Folder
-import tachiyomi.presentation.core.components.Badge
+import com.moman.presentation.core.components.Badge
 
 @Composable
 internal fun DownloadsBadge(count: Int) {

@@ -21,8 +21,8 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.ArrowRight
 import com.moman.icons.materialsymbols.rounded.RadioButtonChecked
 import com.moman.icons.materialsymbols.rounded.RadioButtonUnchecked
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 import androidx.compose.material3.DropdownMenu as ComposeDropdownMenu
 
 /**

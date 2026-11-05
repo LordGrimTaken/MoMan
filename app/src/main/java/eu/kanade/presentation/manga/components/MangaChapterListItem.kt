@@ -38,12 +38,12 @@ import com.moman.icons.materialsymbols.rounded.FileDownloadOff
 import com.moman.icons.materialsymbols.rounded.RemoveDone
 import com.moman.icons.materialsymbols.roundedfilled.Bookmark
 import com.moman.icons.materialsymbols.roundedfilled.Circle
-import tachiyomi.domain.library.service.LibraryPreferences
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.DISABLED_ALPHA
-import tachiyomi.presentation.core.components.material.SECONDARY_ALPHA
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.selectedBackground
+import com.moman.domain.library.service.LibraryPreferences
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.DISABLED_ALPHA
+import com.moman.presentation.core.components.material.SECONDARY_ALPHA
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.selectedBackground
 
 @Composable
 fun MangaChapterListItem(

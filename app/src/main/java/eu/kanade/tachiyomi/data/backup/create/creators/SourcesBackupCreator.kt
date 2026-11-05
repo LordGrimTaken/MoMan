@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.backup.create.creators
 import dev.zacsweers.metro.Inject
 import eu.kanade.tachiyomi.data.backup.models.BackupSource
 import eu.kanade.tachiyomi.source.Source
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.domain.source.service.SourceManager
 
 @Inject
 class SourcesBackupCreator(

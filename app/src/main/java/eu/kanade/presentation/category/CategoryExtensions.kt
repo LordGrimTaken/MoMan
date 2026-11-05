@@ -2,10 +2,10 @@ package eu.kanade.presentation.category
 
 import android.content.Context
 import androidx.compose.runtime.Composable
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.domain.category.model.Category
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.i18n.stringResource
+import com.moman.domain.category.model.Category
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
 
 val Category.visualName: String
     @Composable

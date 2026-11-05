@@ -28,8 +28,8 @@ import com.moman.app.di.appGraph
 import com.moman.core.common.FeatureFlags
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.Autorenew
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.i18n.MR
+import com.moman.presentation.core.util.collectAsState
 
 class DebugInfoScreen : Screen() {
 

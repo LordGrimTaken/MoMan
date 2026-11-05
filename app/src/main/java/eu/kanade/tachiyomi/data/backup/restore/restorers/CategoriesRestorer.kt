@@ -2,10 +2,10 @@ package eu.kanade.tachiyomi.data.backup.restore.restorers
 
 import dev.zacsweers.metro.Inject
 import eu.kanade.tachiyomi.data.backup.models.BackupCategory
-import tachiyomi.domain.category.interactor.GetCategories
-import tachiyomi.domain.category.model.NewCategory
-import tachiyomi.domain.category.repository.CategoryRepository
-import tachiyomi.domain.library.service.LibraryPreferences
+import com.moman.domain.category.interactor.GetCategories
+import com.moman.domain.category.model.NewCategory
+import com.moman.domain.category.repository.CategoryRepository
+import com.moman.domain.library.service.LibraryPreferences
 
 @Inject
 class CategoriesRestorer(

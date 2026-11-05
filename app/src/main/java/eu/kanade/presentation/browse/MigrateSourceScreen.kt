@@ -28,20 +28,20 @@ import com.moman.icons.materialsymbols.rounded.ArrowDownward
 import com.moman.icons.materialsymbols.rounded.ArrowUpward
 import com.moman.icons.materialsymbols.rounded.Numbers
 import com.moman.icons.materialsymbols.rounded.SortByAlpha
-import tachiyomi.domain.source.model.Source
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.Badge
-import tachiyomi.presentation.core.components.BadgeGroup
-import tachiyomi.presentation.core.components.ScrollbarLazyColumn
-import tachiyomi.presentation.core.components.Scroller.STICKY_HEADER_KEY_PREFIX
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.components.material.topSmallPaddingValues
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.theme.header
-import tachiyomi.presentation.core.util.plus
-import tachiyomi.presentation.core.util.secondaryItemAlpha
+import com.moman.domain.source.model.Source
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.Badge
+import com.moman.presentation.core.components.BadgeGroup
+import com.moman.presentation.core.components.ScrollbarLazyColumn
+import com.moman.presentation.core.components.Scroller.STICKY_HEADER_KEY_PREFIX
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.components.material.topSmallPaddingValues
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.theme.header
+import com.moman.presentation.core.util.plus
+import com.moman.presentation.core.util.secondaryItemAlpha
 
 @Composable
 fun MigrateSourceScreen(

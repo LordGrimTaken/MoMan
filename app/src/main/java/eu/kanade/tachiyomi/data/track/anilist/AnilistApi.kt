@@ -23,10 +23,10 @@ import com.moman.graphql.anilist.AniListSearchMangaQuery
 import com.moman.graphql.anilist.AniListUpdateMangaMutation
 import com.moman.graphql.anilist.type.FuzzyDateInput
 import okhttp3.OkHttpClient
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class AnilistApi(
     val trackerId: Long,

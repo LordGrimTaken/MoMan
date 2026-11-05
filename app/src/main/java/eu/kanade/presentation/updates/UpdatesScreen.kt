@@ -35,14 +35,14 @@ import com.moman.icons.materialsymbols.rounded.FilterList
 import com.moman.icons.materialsymbols.rounded.FlipToBack
 import com.moman.icons.materialsymbols.rounded.Refresh
 import com.moman.icons.materialsymbols.rounded.SelectAll
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.FastScrollLazyColumn
-import tachiyomi.presentation.core.components.material.PullRefresh
-import tachiyomi.presentation.core.components.material.Scaffold
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.LoadingScreen
-import tachiyomi.presentation.core.theme.active
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.FastScrollLazyColumn
+import com.moman.presentation.core.components.material.PullRefresh
+import com.moman.presentation.core.components.material.Scaffold
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.theme.active
 import kotlin.time.Duration.Companion.seconds
 
 @Composable

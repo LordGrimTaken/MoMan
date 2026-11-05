@@ -39,11 +39,11 @@ import androidx.compose.ui.unit.sp
 import eu.kanade.presentation.manga.components.MangaCover
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.roundedfilled.PlayArrow
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.BadgeGroup
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.util.selectedBackground
-import tachiyomi.domain.manga.model.MangaCover as MangaCoverModel
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.BadgeGroup
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.util.selectedBackground
+import com.moman.domain.manga.model.MangaCover as MangaCoverModel
 
 object CommonMangaItemDefaults {
     val GridHorizontalSpacer = 4.dp

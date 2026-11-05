@@ -12,7 +12,7 @@ import androidx.webkit.WebViewFeature
 import kotlinx.coroutines.suspendCancellableCoroutine
 import logcat.LogPriority
 import okhttp3.Headers
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import java.util.Locale
 import kotlin.coroutines.resume
 

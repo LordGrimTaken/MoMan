@@ -19,10 +19,10 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredroundedfilled.ViewList
 import com.moman.icons.materialsymbols.roundedfilled.ViewCompact
 import com.moman.icons.materialsymbols.roundedfilled.ViewModule
-import tachiyomi.domain.library.model.LibraryDisplayMode
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.source.local.LocalSource
+import com.moman.domain.library.model.LibraryDisplayMode
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.source.local.LocalSource
 
 @Composable
 fun BrowseSourceToolbar(

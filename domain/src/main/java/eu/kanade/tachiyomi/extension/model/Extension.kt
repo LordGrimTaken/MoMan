@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.extension.model
 import eu.kanade.tachiyomi.source.Source
 import com.moman.domain.extension.model.ContentWarning
 import com.moman.domain.extension.model.ExtensionStore
-import tachiyomi.domain.source.model.StubSource
+import com.moman.domain.source.model.StubSource
 
 sealed interface Extension {
 

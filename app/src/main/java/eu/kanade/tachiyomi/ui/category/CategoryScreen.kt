@@ -16,7 +16,7 @@ import eu.kanade.presentation.category.components.CategoryRenameDialog
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.collectLatest
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.presentation.core.screens.LoadingScreen
 
 class CategoryScreen : Screen() {
 

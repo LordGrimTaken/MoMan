@@ -3,7 +3,7 @@ package eu.kanade.domain.chapter.interactor
 import dev.zacsweers.metro.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import tachiyomi.domain.chapter.repository.ChapterRepository
+import com.moman.domain.chapter.repository.ChapterRepository
 
 @Inject
 class GetAvailableScanlators(

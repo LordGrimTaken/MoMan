@@ -5,7 +5,7 @@ import dev.zacsweers.metro.ContributesIntoSet
 import dev.zacsweers.metro.Inject
 import com.moman.core.migration.Migration
 import com.moman.core.migration.MigrationContext
-import tachiyomi.domain.library.service.LibraryPreferences
+import com.moman.domain.library.service.LibraryPreferences
 
 @Inject
 @ContributesIntoSet(AppScope::class)

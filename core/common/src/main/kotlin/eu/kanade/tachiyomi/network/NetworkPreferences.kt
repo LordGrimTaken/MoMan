@@ -4,8 +4,8 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import com.moman.core.metro.IsDebugBuild
-import tachiyomi.core.common.preference.Preference
-import tachiyomi.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.Preference
+import com.moman.core.common.preference.PreferenceStore
 
 @Inject
 @SingleIn(AppScope::class)

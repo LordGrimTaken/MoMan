@@ -27,11 +27,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import eu.kanade.core.preference.asToggleableState
 import eu.kanade.presentation.category.visualName
-import tachiyomi.core.common.preference.CheckboxState
-import tachiyomi.domain.category.model.Category
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.core.common.preference.CheckboxState
+import com.moman.domain.category.model.Category
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 
 @Composable
 fun CategoryCreateDialog(
@@ -196,7 +196,7 @@ fun ChangeCategoryDialog(
         AlertDialog(
             onDismissRequest = onDismissRequest,
             confirmButton = {
-                tachiyomi.presentation.core.components.material.TextButton(
+                com.moman.presentation.core.components.material.TextButton(
                     onClick = {
                         onDismissRequest()
                         onEditCategories()
@@ -219,17 +219,17 @@ fun ChangeCategoryDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             Row {
-                tachiyomi.presentation.core.components.material.TextButton(onClick = {
+                com.moman.presentation.core.components.material.TextButton(onClick = {
                     onDismissRequest()
                     onEditCategories()
                 }) {
                     Text(text = stringResource(MR.strings.action_edit))
                 }
                 Spacer(modifier = Modifier.weight(1f))
-                tachiyomi.presentation.core.components.material.TextButton(onClick = onDismissRequest) {
+                com.moman.presentation.core.components.material.TextButton(onClick = onDismissRequest) {
                     Text(text = stringResource(MR.strings.action_cancel))
                 }
-                tachiyomi.presentation.core.components.material.TextButton(
+                com.moman.presentation.core.components.material.TextButton(
                     onClick = {
                         onDismissRequest()
                         onConfirm(

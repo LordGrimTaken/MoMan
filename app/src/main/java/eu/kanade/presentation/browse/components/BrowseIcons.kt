@@ -22,8 +22,8 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.roundedfilled.Dangerous
 import com.moman.icons.materialsymbols.roundedfilled.Warning
-import tachiyomi.domain.source.model.Source
-import tachiyomi.source.local.isLocal
+import com.moman.domain.source.model.Source
+import com.moman.source.local.isLocal
 
 private val defaultModifier = Modifier
     .height(40.dp)

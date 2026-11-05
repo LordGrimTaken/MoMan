@@ -10,11 +10,11 @@ import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.sourcePreferences
 import kotlinx.coroutines.runBlocking
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.i18n.MR
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
+import com.moman.i18n.MR
 import java.security.MessageDigest
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class Kavita(id: Long) : BaseTracker(id, "Kavita"), EnhancedTracker {
 

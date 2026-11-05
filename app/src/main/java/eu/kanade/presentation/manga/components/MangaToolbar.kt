@@ -21,9 +21,9 @@ import com.moman.icons.materialsymbols.rounded.Download
 import com.moman.icons.materialsymbols.rounded.FilterList
 import com.moman.icons.materialsymbols.rounded.FlipToBack
 import com.moman.icons.materialsymbols.rounded.SelectAll
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.theme.active
+import com.moman.i18n.MR
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.theme.active
 
 @Composable
 fun MangaToolbar(

@@ -9,10 +9,10 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.source.online.HttpSource
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import tachiyomi.domain.chapter.interactor.GetChapter
-import tachiyomi.domain.manga.interactor.GetManga
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.service.SourceManager
+import com.moman.domain.chapter.interactor.GetChapter
+import com.moman.domain.manga.interactor.GetManga
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.service.SourceManager
 
 /**
  * This class is used to persist active downloads across application restarts.

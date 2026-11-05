@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import com.moman.domain.extension.model.ExtensionStore
 import com.moman.domain.extension.repository.ExtensionStoreRepository
-import tachiyomi.core.common.preference.getAndSet
+import com.moman.core.common.preference.getAndSet
 
 @Inject
 class TrustExtension(

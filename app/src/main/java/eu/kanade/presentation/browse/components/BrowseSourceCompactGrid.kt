@@ -14,9 +14,9 @@ import androidx.paging.compose.LazyPagingItems
 import eu.kanade.presentation.library.components.CommonMangaItemDefaults
 import eu.kanade.presentation.library.components.MangaCompactGridItem
 import kotlinx.coroutines.flow.StateFlow
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.model.MangaCover
-import tachiyomi.presentation.core.util.plus
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.model.MangaCover
+import com.moman.presentation.core.util.plus
 
 @Composable
 fun BrowseSourceCompactGrid(

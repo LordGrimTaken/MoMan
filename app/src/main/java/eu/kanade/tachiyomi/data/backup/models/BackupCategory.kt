@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.backup.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
-import tachiyomi.domain.category.model.Category
+import com.moman.domain.category.model.Category
 
 @Serializable
 class BackupCategory(

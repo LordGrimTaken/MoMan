@@ -17,7 +17,7 @@ import coil3.request.Options
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import okio.BufferedSource
-import tachiyomi.core.common.util.system.ImageUtil
+import com.moman.core.common.util.system.ImageUtil
 import kotlin.math.min
 import kotlin.math.sqrt
 

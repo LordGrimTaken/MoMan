@@ -7,7 +7,7 @@ import eu.kanade.domain.source.service.SourcePreferences
 import com.moman.core.migration.Migration
 import com.moman.core.migration.MigrationContext
 import com.moman.domain.extension.model.ContentWarning
-import tachiyomi.core.common.preference.PreferenceStore
+import com.moman.core.common.preference.PreferenceStore
 
 @Inject
 @ContributesIntoSet(AppScope::class)

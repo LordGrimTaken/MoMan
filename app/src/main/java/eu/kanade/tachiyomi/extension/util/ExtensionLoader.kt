@@ -22,7 +22,7 @@ import com.moman.app.di.appGraph
 import com.moman.data.dalvik.DelegateLastClassLoaderCompat
 import com.moman.domain.extension.model.ContentWarning
 import com.moman.domain.extension.model.ExtensionStore
-import tachiyomi.core.common.util.system.logcat
+import com.moman.core.common.util.system.logcat
 import java.io.File
 
 /**
@@ -41,10 +41,10 @@ import java.io.File
  */
 internal object ExtensionLoader {
 
-    private const val EXTENSION_FEATURE = "tachiyomi.extension"
-    private const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
-    private const val METADATA_SOURCE_FACTORY = "tachiyomi.extension.factory"
-    private const val METADATA_NSFW = "tachiyomi.extension.nsfw"
+    private const val EXTENSION_FEATURE = "com.moman.extension"
+    private const val METADATA_SOURCE_CLASS = "com.moman.extension.class"
+    private const val METADATA_SOURCE_FACTORY = "com.moman.extension.factory"
+    private const val METADATA_NSFW = "com.moman.extension.nsfw"
 
     private const val METADATA_NAME = "tachiyomix.name"
     private const val METADATA_EXTENSION_LIB = "tachiyomix.extensionLib"

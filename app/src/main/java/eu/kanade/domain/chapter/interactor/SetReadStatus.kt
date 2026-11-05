@@ -3,13 +3,13 @@ package eu.kanade.domain.chapter.interactor
 import dev.zacsweers.metro.Inject
 import eu.kanade.domain.download.interactor.DeleteDownload
 import logcat.LogPriority
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.chapter.model.Chapter
-import tachiyomi.domain.chapter.model.ChapterUpdate
-import tachiyomi.domain.chapter.repository.ChapterRepository
-import tachiyomi.domain.download.service.DownloadPreferences
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.manga.repository.MangaRepository
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.chapter.model.Chapter
+import com.moman.domain.chapter.model.ChapterUpdate
+import com.moman.domain.chapter.repository.ChapterRepository
+import com.moman.domain.download.service.DownloadPreferences
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.manga.repository.MangaRepository
 
 @Inject
 class SetReadStatus(

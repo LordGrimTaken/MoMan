@@ -15,9 +15,9 @@ import eu.kanade.tachiyomi.extension.util.ExtensionInstaller.Companion.EXTRA_DOW
 import eu.kanade.tachiyomi.util.system.getSerializableExtraCompat
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import logcat.LogPriority
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.i18n.MR
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.i18n.MR
 
 class ExtensionInstallService : Service() {
 

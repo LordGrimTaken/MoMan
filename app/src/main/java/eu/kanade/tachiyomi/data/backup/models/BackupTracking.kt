@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 import com.moman.core.common.extensions.toEpochMillisOrZero
 import com.moman.core.common.extensions.toInstantOrNull
-import tachiyomi.domain.track.model.Track
+import com.moman.domain.track.model.Track
 
 @Serializable
 data class BackupTracking(

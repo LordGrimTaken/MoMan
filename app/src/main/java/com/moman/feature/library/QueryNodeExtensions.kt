@@ -14,7 +14,7 @@ import com.moman.domain.library.model.search.MangaField
 import com.moman.domain.library.model.search.NotNode
 import com.moman.domain.library.model.search.OrNode
 import com.moman.domain.library.model.search.QueryNode
-import tachiyomi.source.local.LocalSource
+import com.moman.source.local.LocalSource
 import kotlin.math.abs
 import kotlin.time.Instant
 

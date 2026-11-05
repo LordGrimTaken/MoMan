@@ -17,7 +17,7 @@ import eu.kanade.tachiyomi.util.system.toast
 import com.moman.feature.migration.list.components.MigrationExitDialog
 import com.moman.feature.migration.list.components.MigrationMangaDialog
 import com.moman.feature.migration.list.components.MigrationProgressDialog
-import tachiyomi.i18n.MR
+import com.moman.i18n.MR
 
 class MigrationListScreen(private val mangaIds: Collection<Long>, private val extraSearchQuery: String?) : Screen() {
 

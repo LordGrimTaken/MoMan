@@ -37,7 +37,7 @@ import java.math.RoundingMode
 import java.security.SecureRandom
 import java.util.Base64
 import kotlin.time.Duration.Companion.minutes
-import tachiyomi.domain.track.model.Track as DomainTrack
+import com.moman.domain.track.model.Track as DomainTrack
 
 class ComickApi(
     private val trackerId: Long,

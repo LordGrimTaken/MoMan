@@ -7,7 +7,7 @@ import ca.mpreg.webgpuviewer.renderer.ImageFilterWgsl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
-import tachiyomi.core.common.preference.Preference
+import com.moman.core.common.preference.Preference
 import java.io.File
 import java.util.UUID
 

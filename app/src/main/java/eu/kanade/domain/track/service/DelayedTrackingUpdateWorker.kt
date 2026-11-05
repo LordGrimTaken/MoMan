@@ -17,8 +17,8 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.app.di.AppGraph
 import com.moman.core.metro.metroGraph
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.track.interactor.GetTracks
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.track.interactor.GetTracks
 import java.util.concurrent.TimeUnit
 
 class DelayedTrackingUpdateWorker(private val context: Context, workerParams: WorkerParameters) :

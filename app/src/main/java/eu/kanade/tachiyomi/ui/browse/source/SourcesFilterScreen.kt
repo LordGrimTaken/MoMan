@@ -11,8 +11,8 @@ import dev.zacsweers.metrox.viewmodel.metroViewModel
 import eu.kanade.presentation.browse.SourcesFilterScreen
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.util.system.toast
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.i18n.MR
+import com.moman.presentation.core.screens.LoadingScreen
 
 class SourcesFilterScreen : Screen() {
 

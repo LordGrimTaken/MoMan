@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.flowOf
 import okhttp3.OkHttpClient
-import tachiyomi.domain.track.model.Track
-import tachiyomi.i18n.MR
+import com.moman.domain.track.model.Track
+import com.moman.i18n.MR
 
 data class DummyTracker(
     override val id: Long,

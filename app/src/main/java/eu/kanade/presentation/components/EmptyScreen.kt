@@ -7,9 +7,9 @@ import eu.kanade.presentation.theme.TachiyomiPreviewTheme
 import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.automirroredrounded.Help
 import com.moman.icons.materialsymbols.rounded.Refresh
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.screens.EmptyScreen
-import tachiyomi.presentation.core.screens.EmptyScreenAction
+import com.moman.i18n.MR
+import com.moman.presentation.core.screens.EmptyScreen
+import com.moman.presentation.core.screens.EmptyScreenAction
 
 @PreviewLightDark
 @Composable

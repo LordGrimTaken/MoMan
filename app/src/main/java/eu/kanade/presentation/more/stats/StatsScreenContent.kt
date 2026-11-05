@@ -20,10 +20,10 @@ import com.moman.icons.materialsymbols.MaterialSymbols
 import com.moman.icons.materialsymbols.rounded.CollectionsBookmark
 import com.moman.icons.materialsymbols.rounded.LocalLibrary
 import com.moman.icons.materialsymbols.rounded.Schedule
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.SectionCard
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.SectionCard
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
 import java.util.Locale
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration

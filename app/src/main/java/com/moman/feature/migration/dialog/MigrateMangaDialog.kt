@@ -39,12 +39,12 @@ import kotlinx.coroutines.withContext
 import com.moman.domain.migration.models.MigrationFlag
 import com.moman.domain.migration.usecases.MigrateMangaUseCase
 import com.moman.feature.common.utils.getLabel
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.LabeledCheckbox
-import tachiyomi.presentation.core.components.material.padding
-import tachiyomi.presentation.core.i18n.stringResource
-import tachiyomi.presentation.core.screens.LoadingScreen
+import com.moman.domain.manga.model.Manga
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.LabeledCheckbox
+import com.moman.presentation.core.components.material.padding
+import com.moman.presentation.core.i18n.stringResource
+import com.moman.presentation.core.screens.LoadingScreen
 
 @Composable
 internal fun Screen.MigrateMangaDialog(

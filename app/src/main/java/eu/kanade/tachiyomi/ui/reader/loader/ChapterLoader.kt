@@ -13,13 +13,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.moman.core.archive.archiveReader
 import com.moman.core.archive.epubReader
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.manga.model.Manga
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.i18n.MR
-import tachiyomi.source.local.LocalSource
-import tachiyomi.source.local.io.Format
+import com.moman.core.common.i18n.stringResource
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.manga.model.Manga
+import com.moman.domain.source.model.StubSource
+import com.moman.i18n.MR
+import com.moman.source.local.LocalSource
+import com.moman.source.local.io.Format
 
 /**
  * Loader used to retrieve the [PageLoader] for a given chapter.

@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
-import tachiyomi.domain.source.model.Source
+import com.moman.domain.source.model.Source
 import java.util.SortedMap
 import kotlin.time.Duration.Companion.seconds
 

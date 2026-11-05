@@ -38,9 +38,9 @@ import com.moman.core.metro.AppCoroutineScope
 import com.moman.domain.extension.interactor.UpdateExtensionStores
 import com.moman.domain.extension.model.ExtensionStore
 import com.moman.domain.extension.repository.ExtensionStoreRepository
-import tachiyomi.core.common.util.system.logcat
-import tachiyomi.domain.source.model.StubSource
-import tachiyomi.i18n.MR
+import com.moman.core.common.util.system.logcat
+import com.moman.domain.source.model.StubSource
+import com.moman.i18n.MR
 import java.util.Locale
 
 /**

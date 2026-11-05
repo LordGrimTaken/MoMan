@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.backup.models
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 import com.moman.core.common.extensions.toInstantOrNull
-import tachiyomi.domain.history.model.History
+import com.moman.domain.history.model.History
 
 @Serializable
 data class BackupHistory(

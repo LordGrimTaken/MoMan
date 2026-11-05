@@ -31,10 +31,10 @@ import eu.kanade.presentation.more.settings.widget.TrackingPreferenceWidget
 import eu.kanade.tachiyomi.data.track.RefreshResult
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.launch
-import tachiyomi.core.common.i18n.stringResource
-import tachiyomi.i18n.MR
-import tachiyomi.presentation.core.components.BaseSliderItem
-import tachiyomi.presentation.core.util.collectAsState
+import com.moman.core.common.i18n.stringResource
+import com.moman.i18n.MR
+import com.moman.presentation.core.components.BaseSliderItem
+import com.moman.presentation.core.util.collectAsState
 
 val LocalPreferenceHighlighted = compositionLocalOf(structuralEqualityPolicy()) { false }
 val LocalPreferenceMinHeight = compositionLocalOf(structuralEqualityPolicy()) { 56.dp }
