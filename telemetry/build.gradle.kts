@@ -1,4 +1,4 @@
-import mihon.gradle.Config
+import com.moman.gradle.Config
 
 plugins {
     alias(mihonx.plugins.android.library)
@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "mihon.telemetry"
+    namespace = "com.moman.telemetry"
 
     sourceSets {
         getByName("main") {

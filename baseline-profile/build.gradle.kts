@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "mihon.baselineprofile"
+    namespace = "com.moman.baselineprofile"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

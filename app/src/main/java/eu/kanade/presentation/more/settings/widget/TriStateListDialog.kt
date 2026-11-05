@@ -24,10 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.CheckBoxOutlineBlank
-import mihon.icons.materialsymbols.roundedfilled.CheckBox
-import mihon.icons.materialsymbols.roundedfilled.DisabledByDefault
+import com.moman.icons.materialsymbols.MaterialSymbols
+import com.moman.icons.materialsymbols.rounded.CheckBoxOutlineBlank
+import com.moman.icons.materialsymbols.roundedfilled.CheckBox
+import com.moman.icons.materialsymbols.roundedfilled.DisabledByDefault
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.core.i18n.stringResource
 

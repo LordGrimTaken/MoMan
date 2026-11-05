@@ -45,10 +45,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
-import mihon.core.common.utils.mutate
-import mihon.core.metro.AppCoroutineScope
-import mihon.domain.library.model.search.QueryNode
-import mihon.feature.library.matches
+import com.moman.core.common.utils.mutate
+import com.moman.core.metro.AppCoroutineScope
+import com.moman.domain.library.model.search.QueryNode
+import com.moman.feature.library.matches
 import tachiyomi.core.common.preference.CheckboxState
 import tachiyomi.core.common.preference.TriState
 import tachiyomi.core.common.util.lang.SubscriberGate

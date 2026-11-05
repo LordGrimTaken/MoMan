@@ -43,11 +43,11 @@ import kotlinx.coroutines.withContext
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import logcat.LogPriority
-import mihon.app.di.AppGraph
-import mihon.app.di.appGraph
-import mihon.core.metro.metroGraph
-import mihon.domain.chapter.interactor.FilterChaptersForDownload
-import mihon.domain.source.interactor.UpdateMangaFromRemote
+import com.moman.app.di.AppGraph
+import com.moman.app.di.appGraph
+import com.moman.core.metro.metroGraph
+import com.moman.domain.chapter.interactor.FilterChaptersForDownload
+import com.moman.domain.source.interactor.UpdateMangaFromRemote
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.preference.getAndSet
 import tachiyomi.core.common.util.system.logcat

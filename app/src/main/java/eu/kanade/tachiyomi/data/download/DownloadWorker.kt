@@ -21,8 +21,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import mihon.app.di.AppGraph
-import mihon.core.metro.metroGraph
+import com.moman.app.di.AppGraph
+import com.moman.core.metro.metroGraph
 import tachiyomi.domain.download.service.DownloadPreferences
 import tachiyomi.i18n.R
 import kotlin.time.Duration.Companion.seconds

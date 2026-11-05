@@ -42,7 +42,7 @@ import eu.kanade.tachiyomi.widget.TachiyomiTextInputEditText.Companion.setIncogn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import mihon.app.di.appGraph
+import com.moman.app.di.appGraph
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.screens.LoadingScreen
 

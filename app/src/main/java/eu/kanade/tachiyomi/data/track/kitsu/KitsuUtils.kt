@@ -3,15 +3,15 @@ package eu.kanade.tachiyomi.data.track.kitsu
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.kitsu.dto.KitsuUser
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import mihon.graphql.kitsu.KitsuFindLibMangaQuery
-import mihon.graphql.kitsu.KitsuGetCurrentAccountQuery
-import mihon.graphql.kitsu.KitsuGetMangaDetailsByIdQuery
-import mihon.graphql.kitsu.KitsuGetMangaDetailsBySlugQuery
-import mihon.graphql.kitsu.KitsuSearchMangaByTitleQuery
-import mihon.graphql.kitsu.fragment.MangaFragment
-import mihon.graphql.kitsu.type.LibraryEntryStatusEnum
-import mihon.graphql.kitsu.type.MangaSubtypeEnum
-import mihon.graphql.kitsu.type.ReleaseStatusEnum
+import com.moman.graphql.kitsu.KitsuFindLibMangaQuery
+import com.moman.graphql.kitsu.KitsuGetCurrentAccountQuery
+import com.moman.graphql.kitsu.KitsuGetMangaDetailsByIdQuery
+import com.moman.graphql.kitsu.KitsuGetMangaDetailsBySlugQuery
+import com.moman.graphql.kitsu.KitsuSearchMangaByTitleQuery
+import com.moman.graphql.kitsu.fragment.MangaFragment
+import com.moman.graphql.kitsu.type.LibraryEntryStatusEnum
+import com.moman.graphql.kitsu.type.MangaSubtypeEnum
+import com.moman.graphql.kitsu.type.ReleaseStatusEnum
 
 internal fun Track.toKitsuStatus() = when (this.status) {
     Kitsu.READING -> LibraryEntryStatusEnum.CURRENT

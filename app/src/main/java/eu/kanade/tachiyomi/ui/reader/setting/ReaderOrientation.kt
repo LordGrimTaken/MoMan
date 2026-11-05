@@ -3,12 +3,12 @@ package eu.kanade.tachiyomi.ui.reader.setting
 import android.content.pm.ActivityInfo
 import androidx.compose.ui.graphics.vector.ImageVector
 import dev.icerock.moko.resources.StringResource
-import mihon.icons.materialsymbols.MaterialSymbols
-import mihon.icons.materialsymbols.rounded.Mobile
-import mihon.icons.materialsymbols.rounded.MobileLandscape
-import mihon.icons.materialsymbols.rounded.MobileLockLandscape
-import mihon.icons.materialsymbols.rounded.MobileLockPortrait
-import mihon.icons.materialsymbols.rounded.MobileRotate
+import com.moman.icons.materialsymbols.MaterialSymbols
+import com.moman.icons.materialsymbols.rounded.Mobile
+import com.moman.icons.materialsymbols.rounded.MobileLandscape
+import com.moman.icons.materialsymbols.rounded.MobileLockLandscape
+import com.moman.icons.materialsymbols.rounded.MobileLockPortrait
+import com.moman.icons.materialsymbols.rounded.MobileRotate
 import tachiyomi.i18n.MR
 
 enum class ReaderOrientation(

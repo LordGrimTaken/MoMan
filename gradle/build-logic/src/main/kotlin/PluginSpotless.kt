@@ -1,7 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
-import mihon.gradle.extensions.alias
-import mihon.gradle.extensions.libs
-import mihon.gradle.extensions.plugins
+import com.moman.gradle.extensions.alias
+import com.moman.gradle.extensions.libs
+import com.moman.gradle.extensions.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -24,7 +24,7 @@ class PluginSpotless : Plugin<Project> {
                 forbidRegex(
                     "materialSymbolsRImport",
                     "(?m)^import mihon\\.icons\\.materialsymbols\\.R(?! as MaterialSymbolsR$)\\b.*$",
-                    "Import mihon.icons.materialsymbols.R as MaterialSymbolsR",
+                    "import com.moman.icons.materialsymbols.R as MaterialSymbolsR",
                 )
                 forbidRegex(
                     "materialSymbolsRQualified",
@@ -34,7 +34,7 @@ class PluginSpotless : Plugin<Project> {
                 forbidRegex(
                     "customMaterialSymbolsRImport",
                     "(?m)^import mihon\\.icons\\.custommaterialsymbols\\.R(?! as CustomMaterialSymbolsR$)\\b.*$",
-                    "Import mihon.icons.custommaterialsymbols.R as CustomMaterialSymbolsR",
+                    "import com.moman.icons.custommaterialsymbols.R as CustomMaterialSymbolsR",
                 )
                 forbidRegex(
                     "customMaterialSymbolsRQualified",

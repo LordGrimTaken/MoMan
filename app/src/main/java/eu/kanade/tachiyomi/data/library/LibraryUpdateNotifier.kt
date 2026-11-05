@@ -40,7 +40,7 @@ import tachiyomi.domain.source.service.SourceManager
 import tachiyomi.i18n.MR
 import java.math.RoundingMode
 import java.text.NumberFormat
-import mihon.icons.materialsymbols.R as MaterialSymbolsR
+import com.moman.icons.materialsymbols.R as MaterialSymbolsR
 
 @Inject
 class LibraryUpdateNotifier(

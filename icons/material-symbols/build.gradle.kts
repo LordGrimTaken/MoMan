@@ -1,4 +1,4 @@
-import mihon.gradle.tasks.GenerateVectorDrawablesTask
+import com.moman.gradle.tasks.GenerateVectorDrawablesTask
 
 plugins {
     alias(mihonx.plugins.android.library)
@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "mihon.icons.materialsymbols"
+    namespace = "com.moman.icons.materialsymbols"
 }
 
 spotless {
@@ -22,7 +22,7 @@ spotless {
 }
 
 valkyrie {
-    packageName = "mihon.icons.materialsymbols"
+    packageName = "com.moman.icons.materialsymbols"
     generateAtSync = true
 
     imageVector {

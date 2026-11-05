@@ -1,12 +1,12 @@
 import com.android.build.api.variant.ApplicationVariant
 import com.android.build.api.variant.BuildConfigField
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
-import mihon.gradle.Config
-import mihon.gradle.getCurrentTime
-import mihon.gradle.getLatestCommitCount
-import mihon.gradle.getLatestCommitSha
-import mihon.gradle.getLatestCommitTime
-import mihon.gradle.tasks.ReplaceShortcutsPlaceholderTask
+import com.moman.gradle.Config
+import com.moman.gradle.getCurrentTime
+import com.moman.gradle.getLatestCommitCount
+import com.moman.gradle.getLatestCommitSha
+import com.moman.gradle.getLatestCommitTime
+import com.moman.gradle.tasks.ReplaceShortcutsPlaceholderTask
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -342,7 +342,7 @@ dependencies {
 apollo {
     val schemaBasePath = "src/main/graphql/mihon/graphql"
     service("anilist") {
-        packageName.set("mihon.graphql.anilist")
+        packageName.set("com.moman.graphql.anilist")
         val srcDir = "$schemaBasePath/anilist"
         srcDir(file(srcDir))
 
@@ -356,7 +356,7 @@ apollo {
     }
 
     service("kitsu") {
-        packageName.set("mihon.graphql.kitsu")
+        packageName.set("com.moman.graphql.kitsu")
         val srcDir = "$schemaBasePath/kitsu"
         srcDir(file(srcDir))
         android.defaultConfig.versionCode
@@ -365,7 +365,7 @@ apollo {
             // Kitsu doesn't like requests without a UA
             headers.put(
                 "User-Agent",
-                "Mihon v${android.defaultConfig.versionName} (${android.defaultConfig.applicationId})",
+                "MoMan v${android.defaultConfig.versionName} (${android.defaultConfig.applicationId})",
             )
             endpointUrl.set("https://kitsu.app/api/graphql")
             schemaFile.set(file("$srcDir/kitsu.graphqls"))
@@ -379,12 +379,12 @@ apollo {
         mapScalar(
             "Map",
             "kotlin.collections.Map<String, Any?>",
-            "mihon.graphql.kitsu.adapter.KitsuMapAdapter",
+            "com.moman.graphql.kitsu.adapter.KitsuMapAdapter",
         )
     }
 
     service("shikimori") {
-        packageName.set("mihon.graphql.shikimori")
+        packageName.set("com.moman.graphql.shikimori")
         val srcDir = "$schemaBasePath/shikimori"
         srcDir(file(srcDir))
 
@@ -398,7 +398,7 @@ apollo {
     }
 
     service("suwayomi") {
-        packageName.set("mihon.graphql.suwayomi")
+        packageName.set("com.moman.graphql.suwayomi")
         val srcDir = "$schemaBasePath/suwayomi"
         srcDir(file(srcDir))
 

@@ -1,7 +1,7 @@
 package eu.kanade.domain.track.model
 
-import mihon.core.common.extensions.toEpochMillisOrZero
-import mihon.core.common.extensions.toInstantOrNull
+import com.moman.core.common.extensions.toEpochMillisOrZero
+import com.moman.core.common.extensions.toInstantOrNull
 import tachiyomi.domain.track.model.Track
 import eu.kanade.tachiyomi.data.database.models.Track as DbTrack
 
