@@ -3,6 +3,34 @@
 MoMan's release history. Mihon's historical changelog — everything before this project existed — is preserved
 separately at [docs/CHANGELOG-MIHON.md](docs/CHANGELOG-MIHON.md).
 
+## 1.0.12 — 2026-11-05
+
+The release that makes MoMan its own project rather than a rebranded fork.
+
+### Changed
+- **Source tree renamed.** Every package that was `mihon.*`, `tachiyomi.*`, `eu.kanade.presentation.*`,
+  `eu.kanade.domain.*` and `eu.kanade.core.*` now lives under `com.moman.*` — 538 of 911 packages.
+  `eu.kanade.tachiyomi.*` deliberately keeps its name: it is the extension ABI and renaming it would break every
+  installed extension.
+- The update client now points at `https://momanreader.com` (Cloudflare Worker + R2). The former
+  `moman-updates.onrender.com` host is decommissioned.
+- Tracker user agents identify the app as MoMan, not Mihon.
+- About screen: privacy policy, website and help links go to MoMan's own pages; inherited social links removed.
+
+### Removed
+- The inherited **donation campaign and support screen**, including Mihon's Patreon and OpenCollective links and
+  their strings in 31 locale files. MoMan ships no third-party funding links.
+
+### Fixed
+- `:app:bundleRelease` failed while ABI splits were enabled; splits are now opt-out (`-PabiSplits=false`).
+- Remaining user-visible "Mihon" strings in 19 locales.
+
+### Other
+- Repository is public and relicensed: **MIT** for MoMan's own work, **Apache-2.0** retained for inherited code
+  (see `NOTICE` and `LICENSE-APACHE`).
+- Release APKs removed from git (served from R2); clone size dropped from 137 MB to a few MB.
+- Added `docs/BUILDING.md`, `docs/ARCHITECTURE.md`, a rewritten README and store-listing metadata.
+
 ## Unreleased
 
 ### Changed

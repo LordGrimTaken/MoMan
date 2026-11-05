@@ -36,9 +36,8 @@ android {
 
     defaultConfig {
         applicationId = "com.moman.reader"
-
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 13
+        versionName = "1.0.12"
 
         buildConfigField("boolean", "TELEMETRY_INCLUDED", "${Config.includeTelemetry}")
         buildConfigField("boolean", "UPDATER_ENABLED", "${Config.enableUpdater}")
