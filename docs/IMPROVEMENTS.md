@@ -15,6 +15,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 6 | Updater | Enforce `minSupportedVersionCode`: required update, not dismissible | 9 tests in the interactor; lint 0 errors | shipped |
 | 7 | Reader views | Accessibility click path for four touch-handling views | ClickableViewAccessibility 4 → 0; warnings 129 → 125 | shipped |
 | 8 | ViewModels | Retire 8 StaticFieldLeak false positives with evidence | StaticFieldLeak 8 → 0; warnings 125 → 117 | shipped |
+| 9 | Widgets | **Crash on launch**: manifest named the pre-rename receiver classes | emulator: 4 crash lines → 0, process starts | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -132,3 +133,24 @@ and cannot retain an Activity. Lint cannot follow the generated graph.
 suppression is evidence-backed rather than a mute button.
 
 **Measured after:** `StaticFieldLeak` 8 → 0, warnings 125 → 117, 0 errors, build 4m37s.
+
+## Cycle 9 — the first defect found by running the app, not compiling it
+
+**How it was found.** A dedicated headless AVD (`moman28`, Android 28, `-accel off`) was created from the
+already-installed system image for this session (slot 6), because this host has no KVM. The app installed and
+crashed immediately:
+
+```
+java.lang.ClassNotFoundException: tachiyomi.presentation.widget.UpdatesGridGlanceReceiver
+```
+
+`presentation-widget/src/main/AndroidManifest.xml` still named the pre-rename classes for both Glance receivers; the
+batch-A namespace move put them under `com.moman.presentation.widget`. Build, unit tests and lint were all green —
+none of them resolves manifest class names.
+
+**Fix.** Both `android:name` values point at `com.moman.presentation.widget.*`.
+
+**Verified on the device:** before, 4 crash lines and no process; after, the app starts and produces 0 crash lines.
+
+**Limit reached:** the emulator's own `systemui` ANRs under software rendering with five emulators on twelve cores,
+so the UI never painted. Process-level verification yes; screenshots no.
