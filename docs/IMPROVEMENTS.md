@@ -31,6 +31,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 22 | Compatibility | Verified 16 KB page-size support on the release APK (Android 15+) | zipalign -P 16 passes; all 10 `.so` LOAD align 0x4000 | verified |
 | 23 | Database | Verified migrations survived the `.sq` move; schema version unchanged | 19 `.sqm` files present; generated version 20 | verified |
 | 24 | Backup | Backups carry a format version; a newer backup is refused, not partially restored | 4 new tests; build 2m30s | shipped |
+| 25 | Branding | Renamed the last Mihon-named drawables and user-visible files; OAuth URIs documented | 154 tests, guards pass, build green | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -424,3 +425,26 @@ reader ignores the added field. Only "newer than this build" is refused.
 
 **Not verified:** no restore was exercised on a device — this is compile, unit tests and code-path reasoning. The
 refusal message reaches the user through an existing error path I did not observe running.
+
+## Cycle 25 — Mihon names still visible to the user
+
+**Found while auditing restore.** `createFileInCacheDir("mihon_restore_error.txt")` produced a file named after Mihon,
+shown in the restore-complete notification. A sweep found four such files and two drawables:
+
+| Kind | Was | Now |
+|---|---|---|
+| drawable | `ic_mihon`, `ic_mihon_splash` | `ic_moman`, `ic_moman_splash` (8 references, including the splash theme) |
+| export | `mihon_library.csv` | `moman_library.csv` |
+| logs | `mihon_crash_logs.txt` | `moman_crash_logs.txt` |
+| logs | `mihon_restore_error.txt` | `moman_restore_error.txt` |
+| logs | `mihon_update_errors.txt` | `moman_update_errors.txt` |
+
+The drawable turned out **not** to be Mihon artwork — its path data is identical to `ic_launcher_foreground`, the MoMan
+enso — so this is a naming fix with no visual change.
+
+**Deliberately unchanged:** the OAuth redirect URIs (`mihon://bangumi-auth`, `app.mihon://comick-auth`, …) are
+registered with each provider; renaming the scheme would break login until the provider is updated. Comments now say so
+at all four call sites.
+
+**Measured.** 154 tests, 0 failures; both guards pass; `:app:assembleDebug` green. One attempt failed with
+"AAPT2 daemon startup failed" and passed on retry — environment, not code.
