@@ -11,6 +11,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 3 | Updater | Reject a downloaded APK that is not this app (package + signing cert) | 5 new tests pass; build 1m22s | shipped in `d509f8d` |
 | 3b | Updater | Fix the API-26/27 crash lint found in cycle 3 | lint 4 errors → **0**; build 4m18s | shipped |
 | 4 | Deep links | Only forward the actions the exported search activity declares | 3 new tests; build 1m57s | shipped |
+| 5 | Updater download | Safe progress maths, internal cache file, no stale APK reuse | 5 new tests; lint still 0 errors | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -76,3 +77,17 @@ finishes without forwarding, with `ACTION_VIEW` asserted false in the test.
 
 **Lesson recorded in the work, not just the log:** the lint severities moved 0 → 4 *after* a "green" cycle — a
 passing build is not evidence of API-safe code.
+
+## Cycle 5 — three defects in one download path
+
+**Hypotheses.** (a) Progress was `100 * bytesRead / contentLength`; a chunked response reports `-1`, so the
+percentage went negative and the dialog could sit at a nonsense value. (b) The APK was written to
+`externalCacheDir`, which is absent when external storage is unmounted and evictable at any time. (c) A stale
+`update.apk` from a previous failed attempt could survive and be offered for install if the next attempt failed
+before writing.
+
+**Change.** `TransferProgress.percent()` (pure, unit-tested) returns `null` for an unknown total and clamps
+overshoot; the listener skips updating on `null`. The file lives in the internal `cacheDir` and is deleted at the
+start of every attempt.
+
+**Measured after:** 5 new tests, lint 0 errors / 129 warnings, `:app:assembleDebug` 4m5s.
