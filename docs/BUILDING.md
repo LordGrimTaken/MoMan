@@ -90,3 +90,30 @@ $ANDROID_HOME/build-tools/37.0.0/aapt2 dump badging app/build/outputs/apk/debug/
 | `INSTALL_FAILED_UPDATE_INCOMPATIBLE` | different signing key | install the debug `.dev` build, or sign with the real key |
 | Kotlin compile OOM | heap | `gradle.properties` sets `-Xmx4g`; close other builds |
 | Build cannot create files under `Documents` on Windows | Defender **Controlled Folder Access** | build outside protected folders |
+
+## Release checks beyond a successful build
+
+Run these against a **release** artifact before publishing it; none of them is exercised by `assembleDebug`.
+
+**16 KB page sizes.** Android 15+ devices may use 16 KB pages, and a native library whose ELF `LOAD` segments are
+4 KB-aligned fails to load there. Both halves must hold: the APK entries zip-aligned, and the ELF segments aligned.
+
+```bash
+# 1. zip alignment (build-tools 35+)
+$ANDROID_HOME/build-tools/37.0.0/zipalign -c -P 16 -v 4 app-arm64-v8a-release.apk
+
+# 2. ELF alignment of every bundled library: the last column must be 0x4000
+unzip -o -q app-arm64-v8a-release.apk 'lib/*/*.so' -d /tmp/elfchk
+for f in /tmp/elfchk/lib/*/*.so; do
+  printf '%-40s %s\n' "$(basename "$f")" "$(readelf -lW "$f" | awk '$1=="LOAD"{print $NF}' | sort -u | tr '\n' ' ')"
+done
+```
+
+Measured on 1.0.13: zipalign passes, and all ten libraries (`libarchive-jni`, `libsqliteJni`, `libquickjs`,
+`libwebgpu_c_bundled`, …) report `0x4000`.
+
+**Manifest class names.** `./gradlew checkManifestClasses` — a rename once left two receivers pointing at classes
+that no longer existed, and the app crashed on launch.
+
+**Exported components.** `./gradlew checkExportedComponents` — every exported component without a permission must be
+on the reviewed allowlist.
