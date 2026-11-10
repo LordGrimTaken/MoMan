@@ -286,6 +286,8 @@ class MangaBakaApi(
         private const val OAUTH_URL = "$BASE_URL/auth/oauth2"
         private const val SCOPES = "library.read library.write offline_access openid"
 
+        // Registered redirect URI at the provider: renaming it breaks login until the service
+        // is updated too, so the old scheme is kept deliberately.
         private const val REDIRECT_URI = "mihon://mangabaka-auth"
 
         private const val APP_JSON = "application/json"

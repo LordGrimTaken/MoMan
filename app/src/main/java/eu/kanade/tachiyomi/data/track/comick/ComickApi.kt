@@ -269,6 +269,8 @@ class ComickApi(
 
     companion object {
         private const val CLIENT_ID = "SGrUojDvbgqfhSCQbwfCjUPIccYMJdBH"
+        // Registered redirect URI at the provider: renaming it breaks login until the service
+        // is updated too, so the old scheme is kept deliberately.
         private const val REDIRECT_URI = "app.mihon://comick-auth"
 
         private const val LIBRARY_WRITE_SCOPE = "library:write"

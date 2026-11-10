@@ -376,7 +376,7 @@ object SettingsDataScreen : SearchableSettings {
                 options = exportOptions,
                 onConfirm = { options ->
                     exportOptions = options
-                    saveFileLauncher.launch("mihon_library.csv")
+                    saveFileLauncher.launch("moman_library.csv")
                 },
                 onDismissRequest = { showDialog = false },
             )

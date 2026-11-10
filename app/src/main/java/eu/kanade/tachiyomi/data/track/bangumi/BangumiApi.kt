@@ -187,6 +187,8 @@ class BangumiApi(
         private const val OAUTH_URL = "https://bgm.tv/oauth/access_token"
         private const val LOGIN_URL = "https://bgm.tv/oauth/authorize"
 
+        // Registered redirect URI at the provider: renaming it breaks login until the service
+        // is updated too, so the old scheme is kept deliberately.
         private const val REDIRECT_URL = "mihon://bangumi-auth"
 
         private const val APP_JSON = "application/json"
