@@ -30,6 +30,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 21 | Tooling | `scripts/verify.sh`: one command for tests, both lints and all three guards | full run: 3 stages, "all checks passed", exit 0 | shipped |
 | 22 | Compatibility | Verified 16 KB page-size support on the release APK (Android 15+) | zipalign -P 16 passes; all 10 `.so` LOAD align 0x4000 | verified |
 | 23 | Database | Verified migrations survived the `.sq` move; schema version unchanged | 19 `.sqm` files present; generated version 20 | verified |
+| 24 | Backup | Backups carry a format version; a newer backup is refused, not partially restored | 4 new tests; build 2m30s | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -405,3 +406,21 @@ successful build".
 Cycles 22 and 23 both looked for a real defect and found the code already correct. That is a legitimate outcome, and
 it is also the clearest signal available: the static surface of this app has been audited to the point where further
 rounds mostly re-verify what is already known.
+
+## Cycle 24 — a newer backup restored "successfully" with data dropped
+
+**Hypothesis.** `Backup` is protobuf with no format version. An unknown field is ignored, so restoring a backup written
+by a newer build reported success while discarding every field this build cannot represent — silent data loss, shown
+to the user as a clean restore.
+
+**Change.** `@ProtoNumber(107) backupSchemaVersion` on the message; `BackupCreator` stamps
+`BackupCompatibility.CURRENT`; `BackupFileValidator` refuses anything newer with a message naming both versions.
+`BackupCompatibility.isRestorable(stored, current)` is pure and unit-tested.
+
+**Compatibility kept:** pre-version backups (and Mihon backups) read as `0` and restore exactly as before; a newer
+reader ignores the added field. Only "newer than this build" is refused.
+
+**Measured.** 4 tests, 0 failures; `:app:assembleDebug` 2m30s.
+
+**Not verified:** no restore was exercised on a device — this is compile, unit tests and code-path reasoning. The
+refusal message reaches the user through an existing error path I did not observe running.
