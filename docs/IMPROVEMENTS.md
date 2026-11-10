@@ -14,6 +14,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 5 | Updater download | Safe progress maths, internal cache file, no stale APK reuse | 5 new tests; lint still 0 errors | shipped |
 | 6 | Updater | Enforce `minSupportedVersionCode`: required update, not dismissible | 9 tests in the interactor; lint 0 errors | shipped |
 | 7 | Reader views | Accessibility click path for four touch-handling views | ClickableViewAccessibility 4 → 0; warnings 129 → 125 | shipped |
+| 8 | ViewModels | Retire 8 StaticFieldLeak false positives with evidence | StaticFieldLeak 8 → 0; warnings 125 → 117 | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -120,3 +121,14 @@ listener, so no double-fire. `ReaderButton` is a genuine button whose click alre
 **Result.** `ClickableViewAccessibility` 4 → 0; warnings 129 → 125. One `UnsafeIntentLaunch` warning remains on
 `DeepLinkActivity` even with a class-level suppression — the allowlist from cycle 4 makes it a false positive, and it
 is recorded as such rather than claimed fixed.
+
+## Cycle 8 — eight leak reports that were not leaks
+
+**Hypothesis.** `StaticFieldLeak` flagged eight ViewModels holding a `Context`. `App.kt:84` builds the DI graph with
+`create(context = this, ...)` where `this` is the `Application`, so the injected `Context` is the application context
+and cannot retain an Activity. Lint cannot follow the generated graph.
+
+**Change.** Each site carries `@SuppressLint("StaticFieldLeak")` and a comment naming the binding, so the
+suppression is evidence-backed rather than a mute button.
+
+**Measured after:** `StaticFieldLeak` 8 → 0, warnings 125 → 117, 0 errors, build 4m37s.
