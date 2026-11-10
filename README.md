@@ -75,7 +75,7 @@ Notes that save time:
   debug key, which cannot update an installed MoMan. Use the debug build (`.dev` package, installs alongside) for
   testing.
 - The first cold build takes ~19 minutes and resolves ~1.7 GB of dependencies; later builds are incremental.
-- Full details: [docs/BUILDING.md](docs/BUILDING.md).
+- Full details: [docs/BUILDING.md](docs/BUILDING.md) · release procedure: [docs/RELEASING.md](docs/RELEASING.md).
 
 ---
 
