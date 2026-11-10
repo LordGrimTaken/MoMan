@@ -29,6 +29,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 20 | Manifest | Exported-component allowlist guard; OAuth-state review recorded | `gradlew checkExportedComponents`: exit 1 on an injected export | shipped |
 | 21 | Tooling | `scripts/verify.sh`: one command for tests, both lints and all three guards | full run: 3 stages, "all checks passed", exit 0 | shipped |
 | 22 | Compatibility | Verified 16 KB page-size support on the release APK (Android 15+) | zipalign -P 16 passes; all 10 `.so` LOAD align 0x4000 | verified |
+| 23 | Database | Verified migrations survived the `.sq` move; schema version unchanged | 19 `.sqm` files present; generated version 20 | verified |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -382,3 +383,25 @@ checks beyond a successful build" so the property is verified rather than assume
 
 **My own measurement error, caught:** the first pass printed the wrong `readelf` column (file size instead of align)
 and would have been meaningless; re-reading with `-lW` gave the real values.
+
+## Cycle 23 — the migration set after the `.sq` move
+
+**Why.** Batch A moved `src/main/sqldelight/tachiyomi/**` to `com/moman/**`. SQLDelight derives both the table packages
+and the schema version from that tree. If the migration files had been dropped or ignored, the generated version would
+fall back to 1, and the first update over an installed 1.0.12 (version 20) would either crash or wipe the user's
+library.
+
+**Measured.**
+
+- `data/src/main/sqldelight/com/moman/migrations/` contains **1.sqm … 19.sqm**, all present.
+- Generated `DatabaseImpl.Schema.version` → **20** (highest migration + 1), identical to the value the published
+  1.0.12 was built with, so the upgrade path is unchanged.
+
+**Result: no defect.** The check and the numbers are now in `docs/BUILDING.md` under "Release checks beyond a
+successful build".
+
+## Two rounds without a finding
+
+Cycles 22 and 23 both looked for a real defect and found the code already correct. That is a legitimate outcome, and
+it is also the clearest signal available: the static surface of this app has been audited to the point where further
+rounds mostly re-verify what is already known.
