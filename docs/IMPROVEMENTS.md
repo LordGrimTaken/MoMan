@@ -13,6 +13,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 4 | Deep links | Only forward the actions the exported search activity declares | 3 new tests; build 1m57s | shipped |
 | 5 | Updater download | Safe progress maths, internal cache file, no stale APK reuse | 5 new tests; lint still 0 errors | shipped |
 | 6 | Updater | Enforce `minSupportedVersionCode`: required update, not dismissible | 9 tests in the interactor; lint 0 errors | shipped |
+| 7 | Reader views | Accessibility click path for four touch-handling views | ClickableViewAccessibility 4 → 0; warnings 129 → 125 | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -105,3 +106,17 @@ current. `MainActivity` ignores the skipped-version preference for a required up
 and the skip action — the only exit is installing.
 
 **Measured after:** interactor 9 tests, 0 failures; `:app:assembleDebug` + `:app:lintDebug` 3m42s, 0 lint errors.
+
+## Cycle 7 — four touch-handling views could not be activated by an accessibility service
+
+**Hypothesis.** `ClickableViewAccessibility` flagged `Pager`, `ReaderButton`, `WebtoonRecyclerView` and
+`WebtoonStripImageView`: all override `onTouchEvent`, none expose `performClick()`, so a screen reader or switch
+device has no way to activate them even though a finger can.
+
+**Change.** The three gesture surfaces override `performClick()` and call it on `ACTION_UP`; they have no click
+listener, so no double-fire. `ReaderButton` is a genuine button whose click already dispatches through
+`super.onTouchEvent`, so it keeps the override but suppresses the "should call" half with that reason.
+
+**Result.** `ClickableViewAccessibility` 4 → 0; warnings 129 → 125. One `UnsafeIntentLaunch` warning remains on
+`DeepLinkActivity` even with a class-level suppression — the allowlist from cycle 4 makes it a false positive, and it
+is recorded as such rather than claimed fixed.
