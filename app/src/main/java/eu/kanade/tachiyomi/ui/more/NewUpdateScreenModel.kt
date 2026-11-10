@@ -156,6 +156,9 @@ class NewUpdateScreenModel(
 
     fun skipUpdate(versionName: String) {
         downloadJob?.cancel()
+        // Skipping is final for this version: a downloaded APK is tens of megabytes and would otherwise sit in the
+        // cache until the system evicted it.
+        apkFile.delete()
         preferences.skippedAppUpdate.set(versionName)
     }
 
