@@ -22,6 +22,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 13 | Release runtime | Attempted again on a quiet host; interrupted by a DSH host restart | emulator booted, install not completed | **not verified** |
 | 14 | Updater | ABI choice extracted into a pure, tested function | 4 new tests; build 1m54s | shipped |
 | 15 | Updater | Progress throttle extracted and fixed: completion always emits | 5 new tests; build 28s | shipped |
+| 16 | Release prep | versionCode 14 / 1.0.13 with a changelog for the twelve fixes | aapt2 reports 14 / 1.0.13 | staged |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -251,3 +252,16 @@ interval. The listener delegates.
 
 **Two self-inflicted delays, recorded:** the function was appended outside the object literal (syntax error), then the
 new tests used toy millisecond values instead of wall-clock ones, so "first tick emits" failed against a correct rule.
+
+## Cycle 16 — release preparation
+
+**Hypothesis.** The tree said 1.0.12 / versionCode 13 — the release already published — while containing twelve
+fixes, one of which is a launch crash. Any release built from it would advertise itself as the previous version.
+
+**Change.** `versionCode 14`, `versionName 1.0.13`, and a CHANGELOG section naming each fix, including the honest note
+that `eu.kanade.tachiyomi.*` stays as the extension ABI.
+
+**Measured.** Assembles; `aapt2 dump badging` reports `versionCode='14' versionName='1.0.13-65'`.
+
+**Still blocked:** signing and publishing need `moman-release.jks`, which is not on this host. The tree is now one
+signing step away from shipping.
