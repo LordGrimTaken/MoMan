@@ -23,6 +23,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 14 | Updater | ABI choice extracted into a pure, tested function | 4 new tests; build 1m54s | shipped |
 | 15 | Updater | Progress throttle extracted and fixed: completion always emits | 5 new tests; build 28s | shipped |
 | 16 | Release prep | versionCode 14 / 1.0.13 with a changelog for the twelve fixes | aapt2 reports 14 / 1.0.13 | staged |
+| 17 | Tooling | The cycle-10 guard is now a Gradle task, not a script nobody runs | `gradlew checkManifestClasses`: exit 1 with the bug, 0 without | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -265,3 +266,15 @@ that `eu.kanade.tachiyomi.*` stays as the extension ABI.
 
 **Still blocked:** signing and publishing need `moman-release.jks`, which is not on this host. The tree is now one
 signing step away from shipping.
+
+## Cycle 17 — making the guard part of the build
+
+**Reasoning.** Cycle 10 wrote `tools/check-manifest-classes.py`, but a script that has to be remembered protects
+nothing; the bug it targets already shipped once.
+
+**Change.** `./gradlew checkManifestClasses` (root build file, group `verification`) runs it.
+
+**Proved through Gradle itself:** reintroducing the two old manifest lines → task fails, `exit 1`, output lists both
+dangling references; restoring them → `exit 0`. My first attempt at this measurement piped the task through `grep`
+and read *its* exit code, which reported success — the same pipeline mistake recorded in LESSONS.md, caught the same
+round it was made.
