@@ -30,3 +30,17 @@ tasks {
         }
     }
 }
+
+/**
+ * Fails when an AndroidManifest names an app class that does not exist.
+ *
+ * A rename moved classes once and left two manifest strings pointing at the old package; the app crashed on launch
+ * and no build step noticed (see tools/check-manifest-classes.py). This makes that check a Gradle task so it runs
+ * with the rest of verification instead of relying on someone remembering the script exists.
+ */
+tasks.register<Exec>("checkManifestClasses") {
+    group = "verification"
+    description = "Verify every app-owned android:name in the manifests resolves to a real class"
+    workingDir = layout.projectDirectory.asFile
+    commandLine("python3", "tools/check-manifest-classes.py")
+}
