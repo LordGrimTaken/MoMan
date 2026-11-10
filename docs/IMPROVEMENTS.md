@@ -19,6 +19,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 10 | Tooling | `tools/check-manifest-classes.py` guards the bug class from cycle 9 | passes clean; fails when the bug is reintroduced | shipped |
 | 11 | Release path | R8/release verified post-rename: every manifest class survives minification | release build 7m3s; 13/13 classes in dex | verified |
 | 12 | Test + lint baseline | First whole-project run since the rename, debug and release | **141 tests, 0 failures**; release lint 0 errors | verified |
+| 13 | Release runtime | Attempted again on a quiet host; interrupted by a DSH host restart | emulator booted, install not completed | **not verified** |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -206,3 +207,18 @@ module, so this measured the whole project for the first time.
 **Conclusion.** No defect surfaced. That is the result, not a failure to find one: the rename did not break a test,
 and the release variant does not add lint errors the debug one hides. The baseline is now on record so a future
 regression has something to fail against.
+
+## Cycle 13 — release runtime verification, second attempt
+
+**Context.** Zero emulators were running and load was 4.3/12, the quietest window seen, so the release runtime check
+from cycle 11 was retried: `moman28` booted in 108 s on 2.5 GB, then the release APK install was started.
+
+**What happened.** The DSH host process restarted at 06:34:21 UTC mid-install. The emulator was gone afterwards,
+`adb devices` was empty, and the install could not be confirmed. Slot 6 was removed.
+
+**State of the claim.** The release variant is still verified **statically only** — R8 output contains all 13 classes
+the manifest names, and release lint reports 0 errors. It has never been observed running.
+
+**Two attempts, two different causes:** the first failed because the emulated `system_server` died under load; this
+one because the host itself restarted. Neither was the app's fault, and neither says anything about the release
+build's correctness — but the gap is real and stays recorded as a gap.
