@@ -25,6 +25,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 16 | Release prep | versionCode 14 / 1.0.13 with a changelog for the twelve fixes | aapt2 reports 14 / 1.0.13 | staged |
 | 17 | Tooling | The cycle-10 guard is now a Gradle task, not a script nobody runs | `gradlew checkManifestClasses`: exit 1 with the bug, 0 without | shipped |
 | 18 | Updater | Skipping a version deletes the cached APK instead of leaving it in cache | full gate green: 150 tests, lint 0 errors | shipped |
+| 19 | Translations | Placeholder guard + 3 locales that dropped their `%s` fixed | `gradlew checkTranslations`: exit 1 when broken, 0 when clean | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -296,3 +297,19 @@ instrumentation-free variant tests that the earlier per-module count did.)
 
 No release runtime observation: the keystore is absent and the emulator is unreliable on this host. Everything above
 is compile, unit test, lint and static verification of the R8 output.
+
+## Cycle 19 — translations missing their variables
+
+**Hypothesis.** A locale that drops `%s` from a sentence loses the value the code passes. Nothing in the build checks
+it; the result is a sentence with a hole, visible only to speakers of that language.
+
+**Found 4, of which 3 are real:** `my/delete_category_confirmation`, `my/onboarding_guides_returning_user`,
+`pl/download_queue_size_warning` had dropped their placeholder; `es/onboarding_storage_info` only reuses `%1$s`
+twice, which is legal. The three entries were removed, so those strings fall back to English rather than rendering
+incomplete.
+
+**Guard.** `tools/check-translations.py` + `./gradlew checkTranslations`. Positional arguments compare as a set,
+unnumbered ones by count. Proved both ways: clean → 0; re-breaking the Polish string → 1 with a precise message.
+
+**Self-caught:** the guard crashed on its first run formatting the mismatch (`dict()` on a tuple) — a bug in the
+checker, not in the translations, found because it was exercised both ways instead of only on a clean tree.
