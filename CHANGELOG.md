@@ -31,6 +31,30 @@ The release that makes MoMan its own project rather than a rebranded fork.
 - Release APKs removed from git (served from R2); clone size dropped from 137 MB to a few MB.
 - Added `docs/BUILDING.md`, `docs/ARCHITECTURE.md`, a rewritten README and store-listing metadata.
 
+## 1.0.13 — 2026-11-10
+
+Correctness and safety fixes, mostly in the updater.
+
+### Fixed
+- **The app crashed on launch** after the namespace rename: the widget manifest named the pre-rename receiver
+  classes (`ClassNotFoundException`). Found by running the app on a device, not by the build.
+- The downloaded update is now checked for the same package id and signing certificate before it is offered for
+  install; previously it went straight to the installer.
+- `minSupportedVersionCode` is enforced: a build below the feed's floor gets a required update that cannot be
+  skipped.
+- The update download reports honest progress when the server omits `Content-Length`, writes to internal cache, and
+  no longer reuses a stale file from a failed attempt.
+- The updater decides by `versionCode` rather than the version name, so debug suffixes like `1.0.12-36` cannot fake
+  or hide an update.
+- The final progress tick is no longer dropped by the throttle.
+- Upcoming calendar labels follow app language changes immediately.
+- The exported search activity no longer forwards arbitrary actions into the app's view/deep-link handling.
+
+### Other
+- `eu.kanade.tachiyomi.*` remains the extension ABI namespace; everything else lives under `com.moman.*`.
+- Added `tools/check-manifest-classes.py`, which fails when a manifest names a class that does not exist.
+- First whole-project test run since the rename: 151 tests, 0 failures; lint 0 errors on debug and release.
+
 ## Unreleased
 
 ### Changed
