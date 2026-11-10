@@ -117,3 +117,14 @@ that no longer existed, and the app crashed on launch.
 
 **Exported components.** `./gradlew checkExportedComponents` — every exported component without a permission must be
 on the reviewed allowlist.
+
+**Database schema version.** `data/src/main/sqldelight/**/migrations/*.sqm` must stay intact and the generated
+`DatabaseImpl.Schema.version` must match what the published build used, or the first update after installing will
+migrate from a version the app no longer knows and lose or crash on the user's library.
+
+```bash
+ls data/src/main/sqldelight/com/moman/migrations/*.sqm | wc -l      # 19 files
+grep -A2 "override val version" \
+  data/build/generated/sqldelight/code/Database/debug/com/moman/data/data/DatabaseImpl.kt
+# get() = 20   (db version = highest migration + 1; unchanged by the package rename)
+```
