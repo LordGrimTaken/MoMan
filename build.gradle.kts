@@ -44,3 +44,17 @@ tasks.register<Exec>("checkManifestClasses") {
     workingDir = layout.projectDirectory.asFile
     commandLine("python3", "tools/check-manifest-classes.py")
 }
+
+/**
+ * Fails when a translation's format placeholders disagree with the base string.
+ *
+ * A locale that drops `%s` silently loses the variable the code passes (the category name vanishes from
+ * "Delete this category?"); an invented placeholder can throw. Neither is visible to the compiler. Run with
+ * `./gradlew checkTranslations` alongside `checkManifestClasses`.
+ */
+tasks.register<Exec>("checkTranslations") {
+    group = "verification"
+    description = "Verify translations keep the base string's format placeholders"
+    workingDir = layout.projectDirectory.asFile
+    commandLine("python3", "tools/check-translations.py")
+}

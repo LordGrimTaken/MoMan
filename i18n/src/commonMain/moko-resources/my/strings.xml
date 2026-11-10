@@ -53,7 +53,6 @@
     <string name="onboarding_storage_help_action">သိုလှောင်မှုလမ်းညွှန်</string>
     <string name="onboarding_permission_action_grant">ခွင့်ပြုခြင်း</string>
     <string name="onboarding_guides_new_user">%s ကို ခုမှ စသုံးသူးလား? စတင်အသုံးပြုနည်းလမ်းညွှန်ကို ကြည့်ရှုရန် အကြံပြုပါတယ်။</string>
-    <string name="onboarding_guides_returning_user">ပြန်လည်အသုံးပြုသူများအတွက်လမ်းညွှန်</string>
     <string name="pref_category_general">ယေဘူယျ</string>
     <string name="pref_category_appearance">ပုံစံ</string>
     <string name="pref_category_library">စာကြည့်တိုက်</string>
@@ -103,7 +102,6 @@
     <string name="action_delete">ဖျက်ပါ</string>
     <string name="action_rename_category">အမျိုးအစား အမည်ပြောင်းပါ</string>
     <string name="action_move_category">အမျိုးအစား ရွှေ့ပါ</string>
-    <string name="delete_category_confirmation">အမျိုးအစား ဖျက်မည်ဟု အတည်ပြုပါ</string>
     <string name="delete_category">အမျိုးအစား ဖျက်ပါ</string>
     <string name="action_pause">ရပ်လိုက်ပါ</string>
     <string name="action_edit_cover">အဖုံးကို တည်းဖြတ်ပါ</string>
