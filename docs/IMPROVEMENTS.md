@@ -18,6 +18,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 9 | Widgets | **Crash on launch**: manifest named the pre-rename receiver classes | emulator: 4 crash lines → 0, process starts | shipped |
 | 10 | Tooling | `tools/check-manifest-classes.py` guards the bug class from cycle 9 | passes clean; fails when the bug is reintroduced | shipped |
 | 11 | Release path | R8/release verified post-rename: every manifest class survives minification | release build 7m3s; 13/13 classes in dex | verified |
+| 12 | Test + lint baseline | First whole-project run since the rename, debug and release | **141 tests, 0 failures**; release lint 0 errors | verified |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -190,3 +191,18 @@ verified **statically and by R8**, not by running it.
 
 **Limitation now recorded twice:** this host (no KVM, shared CPU) can sustain a debug launch occasionally but cannot
 be relied on for UI or release runtime checks.
+
+## Cycle 12 — the whole suite, both variants
+
+Earlier cycles ran `:domain:testDebugUnitTest` and `:app:testDebugUnitTest` with filters. The rename touched every
+module, so this measured the whole project for the first time.
+
+**Measured.** `./gradlew test :app:lintRelease` → BUILD SUCCESSFUL in 6m19s.
+
+- **141 tests, 0 failures, 0 errors, 0 skipped** across all modules.
+- release lint: **0 errors**, 117 warnings — the same profile as debug (75 `PrivateResource`, 20
+  `NewerVersionAvailable`, 6 `AndroidGradlePluginVersion`, 4 `GradleDependency`, 3 `UnusedAttribute`).
+
+**Conclusion.** No defect surfaced. That is the result, not a failure to find one: the rename did not break a test,
+and the release variant does not add lint errors the debug one hides. The baseline is now on record so a future
+regression has something to fail against.
