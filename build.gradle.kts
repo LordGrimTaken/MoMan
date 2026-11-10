@@ -58,3 +58,14 @@ tasks.register<Exec>("checkTranslations") {
     workingDir = layout.projectDirectory.asFile
     commandLine("python3", "tools/check-translations.py")
 }
+
+/**
+ * Fails when a manifest exports a component that is not on the reviewed allowlist in
+ * tools/check-exported-components.py. Exported components are reachable by any app on the device.
+ */
+tasks.register<Exec>("checkExportedComponents") {
+    group = "verification"
+    description = "Verify every exported component without a permission is a reviewed decision"
+    workingDir = layout.projectDirectory.asFile
+    commandLine("python3", "tools/check-exported-components.py")
+}
