@@ -101,7 +101,7 @@ class NewUpdateScreenModel(
             override fun update(bytesRead: Long, contentLength: Long, done: Boolean) {
                 val progress = TransferProgress.percent(bytesRead, contentLength) ?: return
                 val currentTime = System.currentTimeMillis()
-                if (progress > savedProgress && currentTime - 200 > lastTick) {
+                if (TransferProgress.shouldEmit(savedProgress, lastTick, progress, currentTime, done)) {
                     savedProgress = progress
                     lastTick = currentTime
                     state.update { it.copy(downloadProgress = progress) }

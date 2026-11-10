@@ -16,4 +16,24 @@ object TransferProgress {
         val raw = (100 * bytesRead.toDouble() / contentLength.toDouble())
         return raw.toInt().coerceIn(0, 100)
     }
+
+    /**
+     * Whether a progress tick is worth emitting.
+     *
+     * The updater used `progress > saved && now - lastTick > 200`, which silently drops the tick that reaches 100%
+     * when it lands inside the throttle window — the bar then sits a percent short until the stage changes. A
+     * completed transfer always emits; otherwise emit only on real progress, at most once per [intervalMs].
+     */
+    fun shouldEmit(
+        previousPercent: Int,
+        previousAtMs: Long,
+        percent: Int,
+        nowMs: Long,
+        done: Boolean = false,
+        intervalMs: Long = 200,
+    ): Boolean {
+        if (done) return true
+        if (percent <= previousPercent) return false
+        return nowMs - previousAtMs >= intervalMs
+    }
 }
