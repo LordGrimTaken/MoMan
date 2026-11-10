@@ -12,6 +12,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 3b | Updater | Fix the API-26/27 crash lint found in cycle 3 | lint 4 errors → **0**; build 4m18s | shipped |
 | 4 | Deep links | Only forward the actions the exported search activity declares | 3 new tests; build 1m57s | shipped |
 | 5 | Updater download | Safe progress maths, internal cache file, no stale APK reuse | 5 new tests; lint still 0 errors | shipped |
+| 6 | Updater | Enforce `minSupportedVersionCode`: required update, not dismissible | 9 tests in the interactor; lint 0 errors | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -91,3 +92,16 @@ overshoot; the listener skips updating on `null`. The file lives in the internal
 start of every attempt.
 
 **Measured after:** 5 new tests, lint 0 errors / 129 warnings, `:app:assembleDebug` 4m5s.
+
+## Cycle 6 — the feed's minimum supported version was parsed and ignored
+
+**Hypothesis.** `releases.json` sends `minSupportedVersionCode`; `MomanRelease` parses it; nothing reads it. A client
+the server no longer supports saw the same optional prompt as any other update, and the skipped-version preference
+could suppress it entirely.
+
+**Change.** `Release.minSupportedVersionCode`; `NewUpdate(release, required)`; `required` is true when the running
+`versionCode` is above 0 and below the feed's minimum, and it also forces an offer when the versions otherwise look
+current. `MainActivity` ignores the skipped-version preference for a required update, and the screen hides "Not now"
+and the skip action — the only exit is installing.
+
+**Measured after:** interactor 9 tests, 0 failures; `:app:assembleDebug` + `:app:lintDebug` 3m42s, 0 lint errors.
