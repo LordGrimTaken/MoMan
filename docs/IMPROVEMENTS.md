@@ -20,6 +20,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 11 | Release path | R8/release verified post-rename: every manifest class survives minification | release build 7m3s; 13/13 classes in dex | verified |
 | 12 | Test + lint baseline | First whole-project run since the rename, debug and release | **141 tests, 0 failures**; release lint 0 errors | verified |
 | 13 | Release runtime | Attempted again on a quiet host; interrupted by a DSH host restart | emulator booted, install not completed | **not verified** |
+| 14 | Updater | ABI choice extracted into a pure, tested function | 4 new tests; build 1m54s | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -222,3 +223,16 @@ the manifest names, and release lint reports 0 errors. It has never been observe
 **Two attempts, two different causes:** the first failed because the emulated `system_server` died under load; this
 one because the host itself restarted. Neither was the app's fault, and neither says anything about the release
 build's correctness — but the gap is real and stays recorded as a gap.
+
+## Cycle 14 — the untested decision that gates every update
+
+**Hypothesis.** `ReleaseServiceImpl.pickApk` walked `Build.SUPPORTED_ABIS` inline to choose the download. It decides
+whether an update *can install* — a wrong pick downloads happily and then fails in PackageInstaller with
+`INSTALL_FAILED_NO_MATCHING_ABIS` — and it had no test, because it depended on an Android type.
+
+**Change.** `ReleaseApkSelector.pick(available, supportedAbis)` is pure and lives in `domain`: first device ABI the
+feed offers, else `universal`, else null. `ReleaseServiceImpl` delegates; behaviour is unchanged, the decision is now
+provable.
+
+**Measured.** `ReleaseApkSelectorTest` 4 tests (primary ABI, second ABI, universal fallback, nothing installable), 0
+failures; `:app:assembleDebug` 1m54s.
