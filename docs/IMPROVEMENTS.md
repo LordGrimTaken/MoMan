@@ -17,6 +17,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 8 | ViewModels | Retire 8 StaticFieldLeak false positives with evidence | StaticFieldLeak 8 → 0; warnings 125 → 117 | shipped |
 | 9 | Widgets | **Crash on launch**: manifest named the pre-rename receiver classes | emulator: 4 crash lines → 0, process starts | shipped |
 | 10 | Tooling | `tools/check-manifest-classes.py` guards the bug class from cycle 9 | passes clean; fails when the bug is reintroduced | shipped |
+| 11 | Release path | R8/release verified post-rename: every manifest class survives minification | release build 7m3s; 13/13 classes in dex | verified |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -167,3 +168,25 @@ does not exist. Intent actions and third-party names are skipped.
 
 **Proved both directions:** clean tree → 13 references checked, exit 0; reintroducing the two old lines → both
 reported, exit 1; restoring → clean again.
+
+## Cycle 11 — the release path after the rename
+
+**Why.** Cycles 1–10 were verified on the debug variant. 1.0.13 would ship the **release** variant, where R8 renames
+and removes classes by rule; a manifest naming a stripped class is exactly the cycle-9 bug with a delay fuse.
+
+**Measured.** `:app:assembleRelease` → BUILD SUCCESSFUL in 7m3s, five APKs (arm64 38 MB … universal 107 MB). Every
+class named in the release manifest was then looked up in the R8 output dex:
+
+```
+checked 15 manifest names; 13 real classes all present; 2 "missing" are
+com.moman.reader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION (a permission string) and
+eu.kanade.tachiyomi.SEARCH (an intent action) — not classes.
+```
+
+**Runtime attempt.** I tried to install and launch the release APK on the emulator. The emulated `system_server`
+died again (`cmd: Can't find service: activity/package`), the same failure as the first attempt under software
+rendering with other emulators running. The emulator was stopped and slot 6 removed. So the release variant is
+verified **statically and by R8**, not by running it.
+
+**Limitation now recorded twice:** this host (no KVM, shared CPU) can sustain a debug launch occasionally but cannot
+be relied on for UI or release runtime checks.
