@@ -10,6 +10,14 @@ class DeepLinkActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Exported component: only pass on the actions this activity declares in the manifest. Anything else —
+        // notably ACTION_VIEW, which MainActivity uses for repo links and backup restores — would let an untrusted
+        // caller reach flows that were never exposed here.
+        if (!DeepLinkActions.isForwardable(intent?.action)) {
+            finish()
+            return
+        }
+
         intent.apply {
             flags = flags or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             setClass(applicationContext, MainActivity::class.java)
