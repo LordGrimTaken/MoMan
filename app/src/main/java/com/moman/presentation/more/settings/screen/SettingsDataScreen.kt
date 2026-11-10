@@ -356,17 +356,17 @@ object SettingsDataScreen : SearchableSettings {
         ) { uri ->
             uri?.let {
                 scope.launch {
-                    LibraryExporter.exportToCsv(
+                    val exported = LibraryExporter.exportToCsv(
                         context = context,
                         uri = it,
                         favorites = favorites,
                         options = exportOptions,
-                        onExportComplete = {
-                            scope.launch(Dispatchers.Main) {
-                                context.toast(MR.strings.library_exported)
-                            }
-                        },
                     )
+                    withContext(Dispatchers.Main) {
+                        context.toast(
+                            if (exported) MR.strings.library_exported else MR.strings.library_export_failed,
+                        )
+                    }
                 }
             }
         }

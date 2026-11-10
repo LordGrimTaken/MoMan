@@ -14,20 +14,21 @@ object LibraryExporter {
         val includeArtist: Boolean,
     )
 
+    /**
+     * @return true when the file was actually written. A document provider can refuse to open the URI, in which case
+     * nothing is written — reporting success there would tell the user they have a backup they do not have.
+     */
     suspend fun exportToCsv(
         context: Context,
         uri: Uri,
         favorites: List<Manga>,
         options: ExportOptions,
-        onExportComplete: () -> Unit,
-    ) {
-        withContext(Dispatchers.IO) {
-            context.contentResolver.openOutputStream(uri)?.use { outputStream ->
-                val csvData = generateCsvData(favorites, options)
-                outputStream.write(csvData.toByteArray())
-            }
-            onExportComplete()
-        }
+    ): Boolean = withContext(Dispatchers.IO) {
+        context.contentResolver.openOutputStream(uri)?.use { outputStream ->
+            val csvData = generateCsvData(favorites, options)
+            outputStream.write(csvData.toByteArray())
+            true
+        } ?: false
     }
 
     private val escapeRequired = listOf("\r", "\n", "\"", ",")

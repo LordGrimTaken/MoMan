@@ -652,6 +652,7 @@
     <string name="export">Export</string>
     <string name="library_list">Library List</string>
     <string name="library_exported">Library Exported</string>
+    <string name="library_export_failed">Could not write the file. The library was not exported.</string>
 
     <!-- Sync section -->
     <string name="syncing_library">Syncing library</string>
