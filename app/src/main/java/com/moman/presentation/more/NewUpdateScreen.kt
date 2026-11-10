@@ -41,6 +41,7 @@ fun NewUpdateScreen(
     onAcceptUpdate: () -> Unit,
     onRejectUpdate: () -> Unit,
     onSkipUpdate: () -> Unit,
+    required: Boolean = false,
 ) {
     var showSkipDialog by remember { mutableStateOf(false) }
     if (showSkipDialog) {
@@ -82,14 +83,20 @@ fun NewUpdateScreen(
         },
         onAcceptClick = onAcceptUpdate,
         canAccept = stage != NewUpdateScreenModel.Stage.Downloading,
-        rejectText = stringResource(MR.strings.action_not_now),
-        onRejectClick = onRejectUpdate,
-        rejectAction = {
-            OutlinedButton(onClick = { showSkipDialog = true }) {
-                Icon(
-                    imageVector = MaterialSymbols.Rounded.UpdateDisabled,
-                    contentDescription = stringResource(MR.strings.update_check_skip),
-                )
+        // A required update (the running build is below the feed's minimumSupportedVersionCode) offers no way out
+        // other than installing it; the dialog's skip action would strand the user on an unsupported version.
+        rejectText = if (required) null else stringResource(MR.strings.action_not_now),
+        onRejectClick = if (required) null else onRejectUpdate,
+        rejectAction = if (required) {
+            null
+        } else {
+            {
+                OutlinedButton(onClick = { showSkipDialog = true }) {
+                    Icon(
+                        imageVector = MaterialSymbols.Rounded.UpdateDisabled,
+                        contentDescription = stringResource(MR.strings.update_check_skip),
+                    )
+                }
             }
         },
     ) {

@@ -176,4 +176,88 @@ class GetApplicationReleaseTest {
 
         result shouldBe GetApplicationRelease.Result.NoNewUpdate
     }
+
+    @Test
+    fun `When running build is below the minimum supported code the update is required`() = runTest {
+        val release = Release(
+            "1.0.12",
+            "info",
+            "http://example.com/release_link",
+            "http://example.com/release_link.apk",
+            versionCode = 13,
+            minSupportedVersionCode = 13,
+        )
+
+        coEvery { releaseService.latest(any()) } returns release
+
+        val result = getApplicationRelease.await(
+            GetApplicationRelease.Arguments(
+                isFoss = false,
+                isNightly = false,
+                commitCount = 0,
+                versionName = "1.0.11",
+                repository = "test",
+                versionCode = 12,
+            ),
+        )
+
+        val update = result as GetApplicationRelease.Result.NewUpdate
+        update.required shouldBe true
+    }
+
+    @Test
+    fun `When running build meets the minimum the update is optional`() = runTest {
+        val release = Release(
+            "1.0.13",
+            "info",
+            "http://example.com/release_link",
+            "http://example.com/release_link.apk",
+            versionCode = 14,
+            minSupportedVersionCode = 13,
+        )
+
+        coEvery { releaseService.latest(any()) } returns release
+
+        val result = getApplicationRelease.await(
+            GetApplicationRelease.Arguments(
+                isFoss = false,
+                isNightly = false,
+                commitCount = 0,
+                versionName = "1.0.12",
+                repository = "test",
+                versionCode = 13,
+            ),
+        )
+
+        (result as GetApplicationRelease.Result.NewUpdate).required shouldBe false
+    }
+
+    @Test
+    fun `A required update is offered even when the versions look current`() = runTest {
+        // Same versionName and same versionCode as the feed, but the feed has raised its floor above this build.
+        val release = Release(
+            "1.0.12",
+            "info",
+            "http://example.com/release_link",
+            "http://example.com/release_link.apk",
+            versionCode = 13,
+            minSupportedVersionCode = 14,
+        )
+
+        coEvery { releaseService.latest(any()) } returns release
+
+        val result = getApplicationRelease.await(
+            GetApplicationRelease.Arguments(
+                isFoss = false,
+                isNightly = false,
+                commitCount = 0,
+                versionName = "1.0.12",
+                repository = "test",
+                versionCode = 13,
+            ),
+        )
+
+        val update = result as GetApplicationRelease.Result.NewUpdate
+        update.required shouldBe true
+    }
 }

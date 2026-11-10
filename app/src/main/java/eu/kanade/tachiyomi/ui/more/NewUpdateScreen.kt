@@ -16,6 +16,7 @@ class NewUpdateScreen(
     private val changelogInfo: String,
     private val releaseLink: String,
     private val downloadLink: String,
+    private val required: Boolean = false,
 ) : Screen() {
 
     @Composable
@@ -42,6 +43,7 @@ class NewUpdateScreen(
                     else -> Unit
                 }
             },
+            required = required,
             onRejectUpdate = navigator::pop,
             onSkipUpdate = {
                 viewModel.skipUpdate(versionName)

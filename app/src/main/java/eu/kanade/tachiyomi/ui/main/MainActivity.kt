@@ -382,7 +382,7 @@ class MainActivity : BaseActivity() {
                         val result = context.appGraph.updateChecker.checkForUpdate()
                         if (
                             result is GetApplicationRelease.Result.NewUpdate &&
-                            result.release.version != preferences.skippedAppUpdate.get() &&
+                            (result.required || result.release.version != preferences.skippedAppUpdate.get()) &&
                             navigator.items.none { it is NewUpdateScreen }
                         ) {
                             val updateScreen = NewUpdateScreen(
@@ -390,6 +390,7 @@ class MainActivity : BaseActivity() {
                                 changelogInfo = result.release.info,
                                 releaseLink = result.release.releaseLink,
                                 downloadLink = result.release.downloadLink,
+                                required = result.required,
                             )
                             navigator.push(updateScreen)
                         }

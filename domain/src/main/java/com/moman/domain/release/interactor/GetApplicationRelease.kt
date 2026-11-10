@@ -11,8 +11,13 @@ class GetApplicationRelease(
     suspend fun await(arguments: Arguments): Result {
         val release = service.latest(arguments) ?: return Result.NoNewUpdate
 
-        return if (isNewVersion(arguments, release)) {
-            Result.NewUpdate(release)
+        // A build below the feed's minimum is told to update even when the versions otherwise look equal:
+        // that is what stops an old client from staying on a version the server no longer supports.
+        val required = release.minSupportedVersionCode > 0 &&
+            arguments.versionCode > 0 &&
+            arguments.versionCode < release.minSupportedVersionCode
+        return if (required || isNewVersion(arguments, release)) {
+            Result.NewUpdate(release, required)
         } else {
             Result.NoNewUpdate
         }
@@ -67,7 +72,7 @@ class GetApplicationRelease(
     )
 
     sealed interface Result {
-        data class NewUpdate(val release: Release) : Result
+        data class NewUpdate(val release: Release, val required: Boolean = false) : Result
         data object NoNewUpdate : Result
         data object OsTooOld : Result
     }

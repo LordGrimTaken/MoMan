@@ -44,6 +44,7 @@ class ReleaseServiceImpl(
         return Release(
             version = release.version,
             versionCode = release.versionCode,
+            minSupportedVersionCode = release.minSupportedVersionCode,
             info = release.changelog,
             releaseLink = baseUrl,
             downloadLink = downloadLink,
