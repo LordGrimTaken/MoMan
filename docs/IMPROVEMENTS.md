@@ -27,6 +27,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 18 | Updater | Skipping a version deletes the cached APK instead of leaving it in cache | full gate green: 150 tests, lint 0 errors | shipped |
 | 19 | Translations | Placeholder guard + 3 locales that dropped their `%s` fixed | `gradlew checkTranslations`: exit 1 when broken, 0 when clean | shipped |
 | 20 | Manifest | Exported-component allowlist guard; OAuth-state review recorded | `gradlew checkExportedComponents`: exit 1 on an injected export | shipped |
+| 21 | Tooling | `scripts/verify.sh`: one command for tests, both lints and all three guards | full run: 3 stages, "all checks passed", exit 0 | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -334,3 +335,25 @@ instead.
 
 **Self-caught again:** my first attempt to prove the guard injected nothing (the replace target did not match) and
 the guard "passed" on an unchanged file — a demonstration that proves nothing unless you check the setup landed.
+
+## Cycle 21 — one verification command instead of five
+
+**Reasoning.** By cycle 20 the checks were spread across five Gradle invocations (tests, two lint variants, three
+guards). Individually each is easy to skip; collectively they are what makes a green tree trustworthy.
+
+**Change.** `scripts/verify.sh` runs them in order and stops at the first failure; `--fast` runs only the guards. It
+locates the workspace-local JDK/SDK under `.toolchain/` when the environment does not provide them, which matters on
+this host.
+
+**Measured.** Run with the environment deliberately stripped:
+
+```
+env -u JAVA_HOME -u ANDROID_HOME -u ANDROID_SDK_ROOT ./scripts/verify.sh
+== checkManifestClasses checkTranslations checkExportedComponents
+== test
+== :app:lintDebug :app:lintRelease
+all checks passed        EXIT=0
+```
+
+**Attempt note:** the first full run was interrupted by the harness and left no log, so it was re-run rather than
+assumed — an unknown outcome is not a pass.
