@@ -1,10 +1,10 @@
 {
-  "version": "1.0.12",
-  "versionCode": 13,
+  "version": "1.0.13",
+  "versionCode": 14,
   "minSupportedVersionCode": 1,
-  "changelog": "MoMan is now its own project. Source moved to com.moman; Mihon branding, links and the donation screen are gone; MIT licence. IMPORTANT: this build uses a new signing key, so uninstall the previous MoMan once, then install this version.",
-  "releasedAt": "2026-11-05",
+  "changelog": "Correctness and safety fixes. The app no longer crashes on launch (widget manifest), updates are verified against the app's package id and signing certificate before install, a build below the minimum supported version gets a required update, and backups created by a newer app are refused instead of silently restored with data dropped. Fixes an exported component that forwarded arbitrary intents, an export that reported success without writing, and calendar labels that ignored a language change.",
+  "releasedAt": "2026-11-10",
   "apks": {
-    "arm64-v8a": "MoMan-1.0.12-arm64-v8a.apk"
+    "arm64-v8a": "MoMan-1.0.13-arm64-v8a.apk"
   }
 }
