@@ -16,6 +16,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 7 | Reader views | Accessibility click path for four touch-handling views | ClickableViewAccessibility 4 → 0; warnings 129 → 125 | shipped |
 | 8 | ViewModels | Retire 8 StaticFieldLeak false positives with evidence | StaticFieldLeak 8 → 0; warnings 125 → 117 | shipped |
 | 9 | Widgets | **Crash on launch**: manifest named the pre-rename receiver classes | emulator: 4 crash lines → 0, process starts | shipped |
+| 10 | Tooling | `tools/check-manifest-classes.py` guards the bug class from cycle 9 | passes clean; fails when the bug is reintroduced | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -154,3 +155,15 @@ none of them resolves manifest class names.
 
 **Limit reached:** the emulator's own `systemui` ANRs under software rendering with five emulators on twelve cores,
 so the UI never painted. Process-level verification yes; screenshots no.
+
+## Cycle 10 — automating the guard for cycle 9's bug class
+
+**Reasoning.** The crash was a *string* in a manifest; no compiler, merger, test or lint rule resolves those. The
+same mistake could be reintroduced by any future rename, so the fix belongs in tooling rather than a reminder.
+
+**Change.** `tools/check-manifest-classes.py` builds an index of every class/object/interface in the repo, resolves
+relative `android:name` values against each module's `namespace`, and exits non-zero on an app-owned reference that
+does not exist. Intent actions and third-party names are skipped.
+
+**Proved both directions:** clean tree → 13 references checked, exit 0; reintroducing the two old lines → both
+reported, exit 1; restoring → clean again.
