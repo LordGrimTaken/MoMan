@@ -18,6 +18,7 @@ import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import com.moman.domain.base.BasePreferences
 import com.moman.domain.release.model.ApkIdentity
+import com.moman.domain.release.model.TransferProgress
 import eu.kanade.tachiyomi.extension.util.ExtensionInstaller
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
@@ -59,7 +60,7 @@ class NewUpdateScreenModel(
     }
 
     private val apkFile: File
-        get() = File(context.externalCacheDir, "update.apk")
+        get() = File(context.cacheDir, "update.apk")
 
     private var downloadJob: Job? = null
 
@@ -69,6 +70,7 @@ class NewUpdateScreenModel(
         downloadJob = viewModelScope.launch {
             state.update { it.copy(downloadProgress = 0, stage = Stage.Downloading) }
             try {
+                apkFile.delete()
                 withContext(Dispatchers.IO) {
                     downloadApk()
                     verifyDownloadedApk()
@@ -93,7 +95,7 @@ class NewUpdateScreenModel(
             var lastTick = 0L
 
             override fun update(bytesRead: Long, contentLength: Long, done: Boolean) {
-                val progress = (100 * (bytesRead.toFloat() / contentLength)).toInt()
+                val progress = TransferProgress.percent(bytesRead, contentLength) ?: return
                 val currentTime = System.currentTimeMillis()
                 if (progress > savedProgress && currentTime - 200 > lastTick) {
                     savedProgress = progress
