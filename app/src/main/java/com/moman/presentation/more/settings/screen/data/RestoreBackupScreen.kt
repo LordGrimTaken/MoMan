@@ -1,5 +1,6 @@
 package com.moman.presentation.more.settings.screen.data
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
@@ -177,6 +178,9 @@ class RestoreBackupScreen(
 }
 
 @AssistedInject
+// The injected Context is the Application instance (App.kt builds the graph with `context = this`), so holding
+// it for the ViewModel lifetime cannot leak an Activity.
+@SuppressLint("StaticFieldLeak")
 class RestoreBackupViewModel(
     @Assisted private val uri: String,
     private val backupFileValidator: BackupFileValidator,

@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import androidx.annotation.IntRange
@@ -103,6 +104,9 @@ import kotlin.time.Instant
  * Presenter used by the activity to perform background operations.
  */
 @AssistedInject
+// The injected Context is the Application instance (App.kt builds the graph with `context = this`), so holding
+// it for the ViewModel lifetime cannot leak an Activity.
+@SuppressLint("StaticFieldLeak")
 class ReaderViewModel(
     @Assisted private val savedState: SavedStateHandle,
     @AppCoroutineScope private val appScope: CoroutineScope,

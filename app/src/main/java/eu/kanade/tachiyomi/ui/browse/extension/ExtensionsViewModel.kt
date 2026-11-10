@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.browse.extension
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
@@ -43,6 +44,9 @@ import kotlin.time.Duration.Companion.seconds
 @Inject
 @ViewModelKey
 @ContributesIntoMap(AppScope::class, binding = binding<ViewModel>())
+// The injected Context is the Application instance (App.kt builds the graph with `context = this`), so holding
+// it for the ViewModel lifetime cannot leak an Activity.
+@SuppressLint("StaticFieldLeak")
 class ExtensionsViewModel(
     private val preferences: SourcePreferences,
     basePreferences: BasePreferences,

@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.more
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -41,6 +42,9 @@ import java.io.File
 import java.security.MessageDigest
 
 @AssistedInject
+// The injected Context is the Application instance (App.kt builds the graph with `context = this`), so holding
+// it for the ViewModel lifetime cannot leak an Activity.
+@SuppressLint("StaticFieldLeak")
 class NewUpdateScreenModel(
     @Assisted changelogInfo: String,
     @Assisted private val downloadLink: String,

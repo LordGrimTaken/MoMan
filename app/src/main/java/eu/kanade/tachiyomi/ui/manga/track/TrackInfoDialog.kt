@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -95,7 +96,10 @@ import com.moman.presentation.core.i18n.stringResource
 import kotlin.time.Clock
 import kotlin.time.Instant
 
-data class TrackInfoDialogHomeScreen(
+data // The injected Context is the Application instance (App.kt builds the graph with `context = this`), so holding
+// it for the ViewModel lifetime cannot leak an Activity.
+@SuppressLint("StaticFieldLeak")
+class TrackInfoDialogHomeScreen(
     private val mangaId: Long,
     private val mangaTitle: String,
     private val sourceId: Long,

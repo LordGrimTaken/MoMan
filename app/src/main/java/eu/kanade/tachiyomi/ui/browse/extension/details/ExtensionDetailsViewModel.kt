@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.browse.extension.details
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
@@ -38,6 +39,9 @@ import com.moman.core.common.util.system.logcat
 import kotlin.time.Duration.Companion.seconds
 
 @AssistedInject
+// The injected Context is the Application instance (App.kt builds the graph with `context = this`), so holding
+// it for the ViewModel lifetime cannot leak an Activity.
+@SuppressLint("StaticFieldLeak")
 class ExtensionDetailsViewModel(
     @Assisted pkgName: String,
     private val context: Context,
