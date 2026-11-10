@@ -14,6 +14,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import com.moman.domain.release.interactor.GetApplicationRelease
 import com.moman.domain.release.model.Release
+import com.moman.domain.release.model.ReleaseApkSelector
 import com.moman.domain.release.service.ReleaseService
 
 /**
@@ -52,8 +53,6 @@ class ReleaseServiceImpl(
     }
 
     /** Prefer the APK built for this device's primary ABI, then fall back to the universal build. */
-    private fun pickApk(release: MomanRelease): String? {
-        Build.SUPPORTED_ABIS.forEach { abi -> release.apks[abi]?.let { return it } }
-        return release.apks["universal"]
-    }
+    private fun pickApk(release: MomanRelease): String? =
+        ReleaseApkSelector.pick(release.apks, Build.SUPPORTED_ABIS.toList())
 }
