@@ -34,6 +34,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 25 | Branding | Renamed the last Mihon-named drawables and user-visible files; OAuth URIs documented | 154 tests, guards pass, build green | shipped |
 | 26 | Release | Rebuilt the release variant at 1.0.13 after five commits; verified release-safety flags | R8 green 4m16s; code 14 / 1.0.13; not debuggable, no PreviewActivity, allowBackup=false | verified |
 | 27 | Docs | `docs/RELEASING.md`: the release procedure, written from this cycle's real commands | linked from README; commands taken from the runs above | shipped |
+| 28 | Export | CSV export reports failure instead of a false "exported" toast | build 1m54s; translation guard passes | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -489,3 +490,20 @@ so the first install should be treated as the real test of the update path.
 
 **Self-caught:** one line in the draft said the fingerprint "must be … NOT 1d85bc09" — self-contradictory at exactly the
 moment it matters. Corrected to "must equal the fingerprint in step 0, if not you are signing with the wrong key".
+
+## Cycle 28 — an export that never happened, reported as success
+
+**Found while checking CSV escaping** (which is correct: quotes doubled, `\r`, `\n`, `"` and `,` all trigger quoting).
+
+**Defect.** `LibraryExporter` invoked `onExportComplete()` *outside* the `use` block, unconditionally. A document provider
+that refuses to open the URI makes `openOutputStream` return null, writes nothing — and the screen still toasted
+"library exported". On a screen whose entire purpose is handing the user a copy of their library, that is the kind of
+false confirmation that precedes data loss.
+
+**Change.** `exportToCsv` returns `Boolean` (true only when the stream opened and the write finished); the caller toasts
+`library_exported` or a new `library_export_failed`. Other locales fall back to English until translated.
+
+**Measured.** `:app:assembleDebug` BUILD SUCCESSFUL 1m54s, `checkTranslations` passing with the new key.
+
+**Not verified:** no export was performed on a device; the null-stream path is reasoned from `ContentResolver`'s
+contract and not observed.
