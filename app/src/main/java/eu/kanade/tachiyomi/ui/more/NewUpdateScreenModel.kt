@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.ui.more
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.Signature
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +15,7 @@ import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import com.moman.domain.base.BasePreferences
+import com.moman.domain.release.model.ApkIdentity
 import eu.kanade.tachiyomi.extension.util.ExtensionInstaller
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
@@ -32,6 +35,7 @@ import kotlinx.coroutines.withContext
 import logcat.LogPriority
 import com.moman.core.common.util.system.logcat
 import java.io.File
+import java.security.MessageDigest
 
 @AssistedInject
 class NewUpdateScreenModel(
@@ -63,7 +67,10 @@ class NewUpdateScreenModel(
         downloadJob = viewModelScope.launch {
             state.update { it.copy(downloadProgress = 0, stage = Stage.Downloading) }
             try {
-                withContext(Dispatchers.IO) { downloadApk() }
+                withContext(Dispatchers.IO) {
+                    downloadApk()
+                    verifyDownloadedApk()
+                }
                 state.update { it.copy(downloadProgress = 100, stage = Stage.Downloaded) }
             } catch (e: CancellationException) {
                 throw e
@@ -97,6 +104,39 @@ class NewUpdateScreenModel(
         val response = network.client.newCachelessCallWithProgress(GET(downloadLink), progressListener).awaitSuccess()
         response.body.source().saveTo(apkFile)
     }
+
+    /**
+     * Refuses a downloaded APK that is not this app: same package id and the same signing certificate as the
+     * running build. Runs before the user is offered "Install", so a swapped file fails here instead of inside
+     * Android's installer.
+     */
+    private fun verifyDownloadedApk() {
+        val pm = context.packageManager
+        val archive = pm.getPackageArchiveInfo(
+            apkFile.absolutePath,
+            PackageManager.GET_SIGNING_CERTIFICATES,
+        ) ?: error("downloaded file is not a readable APK")
+        val installed = pm.getPackageInfo(context.packageName, PackageManager.GET_SIGNING_CERTIFICATES)
+
+        val trusted = ApkIdentity.isTrustedUpdate(
+            expectedPackage = context.packageName,
+            actualPackage = archive.packageName,
+            expectedCerts = certFingerprints(installed.signingInfo?.apkContentsSigners),
+            actualCerts = certFingerprints(archive.signingInfo?.apkContentsSigners),
+        )
+        if (!trusted) {
+            error("downloaded APK failed the identity check (package or signing certificate mismatch)")
+        }
+    }
+
+    private fun certFingerprints(signatures: Array<Signature>?): Set<String> =
+        signatures.orEmpty()
+            .map { signature ->
+                MessageDigest.getInstance("SHA-256")
+                    .digest(signature.toByteArray())
+                    .joinToString("") { "%02x".format(it) }
+            }
+            .toSet()
 
     fun skipUpdate(versionName: String) {
         downloadJob?.cancel()
