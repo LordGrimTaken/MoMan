@@ -41,7 +41,15 @@ object LibraryExporter {
         )
             .count { it }
 
-        val rows = buildList(favorites.size) {
+        // Header row: without it the file is three unlabelled columns, which is unusable outside the app.
+        val header = buildList(columnSize) {
+            if (options.includeTitle) add("Title")
+            if (options.includeAuthor) add("Author")
+            if (options.includeArtist) add("Artist")
+        }
+
+        val rows = buildList(favorites.size + 1) {
+            add(header)
             favorites.forEach { manga ->
                 buildList(columnSize) {
                     if (options.includeTitle) add(manga.title)
