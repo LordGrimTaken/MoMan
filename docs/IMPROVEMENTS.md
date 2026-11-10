@@ -35,6 +35,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 26 | Release | Rebuilt the release variant at 1.0.13 after five commits; verified release-safety flags | R8 green 4m16s; code 14 / 1.0.13; not debuggable, no PreviewActivity, allowBackup=false | verified |
 | 27 | Docs | `docs/RELEASING.md`: the release procedure, written from this cycle's real commands | linked from README; commands taken from the runs above | shipped |
 | 28 | Export | CSV export reports failure instead of a false "exported" toast | build 1m54s; translation guard passes | shipped |
+| 29 | Export | CSV gains a header row built from the same flags as the data columns | build green | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -507,3 +508,27 @@ false confirmation that precedes data loss.
 
 **Not verified:** no export was performed on a device; the null-stream path is reasoned from `ContentResolver`'s
 contract and not observed.
+
+## Cycle 29 — the exported CSV had no column names
+
+**Found while checking the export for sibling defects.** `generateCsvData` emitted only data rows: the exported
+library was three unlabelled columns whose meaning depended on which checkboxes were ticked at export time. The file is
+intended to be useful outside the app, and without a header it is guesswork.
+
+**Change.** A header row (`Title`, `Author`, `Artist`, each only when its option is on) built from the same flags as
+the data columns, so the two cannot disagree, and run through the same escaping path.
+
+**Verified.** `:app:assembleDebug` BUILD SUCCESSFUL.
+
+**Not verified.** The header has not been read out of a real exported file — that needs a device and a document
+provider. The change is small and its inputs are checked, but it is code-level evidence, not observed output.
+
+## Known, deliberately unfinished
+
+Two findings are recorded and **not** fixed, on purpose:
+
+1. **OAuth state is not verified for AniList, Bangumi, Shikimori or Hikka** (cycle 20). Fixing means changing four
+   provider integrations that cannot be tested from here; a blind patch risks breaking working logins.
+2. **Backup creation holds the library in memory** (`Backup.backupManga` is a `List`). Fine at normal sizes, a scaling
+   risk at very large libraries; changing it to stream is a structural change that deserves its own cycle and a device
+   to measure.
