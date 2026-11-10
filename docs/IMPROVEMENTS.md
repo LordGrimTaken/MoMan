@@ -21,6 +21,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 12 | Test + lint baseline | First whole-project run since the rename, debug and release | **141 tests, 0 failures**; release lint 0 errors | verified |
 | 13 | Release runtime | Attempted again on a quiet host; interrupted by a DSH host restart | emulator booted, install not completed | **not verified** |
 | 14 | Updater | ABI choice extracted into a pure, tested function | 4 new tests; build 1m54s | shipped |
+| 15 | Updater | Progress throttle extracted and fixed: completion always emits | 5 new tests; build 28s | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -236,3 +237,17 @@ provable.
 
 **Measured.** `ReleaseApkSelectorTest` 4 tests (primary ABI, second ABI, universal fallback, nothing installable), 0
 failures; `:app:assembleDebug` 1m54s.
+
+## Cycle 15 — the final progress tick was silently dropped
+
+**Hypothesis.** The listener admitted a tick when `progress > saved && now - lastTick > 200`. The tick that reaches
+100% often lands inside that window, so it was discarded and the bar sat one percent short until the stage flipped to
+Downloaded.
+
+**Change.** `TransferProgress.shouldEmit(...)` is pure: `done` always emits, otherwise real progress at most once per
+interval. The listener delegates.
+
+**Measured.** 10 tests in `TransferProgressTest`, 0 failures; `:app:assembleDebug` 28s.
+
+**Two self-inflicted delays, recorded:** the function was appended outside the object literal (syntax error), then the
+new tests used toy millisecond values instead of wall-clock ones, so "first tick emits" failed against a correct rule.
