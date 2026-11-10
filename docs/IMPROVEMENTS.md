@@ -26,6 +26,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 17 | Tooling | The cycle-10 guard is now a Gradle task, not a script nobody runs | `gradlew checkManifestClasses`: exit 1 with the bug, 0 without | shipped |
 | 18 | Updater | Skipping a version deletes the cached APK instead of leaving it in cache | full gate green: 150 tests, lint 0 errors | shipped |
 | 19 | Translations | Placeholder guard + 3 locales that dropped their `%s` fixed | `gradlew checkTranslations`: exit 1 when broken, 0 when clean | shipped |
+| 20 | Manifest | Exported-component allowlist guard; OAuth-state review recorded | `gradlew checkExportedComponents`: exit 1 on an injected export | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -313,3 +314,23 @@ unnumbered ones by count. Proved both ways: clean → 0; re-breaking the Polish 
 
 **Self-caught:** the guard crashed on its first run formatting the mismatch (`dict()` on a tuple) — a bug in the
 checker, not in the translations, found because it was exercised both ways instead of only on a clean tree.
+
+## Cycle 20 — exported components, and an OAuth finding I deliberately did not patch
+
+**Audit.** Three app components are exported without `android:permission`: `MainActivity` (launcher, deep links),
+`DeepLinkActivity` (SEARCH/SEND, actions allowlisted since cycle 4) and `TrackLoginActivity` (OAuth redirect). All
+three are necessary; the risk is a fourth arriving unnoticed.
+
+**Guard.** `tools/check-exported-components.py` + `./gradlew checkExportedComponents`: every exported component without
+a permission must be named in an allowlist with a justification. Proved by injecting an exported
+`.SneakyReceiver` → exit 1 naming it; clean tree → exit 0.
+
+**Finding, not fixed.** `TrackLoginActivity` verifies OAuth `state` for Comick and MangaBaka, and MyAnimeList is
+protected by PKCE; **AniList, Bangumi, Shikimori and Hikka accept a code with no state check**, so an attacker app
+could in principle inject its own code (login CSRF — the user's progress would sync to the attacker's account).
+Fixing that means changing flows for four services, each with its own OAuth behaviour, which I cannot test against
+the live services from here. Patching them blind would risk breaking working logins; it is recorded for a decision
+instead.
+
+**Self-caught again:** my first attempt to prove the guard injected nothing (the replace target did not match) and
+the guard "passed" on an unchanged file — a demonstration that proves nothing unless you check the setup landed.
