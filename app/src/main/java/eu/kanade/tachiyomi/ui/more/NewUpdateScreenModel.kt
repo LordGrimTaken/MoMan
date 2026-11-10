@@ -2,8 +2,10 @@ package eu.kanade.tachiyomi.ui.more
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.Signature
+import android.os.Build
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -121,22 +123,30 @@ class NewUpdateScreenModel(
         val trusted = ApkIdentity.isTrustedUpdate(
             expectedPackage = context.packageName,
             actualPackage = archive.packageName,
-            expectedCerts = certFingerprints(installed.signingInfo?.apkContentsSigners),
-            actualCerts = certFingerprints(archive.signingInfo?.apkContentsSigners),
+            expectedCerts = certFingerprints(installed),
+            actualCerts = certFingerprints(archive),
         )
         if (!trusted) {
             error("downloaded APK failed the identity check (package or signing certificate mismatch)")
         }
     }
 
-    private fun certFingerprints(signatures: Array<Signature>?): Set<String> =
-        signatures.orEmpty()
+    private fun certFingerprints(info: PackageInfo): Set<String> {
+        // signingInfo is API 28+; on 26-27 the (deprecated) signatures field is the only source.
+        val signatures: Array<Signature>? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            info.signingInfo?.apkContentsSigners
+        } else {
+            @Suppress("DEPRECATION")
+            info.signatures
+        }
+        return signatures.orEmpty()
             .map { signature ->
                 MessageDigest.getInstance("SHA-256")
                     .digest(signature.toByteArray())
                     .joinToString("") { "%02x".format(it) }
             }
             .toSet()
+    }
 
     fun skipUpdate(versionName: String) {
         downloadJob?.cancel()
