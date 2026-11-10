@@ -82,8 +82,16 @@ class WebtoonRecyclerView @JvmOverloads constructor(
         }
 
         detector.onTouchEvent(e)
+        if (e.actionMasked == MotionEvent.ACTION_UP) performClick()
         return super.onTouchEvent(e)
     }
+
+    /**
+     * Accessibility services activate a touch-handling view through performClick(); without this override the
+     * view is unreachable for them even though it reacts to touch (lint: ClickableViewAccessibility).
+     */
+    override fun performClick(): Boolean = super.performClick()
+
 
     override fun onScrolled(dx: Int, dy: Int) {
         super.onScrolled(dx, dy)

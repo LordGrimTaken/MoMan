@@ -83,6 +83,7 @@ open class Pager(
      */
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         return try {
+            if (ev.actionMasked == MotionEvent.ACTION_UP) performClick()
             super.onTouchEvent(ev)
         } catch (e: NullPointerException) {
             false
@@ -92,6 +93,13 @@ open class Pager(
             false
         }
     }
+
+    /**
+     * Accessibility services activate a touch-handling view through performClick(); without this override the
+     * view is unreachable for them even though it reacts to touch (lint: ClickableViewAccessibility).
+     */
+    override fun performClick(): Boolean = super.performClick()
+
 
     /**
      * Executes the given key event when this pager has focus. Just do nothing because the reader

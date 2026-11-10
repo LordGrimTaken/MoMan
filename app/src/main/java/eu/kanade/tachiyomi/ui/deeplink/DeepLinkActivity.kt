@@ -1,10 +1,13 @@
 package eu.kanade.tachiyomi.ui.deeplink
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import eu.kanade.tachiyomi.ui.main.MainActivity
 
+// The forwarded intent is allowlisted before it is launched (see DeepLinkActions); lint cannot follow that check.
+@SuppressLint("UnsafeIntentLaunch")
 class DeepLinkActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

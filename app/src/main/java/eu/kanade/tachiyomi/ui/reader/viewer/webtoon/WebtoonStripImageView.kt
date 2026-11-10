@@ -97,7 +97,13 @@ class WebtoonStripImageView(context: Context) : View(context) {
         }
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean = false
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (event.actionMasked == MotionEvent.ACTION_UP) performClick()
+        return false
+    }
+
+    /** Accessibility services activate a touch-handling view through performClick() (lint: ClickableViewAccessibility). */
+    override fun performClick(): Boolean = super.performClick()
 }
 
 private const val LARGE_PAGE_BYTES = 64L * 1024 * 1024
