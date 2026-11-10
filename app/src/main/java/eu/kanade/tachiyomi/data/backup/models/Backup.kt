@@ -12,4 +12,6 @@ data class Backup(
     @ProtoNumber(104) var backupPreferences: List<BackupPreference> = emptyList(),
     @ProtoNumber(105) var backupSourcePreferences: List<BackupSourcePreferences> = emptyList(),
     @ProtoNumber(106) var backupExtensionStores: List<BackupExtensionStore> = emptyList(),
+    /** Format version, so a newer backup is refused instead of silently restored with data dropped. */
+    @ProtoNumber(107) var backupSchemaVersion: Int = 0,
 )

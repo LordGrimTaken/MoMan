@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.backup.create
 
+import com.moman.domain.backup.BackupCompatibility
 import android.content.Context
 import android.net.Uri
 import com.hippo.unifile.UniFile
@@ -102,6 +103,7 @@ class BackupCreator(
                     }
                     writer.writeMetadata(
                         Backup(
+            backupSchemaVersion = BackupCompatibility.CURRENT,
                             backupManga = emptyList(),
                             backupCategories = backupCategories(options),
                             backupSources = backupSources(sourceIds),

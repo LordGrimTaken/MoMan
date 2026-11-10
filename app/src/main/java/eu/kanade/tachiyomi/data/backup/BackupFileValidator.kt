@@ -4,6 +4,7 @@ import android.net.Uri
 import dev.zacsweers.metro.Inject
 import eu.kanade.tachiyomi.data.track.TrackerManager
 import kotlinx.coroutines.CancellationException
+import com.moman.domain.backup.BackupCompatibility
 import com.moman.domain.source.service.SourceManager
 
 @Inject
@@ -29,6 +30,13 @@ class BackupFileValidator(
             throw e
         } catch (e: Exception) {
             throw IllegalStateException(e)
+        }
+
+        if (!BackupCompatibility.isRestorable(backup.backupSchemaVersion)) {
+            throw IllegalStateException(
+                "This backup was created by a newer version of MoMan (format ${backup.backupSchemaVersion}, " +
+                    "this build reads ${BackupCompatibility.CURRENT}). Update the app and try again.",
+            )
         }
 
         val sources = backup.backupSources.associate { it.sourceId to it.name }
