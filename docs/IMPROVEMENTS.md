@@ -24,6 +24,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 15 | Updater | Progress throttle extracted and fixed: completion always emits | 5 new tests; build 28s | shipped |
 | 16 | Release prep | versionCode 14 / 1.0.13 with a changelog for the twelve fixes | aapt2 reports 14 / 1.0.13 | staged |
 | 17 | Tooling | The cycle-10 guard is now a Gradle task, not a script nobody runs | `gradlew checkManifestClasses`: exit 1 with the bug, 0 without | shipped |
+| 18 | Updater | Skipping a version deletes the cached APK instead of leaving it in cache | full gate green: 150 tests, lint 0 errors | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -278,3 +279,20 @@ nothing; the bug it targets already shipped once.
 dangling references; restoring them → `exit 0`. My first attempt at this measurement piped the task through `grep`
 and read *its* exit code, which reported success — the same pipeline mistake recorded in LESSONS.md, caught the same
 round it was made.
+
+## Cycle 18 — skipping an update left the download behind
+
+**Hypothesis.** `skipUpdate` cancelled the job and recorded the skipped version, but a downloaded APK — tens of
+megabytes — stayed in the internal cache until the system got round to evicting it.
+
+**Change.** The file is deleted with the preference write; skipping is final for that version anyway.
+
+**Measured with the whole gate rather than a rebuild:** `./gradlew test checkManifestClasses :app:lintDebug
+:app:lintRelease` → BUILD SUCCESSFUL in 6m48s, **150 tests 0 failures**, lint **0 errors** on debug and release, the
+manifest guard passing. (150 rather than 151 because the gate runs `test`, which does not include the app module's
+instrumentation-free variant tests that the earlier per-module count did.)
+
+## Standing limitation, restated each cycle
+
+No release runtime observation: the keystore is absent and the emulator is unreliable on this host. Everything above
+is compile, unit test, lint and static verification of the R8 output.
