@@ -28,6 +28,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 19 | Translations | Placeholder guard + 3 locales that dropped their `%s` fixed | `gradlew checkTranslations`: exit 1 when broken, 0 when clean | shipped |
 | 20 | Manifest | Exported-component allowlist guard; OAuth-state review recorded | `gradlew checkExportedComponents`: exit 1 on an injected export | shipped |
 | 21 | Tooling | `scripts/verify.sh`: one command for tests, both lints and all three guards | full run: 3 stages, "all checks passed", exit 0 | shipped |
+| 22 | Compatibility | Verified 16 KB page-size support on the release APK (Android 15+) | zipalign -P 16 passes; all 10 `.so` LOAD align 0x4000 | verified |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -357,3 +358,27 @@ all checks passed        EXIT=0
 
 **Attempt note:** the first full run was interrupted by the harness and left no log, so it was re-run rather than
 assumed — an unknown outcome is not a pass.
+
+## Cycle 22 — 16 KB page sizes, checked rather than assumed
+
+**Why.** Android 15+ devices can use 16 KB memory pages. A native library whose ELF `LOAD` segments are only 4 KB
+aligned fails to load there, and the app dies at startup on exactly the newest hardware. Nothing in `assembleDebug`
+checks it.
+
+**Measured on the release APK.**
+
+- `zipalign -c -P 16 -v 4 app-arm64-v8a-release.apk` → all entries `(OK)`, exit 0.
+- ELF `LOAD` alignment, read from the binaries themselves:
+
+```
+libandroidx.graphics.path.so 0x4000   libarchive-jni.so 0x4000   libconscrypt_jni.so 0x4000
+libimagedecoder.so 0x4000            libquickjs.so 0x4000       libresize.so 0x4000
+libsqliteJni.so 0x4000               libssiv_crop.so 0x4000     libwebgpu_c_bundled.so 0x4000
+libzstd-kmp.so 0x4000
+```
+
+**Result: no defect.** All ten are 16 KB aligned. The commands are now documented in `docs/BUILDING.md` under "Release
+checks beyond a successful build" so the property is verified rather than assumed on the next release.
+
+**My own measurement error, caught:** the first pass printed the wrong `readelf` column (file size instead of align)
+and would have been meaningless; re-reading with `-lW` gave the real values.
