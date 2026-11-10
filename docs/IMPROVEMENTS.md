@@ -33,6 +33,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 24 | Backup | Backups carry a format version; a newer backup is refused, not partially restored | 4 new tests; build 2m30s | shipped |
 | 25 | Branding | Renamed the last Mihon-named drawables and user-visible files; OAuth URIs documented | 154 tests, guards pass, build green | shipped |
 | 26 | Release | Rebuilt the release variant at 1.0.13 after five commits; verified release-safety flags | R8 green 4m16s; code 14 / 1.0.13; not debuggable, no PreviewActivity, allowBackup=false | verified |
+| 27 | Docs | `docs/RELEASING.md`: the release procedure, written from this cycle's real commands | linked from README; commands taken from the runs above | shipped |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -470,3 +471,21 @@ size: 38 MB (arm64-v8a)
 
 **Interrupted once:** the host restarted mid-build; the artefact was checked (still 1.0.12), the build was re-run rather
 than assumed, and only the completed run is recorded.
+
+## Cycle 27 — writing down the release procedure
+
+**Reasoning.** Every round for the last twenty has ended at the same blocker: the keystore is not on this host. The
+useful thing left to produce is the procedure that turns the staged tree into a release, so the person who *does* hold
+the key does not have to rediscover it — including the two traps this session hit: a debug-signed APK cannot install
+over a published one, and a `latest.json` pointing at a missing or wrong APK is worse than shipping nothing.
+
+**Delivered.** `docs/RELEASING.md`: version bump, `scripts/verify.sh`, signing, artefact verification (certificate
+fingerprint, 16 KB alignment, manifest classes, exported components, schema version), R2 publish via `publish.sh`,
+GitHub tag and release, and an outside-in check that the feed and its APK agree. Commands are the ones actually run in
+cycles 11, 22–26.
+
+**Honest section included:** the release variant has been built and statically verified but **never run on a device**,
+so the first install should be treated as the real test of the update path.
+
+**Self-caught:** one line in the draft said the fingerprint "must be … NOT 1d85bc09" — self-contradictory at exactly the
+moment it matters. Corrected to "must equal the fingerprint in step 0, if not you are signing with the wrong key".
