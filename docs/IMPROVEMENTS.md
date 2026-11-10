@@ -32,6 +32,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 23 | Database | Verified migrations survived the `.sq` move; schema version unchanged | 19 `.sqm` files present; generated version 20 | verified |
 | 24 | Backup | Backups carry a format version; a newer backup is refused, not partially restored | 4 new tests; build 2m30s | shipped |
 | 25 | Branding | Renamed the last Mihon-named drawables and user-visible files; OAuth URIs documented | 154 tests, guards pass, build green | shipped |
+| 26 | Release | Rebuilt the release variant at 1.0.13 after five commits; verified release-safety flags | R8 green 4m16s; code 14 / 1.0.13; not debuggable, no PreviewActivity, allowBackup=false | verified |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -448,3 +449,24 @@ at all four call sites.
 
 **Measured.** 154 tests, 0 failures; both guards pass; `:app:assembleDebug` green. One attempt failed with
 "AAPT2 daemon startup failed" and passed on retry — environment, not code.
+
+## Cycle 26 — the release artefact was stale, and now it is not
+
+**Finding.** `app/build/outputs/apk/release/` still held the **1.0.12** build (versionCode 13, mtime 06:17) after five
+commits had landed — including the backup format field and the resource renames. Anyone signing that file would ship
+the previous code under the new version's expectations.
+
+**Change.** Rebuilt `:app:assembleRelease`: BUILD SUCCESSFUL in 4m16s, R8 completing over the new code.
+
+**Verified on the rebuilt artefact:**
+
+```
+package: name='com.moman.reader' versionCode='14' versionName='1.0.13'
+debuggable: 0 occurrences        (a debuggable release would be a security hole)
+PreviewActivity: absent          (no compose-tooling component in the shipping manifest)
+allowBackup=false                (unchanged, deliberate)
+size: 38 MB (arm64-v8a)
+```
+
+**Interrupted once:** the host restarted mid-build; the artefact was checked (still 1.0.12), the build was re-run rather
+than assumed, and only the completed run is recorded.
