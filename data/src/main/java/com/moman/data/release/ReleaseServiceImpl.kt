@@ -43,6 +43,7 @@ class ReleaseServiceImpl(
 
         return Release(
             version = release.version,
+            versionCode = release.versionCode,
             info = release.changelog,
             releaseLink = baseUrl,
             downloadLink = downloadLink,

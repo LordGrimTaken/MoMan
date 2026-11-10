@@ -28,6 +28,7 @@ class AppUpdateChecker(
                     BuildConfig.VERSION_NAME,
                     UPDATE_BASE_URL,
                     forceCheck,
+                    versionCode = BuildConfig.VERSION_CODE,
                 ),
             )
 

@@ -96,4 +96,84 @@ class GetApplicationReleaseTest {
 
         result shouldBe GetApplicationRelease.Result.NoNewUpdate
     }
+
+    @Test
+    fun `When release versionCode is newer expect new update`() = runTest {
+        // Same display name as the running build, newer code: this is the case the name comparison missed.
+        val release = Release(
+            "1.0.12",
+            "info",
+            "http://example.com/release_link",
+            "http://example.com/release_link.apk",
+            versionCode = 14,
+        )
+
+        coEvery { releaseService.latest(any()) } returns release
+
+        val result = getApplicationRelease.await(
+            GetApplicationRelease.Arguments(
+                isFoss = false,
+                isNightly = false,
+                commitCount = 0,
+                versionName = "1.0.12",
+                repository = "test",
+                versionCode = 13,
+            ),
+        )
+
+        (result as GetApplicationRelease.Result.NewUpdate).release.versionCode shouldBe 14
+    }
+
+    @Test
+    fun `When release versionCode matches expect no update despite name suffix`() = runTest {
+        // Debug builds carry names like "1.0.12-36"; a name comparison would either miss or fake an update here.
+        val release = Release(
+            "1.0.12",
+            "info",
+            "http://example.com/release_link",
+            "http://example.com/release_link.apk",
+            versionCode = 13,
+        )
+
+        coEvery { releaseService.latest(any()) } returns release
+
+        val result = getApplicationRelease.await(
+            GetApplicationRelease.Arguments(
+                isFoss = false,
+                isNightly = false,
+                commitCount = 0,
+                versionName = "1.0.12-36",
+                repository = "test",
+                versionCode = 13,
+            ),
+        )
+
+        result shouldBe GetApplicationRelease.Result.NoNewUpdate
+    }
+
+    @Test
+    fun `When release versionCode is older expect no update`() = runTest {
+        val release = Release(
+            "1.0.11",
+            "info",
+            "http://example.com/release_link",
+            "http://example.com/release_link.apk",
+            versionCode = 12,
+        )
+
+        coEvery { releaseService.latest(any()) } returns release
+
+        val result = getApplicationRelease.await(
+            GetApplicationRelease.Arguments(
+                isFoss = false,
+                isNightly = false,
+                commitCount = 0,
+                versionName = "1.0.12",
+                repository = "test",
+                versionCode = 13,
+            ),
+        )
+
+        result shouldBe GetApplicationRelease.Result.NoNewUpdate
+    }
 }
