@@ -22,6 +22,18 @@ grep -n "versionCode\|versionName" app/build.gradle.kts
 
 Add the `CHANGELOG.md` section for the version while you are there.
 
+> **`-Pdist=github` is not optional.** `distribution` defaults to `LOCAL`, and `enableUpdater` is false for LOCAL —
+> a plain `assembleRelease` compiles the whole in-app updater out. 1.0.13 shipped exactly that way and could never
+> offer a future update. Verify before publishing:
+>
+> ```bash
+> grep UPDATER_ENABLED app/build/generated/source/buildConfig/release/eu/kanade/tachiyomi/BuildConfig.java
+> # must say: public static final boolean UPDATER_ENABLED = true;
+> ```
+>
+> `-Pdist=github` also switches telemetry on by default, but `gradle.properties` pins `include-telemetry=false`, so
+> the flag stays off unless you remove that line.
+
 ## 2. Prove the tree
 
 ```bash
@@ -36,7 +48,7 @@ storePassword=…
 keyAlias=…
 keyPassword=…" > keystore.properties        # gitignored
 
-./gradlew :app:assembleRelease               # per-ABI APKs
+./gradlew :app:assembleRelease -Pdist=github   # per-ABI APKs
 ./gradlew :app:bundleRelease -PabiSplits=false   # if you also want an AAB
 ```
 
@@ -47,6 +59,7 @@ AAPT=$ANDROID_HOME/build-tools/37.0.0/aapt2
 APK=app/build/outputs/apk/release/app-arm64-v8a-release.apk
 
 $AAPT dump badging "$APK" | head -1          # package, versionCode, versionName
+grep UPDATER_ENABLED app/build/generated/source/buildConfig/release/eu/kanade/tachiyomi/BuildConfig.java
 $ANDROID_HOME/build-tools/37.0.0/apksigner verify --print-certs "$APK"
 #   -> certificate SHA-256 must equal the fingerprint in step 0.
 #      If it does not, you are signing with the wrong key: stop, or every installed app will refuse the update.

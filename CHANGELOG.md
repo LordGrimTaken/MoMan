@@ -31,6 +31,17 @@ The release that makes MoMan its own project rather than a rebranded fork.
 - Release APKs removed from git (served from R2); clone size dropped from 137 MB to a few MB.
 - Added `docs/BUILDING.md`, `docs/ARCHITECTURE.md`, a rewritten README and store-listing metadata.
 
+## 1.0.14 — 2026-11-11
+
+**1.0.13 was published with the in-app updater compiled out.** It was built locally without the distribution flag
+that enables it (`distribution` defaults to LOCAL, and `enableUpdater` is false for LOCAL), so that build could never
+offer a future update. This release restores the updater.
+
+- `-Pdist=github` is now required when building a release; the runbook says so and the release check verifies
+  `UPDATER_ENABLED == true` in the generated `BuildConfig`.
+- Everything from 1.0.13 remains: launch-crash fix, verified update downloads, enforced `minSupportedVersionCode`,
+  refusal of newer-format backups, deeplink allowlist, honest CSV export with a header row, branding cleanup.
+
 ## 1.0.13 — 2026-11-10
 
 Correctness and safety fixes, mostly in the updater.
