@@ -558,3 +558,27 @@ resolves; republished under the right name and deleted the stray object.
 
 **Verified end to end:** downloaded the APK from momanreader.com (not from the build directory) and compared
 sha256 with the signed artefact — identical.
+
+## Cycle 31 — the updater was compiled out of a released build
+
+**Found by the user**, comparing what they installed against the source: the published app was missing features.
+They were right, and the cause was mine.
+
+`-Pdist` was not passed when building 1.0.13. `distribution` therefore defaulted to `LOCAL`, and
+`enableUpdater = distribution != LOCAL` resolved to **false**. R8 folded `BuildConfig.UPDATER_ENABLED` to a constant
+`false`, so the shipped app had **no startup update check and no update section in About** — ten cycles of updater
+work present in the repository and absent from the file users downloaded.
+
+**Fix.** 1.0.14 built with `-Pdist=github`: `UPDATER_ENABLED = true`, telemetry still false (`gradle.properties`
+pins `include-telemetry=false`). Signed with the same release key, versionCode 15.
+
+**Verified.** Generated `BuildConfig` shows `UPDATER_ENABLED = true`; `apksigner` shows the release certificate;
+sha256 `ddb50574…` matches on the website and in the GitHub release asset; live feed serves 1.0.14 / code 15.
+
+**Prevention.** `docs/RELEASING.md` now makes `-Pdist=github` mandatory, explains the LOCAL default and its effect,
+and adds a `grep UPDATER_ENABLED` to the artefact verification step — so a build missing the updater cannot be
+published silently again.
+
+**Why this slipped through 30 cycles of verification:** every check I wrote asked whether the code was *correct*, not
+whether the *shipped artefact contained it*. Two build flags were never inspected. The lesson is in the runbook: for a
+release, verify the artefact's capability, not just the source's behaviour.
