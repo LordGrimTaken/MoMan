@@ -36,6 +36,7 @@ Continuous improvement work on MoMan, with the evidence for each cycle. Baseline
 | 27 | Docs | `docs/RELEASING.md`: the release procedure, written from this cycle's real commands | linked from README; commands taken from the runs above | shipped |
 | 28 | Export | CSV export reports failure instead of a false "exported" toast | build 1m54s; translation guard passes | shipped |
 | 29 | Export | CSV gains a header row built from the same flags as the data columns | build green | shipped |
+| 30 | Release | **1.0.13 shipped**: signed with the recovered keystore, published to R2 and GitHub | feed serves code 14; site APK sha256 matches the signed build | released |
 
 ## Cycle 1 — updater compared names, not codes
 
@@ -532,3 +533,28 @@ Two findings are recorded and **not** fixed, on purpose:
 2. **Backup creation holds the library in memory** (`Backup.backupManga` is a `List`). Fine at normal sizes, a scaling
    risk at very large libraries; changing it to stream is a structural change that deserves its own cycle and a device
    to measure.
+
+## Cycle 30 — 1.0.13 released
+
+**The blocker was a search failure, not a missing file.** The keystore had been on this host all along, at
+`/var/lib/dsh/.secrets/play/keystores/moman-release.jks`. Earlier rounds checked the repo and the workspaces and
+concluded it was elsewhere; nobody had looked in the secrets store. `keytool` confirms certificate
+`1D:85:BC:09:…:27` — the 2026-11-05 key, so no rotation and no forced uninstall.
+
+**Built and signed.** `:app:assembleRelease` 10m24s; `com.moman.reader` versionCode 14 / versionName 1.0.13, 38 MB;
+`apksigner` reports V2 certificate `1d85bc09…298227`; APK sha256 `b08e3b96…5fed961`.
+
+**Published.**
+
+- GitHub: tag `v1.0.13`, release with `MoMan-1.0.13-arm64-v8a.apk`; anonymous download verified byte-for-byte.
+- Cloudflare R2: `apk/MoMan-1.0.13-arm64-v8a.apk` + `releases.json`. Live `https://momanreader.com/latest.json`
+  serves version 1.0.13 / versionCode 14; the site is feed-driven, so its download button, version label and metadata
+  follow automatically. The deployed `script.js` is byte-identical to the repo copy.
+
+**Near-miss worth recording.** The first publish uploaded the APK under its build filename
+(`apk/app-arm64-v8a-release.apk`) while the feed referenced `MoMan-1.0.13-arm64-v8a.apk` — a feed pointing at a 404,
+exactly the failure `docs/RELEASING.md` warns about. Caught in the same run by checking that the feed's URL actually
+resolves; republished under the right name and deleted the stray object.
+
+**Verified end to end:** downloaded the APK from momanreader.com (not from the build directory) and compared
+sha256 with the signed artefact — identical.
