@@ -1,6 +1,22 @@
 MoMan
-Copyright 2026 MoMan contributors
+Copyright (c) 2026 MoMan contributors
 
-This product includes software originally developed by the Mihon Open Source Project
-and the Tachiyomi Open Source Project, used under the Apache License, Version 2.0.
-This notice is retained as required by the license.
+This product is a fork of Mihon (https://github.com/mihonapp/mihon), which is itself
+the successor of Tachiyomi. The upstream project is licensed under the Apache License,
+Version 2.0, and its license text is reproduced in full in LICENSE-APACHE.
+
+MoMan's own changes — the rebrand (app name, package id, icon, theme), the update
+client, the website and release tooling in `server/` and `cloudflare/`, and the
+documentation in `docs/` — are licensed under the MIT License (see LICENSE).
+
+The source files inherited from Mihon remain Apache-2.0 licensed. Where a file has
+not been substantially rewritten by this project, the Apache License 2.0 continues to
+apply to it, and this repository keeps the upstream license text and notices to
+satisfy section 4 of that license. Nothing here removes or replaces those notices.
+
+Third-party components bundled or depended upon (AndroidX, Kotlin, OkHttp, Coil,
+Jsoup, RxJava, Metro, Voyager, and others) keep their own licenses; Gradle resolves
+them, and their notices are available in-app under Settings → About → Licenses.
+
+MoMan hosts no content. Sources and extensions are supplied by third parties and are
+not distributed with this repository.

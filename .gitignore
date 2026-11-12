@@ -15,3 +15,6 @@ local.properties
 
 # macOS specific files
 .DS_Store
+
+# Release binaries belong on the site (Cloudflare R2), not in git
+server/apks/*.apk

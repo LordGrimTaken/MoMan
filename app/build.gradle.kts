@@ -36,9 +36,8 @@ android {
 
     defaultConfig {
         applicationId = "com.moman.reader"
-
-        versionCode = 12
-        versionName = "1.0.11"
+        versionCode = 16
+        versionName = "1.0.15"
 
         buildConfigField("boolean", "TELEMETRY_INCLUDED", "${Config.includeTelemetry}")
         buildConfigField("boolean", "UPDATER_ENABLED", "${Config.enableUpdater}")
@@ -123,9 +122,13 @@ android {
         getByName("benchmark").res.directories.add("src/debug/res")
     }
 
+    // ABI splits are for sideloaded APKs. An app bundle must not have them: AGP fails
+    // :app:buildReleasePreBundle with "Multiple shrunk-resources files found".
+    // Build a Play bundle with:  ./gradlew :app:bundleRelease -PabiSplits=false
+    val abiSplits = providers.gradleProperty("abiSplits").orNull?.toBoolean() ?: true
     splits {
         abi {
-            isEnable = true
+            isEnable = abiSplits
             isUniversalApk = true
             reset()
             include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
